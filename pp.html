@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta HTTP-EQUIV="Expires" CONTENT="no-cache">
+		<meta charset="UTF-8">
+		<meta name="keywords" content="HTML,CSS">
+		<title>Formulari</title> 
+		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+		<meta name="description" content="Formulari">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+		
+	<body>
+		<form method="POST" action="pphp.php" enctype="multipart/form-data">
+			<p>Nombre de usuario: <input name="nombre" type="text" value="Alejandro" autofocus></p>
+			<p>Primer apellido: <input name="apellido1" maxlength="8" type="text" placeholder="Apellido" required></p>
+			<p>Segundo apellido: <input name="apellido2" disabled type="text"></p>
+			<p>Contraseña: <input name="contrasenya" type="password"></p>
+			<p>Edad: <input name="edad" type="number" size="5"></p>
+			<p>Correo: <input name="correo" type="email"></p>
+			<p>Web: <input name="web" type="url"></p>
+			<br>
+			<p><input type="submit" name="env" value="Envío"></p>
+		</form>
+	</body>
+</html>
