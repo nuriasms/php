@@ -1,5 +1,5 @@
 <?php
-	function validarFrase($frase)
+	function validarFrase($frase) 
 	{
 		$encadenada=true;
 		$palabras=explode(" ",$frase);
