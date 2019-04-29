@@ -80,8 +80,40 @@
 		$data = stripslashes($data);
 		$data = htmlspecialchars($data);
 		return $data;
-	
 	}
+
+	function validarContrasena($clau)
+    {
+		$error="";
+		
+		if (!preg_match('/[$@$!%*?&]+/',$clau)) 
+       	{
+           $error = $error." un carácter especial";
+       	}
+       	if ((strlen($clau) < 6) || (strlen($clau) > 12))
+       	{
+           $error = $error." entre 8 o 12 carácteres, ";
+      	}
+      	if (!preg_match('`[a-z]`',$clau))
+       	{
+           $error = $error." una letra minúscula mínimo, ";
+       	}
+       	if (!preg_match('`[A-Z]`',$clau))
+       	{
+            $error = $error." una letra mayúscula mínimo, ";
+        }
+       	if (!preg_match('`[0-9]`',$clau))
+       	{
+            $error = $error." un número mínimo.";
+		}
+		   
+		/* if (!preg_match('/[.,=:|&\+\^$\*-_]+/',$clau)) 
+       	{
+           $error = $error." un carácter especial";
+       	}*/
+	   	return $error;
+	} 
+	
 
 
 ?>
