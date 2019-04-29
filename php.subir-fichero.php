@@ -21,7 +21,7 @@
 			else
 			{
 				?>
-				<form acton="" method="post" ENCTYPE="multipart/formdata“ >
+				<form acton="" method="post" ENCTYPE="multipart/formdata">
 					<label>Nombre: <input type="text" name="nombre" placeholder="login"></label><br>
 					<label>Contraseña: <input type="text" name="contrasena" placeholder="password"></label>
 					<br><br>

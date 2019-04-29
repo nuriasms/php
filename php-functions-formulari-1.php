@@ -45,27 +45,43 @@
 	}
 
 	function calcular2()
+	{
+		switch ($_POST["operacion"]) 
 		{
-			switch ($_POST["operacion"]) 
-			{
-				case '+':
-					$resultado=$_POST["primero"]+$_POST["segundo"];
-					break;
-				case '-':
-					$resultado=$_POST["primero"]-$_POST["segundo"];
-					break;
-				case '*':
-					$resultado=$_POST["primero"]*$_POST["segundo"];
-					break;
-				case '/':
-					$resultado=$_POST["primero"]/$_POST["segundo"];
-					break;
-				default:
-					$resultado="ERROR";
-					break;
-			}
-			return $resultado;
+			case '+':
+				$resultado=$_POST["primero"]+$_POST["segundo"];
+				break;
+			case '-':
+				$resultado=$_POST["primero"]-$_POST["segundo"];
+				break;
+			case '*':
+				$resultado=$_POST["primero"]*$_POST["segundo"];
+				break;
+			case '/':
+				$resultado=$_POST["primero"]/$_POST["segundo"];
+				break;
+			default:
+				$resultado="ERROR";
+				break;
 		}
+		return $resultado;
+	}
+
+	function validarUsuario($nombre,$contrasena)
+	{
+		$respuesta=false;
+		if (($nombre==="USER") && ($contrasena==="PASSWORD")) $respuesta=true;
+		return $respuesta;	
+	}
+	
+	function test_input($data) 
+	{
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	
+	}
 
 
 ?>

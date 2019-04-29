@@ -6,31 +6,54 @@
 		<?php
 			require ('php-functions-formulari-1.php');
 		?>
+		<style>
+			.verde{
+				color:green;
+			}
+			.rojo{
+				color:red;
+			}
+		</style>
 	</head>
 	<body>
 		<?php
-			if(isset($_REQUEST["enviar"]))
+			$tmp=false;
+			if(isset($_REQUEST["enviar"])) 
 			{	
-				print(calcular2());
+				if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
+				{
+					print ("Debe introducir el nombre y la contraseña no puede estar vacío. <br>"); 
+				}
+				else
+				{
+					if (!$tmp=validarUsuario($_REQUEST['nombre'],$_REQUEST['contrasena']))
+					{
 						
-					
+						print("<br><span class='rojo'>ERROR</span><br><br>");
+						//header("Refresh:1; url=php-login.php");
+						$tmp=false;						
+					}
+					else
+					{
+						print("<br><span class='verde'>OK</span><br>");
+						//header("location:php-loginOK.php");
+						$tmp=true;
+					}
+				}
 				?>
-				<br><br>
-				<a href="javascript:history.go(-1);">Volver Atras</a>			
+				<!--br><br>
+				<a href="javascript:history.go(-1);">Volver Atras</a-->			
 			<?php
 			}
-			else
+			if (!$tmp)
 			{
 				?>
-				<form  method="POST">
-					<label>Nombre: <input type="text" name="nombre" placeholder="login"></label><br>
-					<label>Contraseña: <input type="text" name="contrasena" placeholder="password"></label>
+				<form method="POST">
+					<label>Nombre: <input type="text" name="nombre" placeholder="login"></label>
 					<br><br>
-					<in
-					
+					<label>Contraseña: <input type="password" name="contrasena" placeholder="password"></label>
+					<br><br>	
 					<input type="submit" name="enviar" value="Aceptar">
-					
-					
 				</form>
 				<?php
 			}
