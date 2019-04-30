@@ -88,11 +88,11 @@
 		
 		if (!preg_match('/[$@$!%*?&]+/',$clau)) 
        	{
-           $error = $error." un carácter especial";
+           $error = $error." un carácter especial $@!%*?&";
        	}
-       	if ((strlen($clau) < 6) || (strlen($clau) > 12))
+       	if ((strlen($clau) < 6) || (strlen($clau) > 8))
        	{
-           $error = $error." entre 8 o 12 carácteres, ";
+           $error = $error." entre 6 o 8 carácteres, ";
       	}
       	if (!preg_match('`[a-z]`',$clau))
        	{
@@ -114,6 +114,31 @@
 	   	return $error;
 	} 
 	
+	function validarFichero()
+	{
+		$respuesta=false;
+		if (is_uploaded_file($_FILES['fichero']['tmp_name']))
+		{ //si se ha subido el fichero….
+			$nombreDirectorio= "../img/";
+			$nombreFichero= $_FILES['fichero']['name'];
+			$nombreCompleto= $nombreDirectorio. $nombreFichero;
+			if(is_file($nombreCompleto))
+			{
+				$idUnico= time();
+				$nombreFichero= $idUnico. "-" . $nombreFichero;
+			}
+			move_uploaded_file($_FILES['fichero']['tmp_name'],$nombreDirectorio.
+			$nombreFichero);
+			$respuesta=true;
+		}
+		else
+		{
+			//print("No se ha podido subir el fichero\n");
+			$respuesta=false;
+		}
+		return $respuesta;
+	}
+
 
 
 ?>

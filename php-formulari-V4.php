@@ -15,8 +15,8 @@
 	<body>
 		<?php
 			//Inicializa variables
-			$nombreError = $correoError = $apellidosError = $comentariosError = $edadError = "";
-			$nombre = $correo = $apellidos = $comentarios = $edad = "";
+			$nombreError = $correoError = $apellidosError = $comentariosError = $edadError = $ficheroError = "";
+			$nombre = $correo = $apellidos = $comentarios = $edad = $fichero = "";
 			
 			if(isset($_POST["enviar"]))
 			{	
@@ -68,23 +68,33 @@
 				{
 					$comentarios = test_input($_POST["comentarios"]);
 				}
+
+				if (!validarFichero())
+				{
+					$ficheroError = "No se ha podido subir el fichero";
+				}
 			}
 		?>
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">  
-  				<label>Nombre *: </label><input type="text" name="nombre" value="<?php echo $nombre;?>">
-  				<span class="error"><?php echo $nombreError;?></span>
-  				<br><br>
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">  
+  			<label>Nombre *: </label><input type="text" name="nombre" value="<?php echo $nombre;?>">
+  			<span class="error"><?php echo $nombreError;?></span>
+  			<br><br>
 				<label>Apellidos: </label><input type="text" name="apellidos" value="<?php echo $apellidos;?>">
-  				<span class="error"><?php echo $apellidosError;?></span>
-  				<br><br>
+  			<span class="error"><?php echo $apellidosError;?></span>
+  			<br><br>
 				<label>Edad: </label><input type="number" name="edad" value="<?php echo $edad;?>">
-  				<span class="error"><?php echo $edadError;?></span>
-  				<br><br>
-				<label>Correo *: </label><input type="text" name="correo" value="<?php echo $correo;?>">
-  				<span class="error"><?php echo $correoError;?></span>
-  				<br><br>
+  			<span class="error"><?php echo $edadError;?></span>
+  			<br><br>
+				<label>Correo *: </label><input type="email" name="correo" value="<?php echo $correo;?>">
+  			<span class="error"><?php echo $correoError;?></span>
+  			<br><br>
 				<label>Comentarios: </label><textarea name="comentarios" rows="5" cols="40"><?php echo $comentarios;?></textarea>
-  				<br><br><br>
+				<br><br>
+				<label>Datos adjuntos: </label>
+				<input type="hidden" name="max_file_size" value="102400">
+				<input type="file" name="fichero">
+  			<span class="error"><?php echo $ficheroError;?></span>
+				<br><br><br>
 				<input type="submit" name="enviar" value="Enviar">
 			</form>
 	</body>
