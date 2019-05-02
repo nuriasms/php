@@ -17,19 +17,22 @@
 			//Inicializa variables
 			$nombreError = $correoError = $apellidosError = $comentariosError = $edadError = $ficheroError = "";
 			$nombre = $correo = $apellidos = $comentarios = $edad = $fichero = "";
-			
+			$estado = true;
+
 			if(isset($_POST["enviar"]))
 			{	
 				if (empty($_POST["nombre"])) 
 				{
 					$nombreError = "Nombre obligatorio";
+					$estado=false;
 				} 
 				else 
 				{
 					$nombre = test_input($_POST["nombre"]);
 					// comprueba que lleva solo letras y espacios
 					if (!preg_match("/^[a-zA-Z ]*$/",$nombre)) {
-					  $nombreError = "Solo se admiten letras y espacios en blanco"; 
+					  $nombreError = "Solo se admiten letras y espacios en blanco";
+					  $estado=false;
 					}
 				  }
 
@@ -38,7 +41,8 @@
 					$apellidos = test_input($_POST["apellidos"]);
 					// comprueba que lleva solo letras y espacios
 					if (!preg_match("/^[a-zA-Z ]*$/",$apellidos)) {
-					  $apellidosError = "Solo se admiten letras y espacios en blanco"; 
+					  $apellidosError = "Solo se admiten letras y espacios en blanco";
+					  $estado=false;
 					}
 				  }
 
@@ -48,12 +52,14 @@
 					if ($edad<18)
 					{
 						$edadError= "Solo se permite a personas mayores de 18 años.";
+						$estado=false;
 					}
 				}
 
 				if (empty($_POST["correo"])) 
 				{
 					$correoError = "Correo obligatorio";
+					$estado=false;
 				} 
 				else 
 				{
@@ -61,7 +67,8 @@
 					// Comprueba que el formato es correcto
 					if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) 
 					{
-					  $correoError = "Formato de correo erróneo"; 
+					  $correoError = "Formato de correo erróneo";
+					  $estado=false; 
 					}
 				}
 				if (!empty($_POST["comentarios"])) 
@@ -69,11 +76,25 @@
 					$comentarios = test_input($_POST["comentarios"]);
 				}
 
-				if (!validarFichero())
+				$nombreFichero=validarFichero();
+				if (empty($nombreFichero))
 				{
 					$ficheroError = "No se ha podido subir el fichero";
+					$estado=false;
+				}
+
+				if ($estado==true)
+				{
+					print("<p>Nombre: ".$nombre."</p>");
+					print("<p>Apellidos: ".$apellidos."</p>");
+					print("<p>Edad: ".$edad."</p>");
+					print("<p>Correo: ".$correo."</p>");
+					print("<p>Comentario: ".$comentarios."</p>");
+					print("<img src='".$nombreFichero."'>");
 				}
 			}
+			else
+			{
 		?>
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">  
   			<label>Nombre *: </label><input type="text" name="nombre" value="<?php echo $nombre;?>">
@@ -97,5 +118,8 @@
 				<br><br><br>
 				<input type="submit" name="enviar" value="Enviar">
 			</form>
+		<?php
+		}
+		?>
 	</body>
-</html>
+</html> 

@@ -32,25 +32,21 @@
 					if (!$tmp=validarUsuario($_REQUEST['nombre'],$_REQUEST['contrasena']))
 					{
 						
-						print("<br><span class='rojo'>ERROR</span><br><br>");
-						//header("Refresh:1; url=php-login.php");
-												
+						print("<br><span class='rojo'>ERROR al validar usuario</span><br><br>");										
 					}
 					else
 					{
-						print("<br><span class='verde'>OK</span><br>");
-						//header("location:php-loginOK.php");
-						if(isset($_SESSION["usuario_valido"]))
+						if (isset($_POST['recordar']) && $_POST['recordar'] == 1)
 						{
-							header("Location: php-formulari-V4.php");
+							setcookie("autologin",1,strtotime( '+30 days' ),"/",false, false);
+      						print ('<p class="verde">Se ha guardado su usuario.</p>');
 						}
-						//<?php
-						// remove all session variables
-						//session_unset(); 
-
-						// destroy the session 
-						//session_destroy(); 
-						//?>
+						//print("<br><span class='verde'>OK</span><br>");
+						$_SESSION["nombre_usuario"] = $_REQUEST['nombre'];
+						if(isset($_SESSION["nombre_usuario"]))
+						{
+							header("Location: php-pagina-restringida.php");
+						}
 					}
 				}
 			}
@@ -60,7 +56,9 @@
 				<label>Nombre: <input type="text" name="nombre" placeholder="login"></label>
 				<br><br>
 				<label>Contraseña: <input type="password" name="contrasena" placeholder="password"></label>
-				<br><br>	
+				<br><br>
+				<label>Recordar sesión <input type="checkbox" name="recordar" value="1"></label>
+				<br><br>
 				<input type="submit" name="enviar" value="Aceptar">
 			</form>		
 		

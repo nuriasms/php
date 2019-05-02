@@ -116,7 +116,7 @@
 	
 	function validarFichero()
 	{
-		$respuesta=false;
+		$nombre="";
 		if (is_uploaded_file($_FILES['fichero']['tmp_name']))
 		{ //si se ha subido el fichero….
 			$nombreDirectorio= "../img/";
@@ -129,16 +129,17 @@
 			}
 			move_uploaded_file($_FILES['fichero']['tmp_name'],$nombreDirectorio.
 			$nombreFichero);
-			$respuesta=true;
+			$nombre=($nombreDirectorio.$nombreFichero);
+			//print ($nombre);
 		}
 		else
 		{
 			//print("No se ha podido subir el fichero\n");
-			$respuesta=false;
+			
 		}
-		return $respuesta;
+		return $nombre;
 	}
 
-
+	
 
 ?>
