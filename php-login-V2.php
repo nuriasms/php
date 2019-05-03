@@ -36,10 +36,11 @@
 					}
 					else
 					{
-						if (isset($_POST['recordar']) && $_POST['recordar'] == 1)
+						if ((isset($_POST['recordar'])) && ($_POST['recordar'] == 1))
 						{
-							setcookie("autologin",1,strtotime( '+30 days' ),"/",false, false);
-      						print ('<p class="verde">Se ha guardado su usuario.</p>');
+							setcookie("usuario",$_REQUEST['nombre'],strtotime( '+30 days' ),"/",false, false);
+							setcookie("contrasena",$_REQUEST['contrasena'],strtotime( '+30 days' ),"/",false, false);  
+							print ('<p class="verde">Se ha guardado su usuario.</p>');
 						}
 						//print("<br><span class='verde'>OK</span><br>");
 						$_SESSION["nombre_usuario"] = $_REQUEST['nombre'];

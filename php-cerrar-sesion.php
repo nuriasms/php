@@ -3,7 +3,8 @@
         session_start();
         print ("<h2>Cerrando sesión</h2>");
         //Destruir cookie.
-        setcookie("autologin",0,1,"/",false, false);
+        setcookie("usuario",0,1,"/",false, false);
+        setcookie("contrasena",0,1,"/",false, false);
         //borra variables de la sesión
         unset($_SESSION["nombre_usuario"]);  
         //cierra sesión

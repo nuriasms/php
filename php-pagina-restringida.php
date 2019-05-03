@@ -2,20 +2,22 @@
     session_start();
     //print_r($_SESSION);
     //print ($_SESSION["nombre_usuario"]);
-    if (!isset($_SESSION["nombre_usuario"])) 
+   
+    if (isset($_SESSION["nombre_usuario"])||(isset($_COOKIE["usuario"])&&(isset($_COOKIE["contrasena"]))))
     {
-        header("Location: php-login-V2.php");
+        if(isset($_SESSION["nombre_usuario"]))
+        {
+            print ("<p>Bienvenid@ " . $_SESSION["nombre_usuario"] . "</p>");    
+        }
+        else
+        {        
+            print ("<p>Bienvenid@ " . $_COOKIE["usuario"] . "</p>");
+        }
+        print ("<a href='php-cerrar-sesion.php' title='Cerrar sesión'>Cerrar sesión</a>");
     }
     else
     {
-        print ("<p>Bienvenid@ " . $_SESSION["nombre_usuario"] . "</p>");
-        print ("<a href='php-cerrar-sesion.php' title='Cerrar sesión'>Cerrar sesión</a>");
-    }
-    if (isset($_COOKIE["autologin"])&&$_COOKIE["autologin"]==1)
-    {
-        $_SESSION["nombre_usuario"] = $_REQUEST['nombre'];
-        print ("<p>Bienvenid@ " . $_SESSION["nombre_usuario"] . "</p>");
-        print ("<a href='php-cerrar-sesion.php' title='Cerrar sesión'>Cerrar sesión</a>");
+        header("Location: php-login-V2.php");
     }
     
 ?>
@@ -31,14 +33,8 @@
 	</head>
 	<body>
         <h2>Web restringida</h2>
+        <p>Has entrado ;)</p>
         <br><br>
-        <?php
-        if ( isset($_COOKIE['autologin'])) 
-        {
-            $nombreCookie = $_COOKIE['autologin'] ?: '';
-            print ("Cookie nombre es: " . $nombreCookie);
-            //printf ($_COOKIE);
-        }
-        ?>
+        
 	</body>
 </html>
