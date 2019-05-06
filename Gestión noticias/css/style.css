@@ -15,7 +15,7 @@ body{
     padding-left: 110px;
 }
 .loginCuerpo{
-    padding:10px 0 5px 50px;
+    padding:10px 0 10px 50px;
 }
 .loginPie{
     background-color:#f1f1f1;
@@ -24,12 +24,111 @@ body{
 }
 .error{
     color:red;
+    margin-left: 10px;
 }
 .altaUsuario{
-    font-size: 16px;
+    /*font-size: 16px;*/
+    font-weight: bold;
 }
-
 .lupa{
     padding: 5px 30px 13px 20px;
-
 }
+.registro{
+    width: 750px;
+    height: 560px;
+    background-color: white;
+    position: relative;
+    top:30px;
+    left: 20%;
+}
+.registroCab img{
+    /*width: 100px;*/
+    padding:20px 30px 0 50px;
+    float: left;
+}
+.registroCab h2{
+    float: left;
+    padding:20px 20px 0 20px;
+}
+.registroCuerpo{
+    clear: both;
+    padding:10px 50px 10px 50px;
+}
+label{
+    float: left;
+    width: 135px;
+}
+input { 
+  float: left;
+}
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #39703b;
+  }
+  .prensa{
+      background: url('../img/prensa.jpg') no-repeat;
+      background-size: 100%;
+  }
+  .cerrar li{
+    /*padding: 4px 10px 0 0;*/
+    position: relative;
+    top:8px;
+    right: 20px;
+  }
+/*-----------------------------------------BARRA MENU----------------------------*/
+.navbar-default .navbar-nav>.active>a{
+    background-color: #949899;  /*gris oscuro*/
+    color:white;
+}
+
+.navbar-default .navbar-nav>.inactive>a{
+  background-color: #F5F2F2;  /*gris claro*/
+}
+.navbar-default, .form-control, .btn{
+    border-color: #949899;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #777;
+    font-size: 18px;
+}
+.navbar-default .navbar-nav>.active>a:hover, .container-fluid .nav li a:hover{
+	background-color: #949899;
+	color:white;
+}
+.navbar-nav  li a{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.navbar-right li a{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 10px;
+}
+.container-fluid {
+	background-color:#F5F2F2; /*gris claro*/
+}
+
+
+  .navbar-header h4{
+      padding: 8px 25px 0 0;
+      color: cornflowerblue;
+  }
+  header{
+      height: 100px;
+  }
+  header h1{
+      font-weight: 1000;
+      padding: 25px;
+  }
+  

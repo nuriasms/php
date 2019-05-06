@@ -1,7 +1,7 @@
 <?php
     session_start();
     require ('funciones.php');
-    $usuario=validarSesionAbierta();  
+    validarSesionAbierta();  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,8 @@
 	<body class="prensa">
         <noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<header>
+			<span id="inicio"></span>
+			<!--img src="img/logo.png" alt="Logo del planetario"-->
 			<h1>Menú noticias</h1>
 		</header>
 
@@ -33,16 +35,29 @@
 		    </div>
 		    <div class="container-fluid collapse navbar-collapse" id="myNavbar">
 			    <div class="navbar-header">
-					<h4><?php echo $usuario;?></h4>
+
     			</div>
 			    <ul class="nav navbar-nav">
 			      <li class="active"><a href="menu.php">Inicio</a></li>
 			      <li><a href="consulta-noticias.php">Consulta noticias</a></li>
-			      <li><a href="alta-noticia.php">Alta noticias</a></li>
+			      <li><a href="alta-noticias.php">Alta noticias</a></li>
 			      <li><a href="borrar-noticias.html">Borrar noticias</a></li>
 			    </ul>
-		   		<ul class="nav navbar-nav navbar-right cerrar"> 
-	    			<li><button type="button" class="btn btn-danger" onclick="cerrarSesion()"> <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión </button></li>
+		   		<ul class="nav navbar-nav navbar-right"> 
+                   <!--li>
+                       <div class="input-group">
+		    				    <span class="input-group-addon" onclick="buscar(document.all.busca.value)"><span class="glyphicon glyphicon-search"></span></span>
+		    				    <input type="text" class="form-control" name="busca" placeholder="Buscar ">
+                        </div>
+                    </li-->
+
+
+			    	<li><form class="navbar-form input-group">
+							<input type="text" class="form-control" placeholder="Buscar" name="busca">
+	      					<button type="button" class="input-group-addon lupa" onclick="buscar(document.all.busca.value)"><span class="glyphicon glyphicon-search"></span></button>
+	    				</form>
+	    			</li>
+	    			<li><button type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión </button></li>
 	    		</ul>
 		  	</div>
         </nav>

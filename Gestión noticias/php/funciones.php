@@ -6,6 +6,7 @@
         unset($_SESSION["nombre_usuario"]);  
         //cierra sesión
         session_destroy();
+        borrarCookie();
         header("Location: ../index.php");
         exit;
     }
@@ -46,24 +47,26 @@
 
     function validarSesionAbierta()
     {
+        $nombre="";
         if (isset($_SESSION["nombre_usuario"])||(isset($_COOKIE["usuario"])&&(isset($_COOKIE["contrasena"]))))
         {
             if(isset($_SESSION["nombre_usuario"]))
             {
-                print ("<p>Bienvenid@ " . $_SESSION["nombre_usuario"] . "</p>");    
+                $nombre="Bienvenid@: ".$_SESSION['nombre_usuario'];    
             }
             else
             {     
                 if ($tmp=validarUsuario($_COOKIE["usuario"],$_COOKIE["contrasena"]))
                 {
-                    print ("<p>Bienvenid@ " . $_COOKIE["usuario"] . "</p>");
+                    $nombre="Bienvenid@: ".$_COOKIE['usuario'];
                 } 
                 else
                 {
                     header("Location: ../index.php");
                 }    
             }
-            print ("<a href='cerrar-sesion.php' title='Cerrar sesión'>Cerrar sesión</a>");
+            return $nombre;
+            //print ("<a href='cerrar-sesion.php' title='Cerrar sesión'>Cerrar sesión</a>");
         }
         else
         {
@@ -81,6 +84,45 @@
 		return utf8_encode(ucfirst(strftime("%A, %d de %B de %Y", $data)));
 		//return ucfirst(strftime("%#x", $data));
 		
-	}
+    }
     
+    function test_input($data) 
+	{
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+    }
+
+    function validarContrasena($clau)
+    {
+		$error="";
+		
+		if (!preg_match('/[$@$!%*?&]+/',$clau)) 
+       	{
+           $error = $error." un carácter especial $@!%*?&";
+       	}
+       	if ((strlen($clau) < 6) || (strlen($clau) > 8))
+       	{
+           $error = $error." entre 6 o 8 carácteres, ";
+      	}
+      	if (!preg_match('`[a-z]`',$clau))
+       	{
+           $error = $error." una letra minúscula mínimo, ";
+       	}
+       	if (!preg_match('`[A-Z]`',$clau))
+       	{
+            $error = $error." una letra mayúscula mínimo, ";
+        }
+       	if (!preg_match('`[0-9]`',$clau))
+       	{
+            $error = $error." un número mínimo.";
+		}
+        return $error;
+    }
+
+
+
+
+
 ?>

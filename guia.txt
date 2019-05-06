@@ -1,0 +1,12 @@
+//Descargar ficheros repositorio ---BAJAR
+
+		git pull https://github.com/nuriasms/php.git
+
+
+//subir ficheros repositorio
+
+		git push https://github.com/nuriasms/php.git
+
+//link directorio a repositorio
+
+		git clone https://github.com/nuriasms/php.git php

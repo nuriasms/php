@@ -1,7 +1,7 @@
 <?php
     session_start();
     require ('funciones.php');
-    validarSesionAbierta();  
+    $usuario=validarSesionAbierta();  
 ?>
 <!DOCTYPE html>
 <html lang="en">
