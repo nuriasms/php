@@ -112,7 +112,7 @@
            $error = $error." un carácter especial";
        	}*/
 	   	return $error;
-	} 
+	}  
 	
 	function validarFichero()
 	{

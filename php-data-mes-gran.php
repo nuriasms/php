@@ -38,8 +38,10 @@
 			
 			print("<br>La fecha formato carta es: ".formatearFechaCarta()."<br>");
 			
-			$contrasena="seguretat.1234";
+			//$contrasena="seguretat.1234";
+			$contrasena="1234";
 			$xifrat=generarXifrat($contrasena);
+			print ($xifrat);
 			$respuesta=comprobarContrasena($contrasena);
 			if ($respuesta=="CORRECTA")
 			{

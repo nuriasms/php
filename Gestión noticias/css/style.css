@@ -1,0 +1,35 @@
+body{
+    background-color: lavender;
+}
+.login{
+    width: 300px;
+    height: 450px;
+    background-color: white;
+    position: relative;
+    top:30px;
+    left: 40%;
+}
+.loginCab img{
+    width: 60%;
+    padding-top:20px;
+    padding-left: 110px;
+}
+.loginCuerpo{
+    padding:10px 0 5px 50px;
+}
+.loginPie{
+    background-color:#f1f1f1;
+    text-align: right;
+    padding-right: 30px;
+}
+.error{
+    color:red;
+}
+.altaUsuario{
+    font-size: 16px;
+}
+
+.lupa{
+    padding: 5px 30px 13px 20px;
+
+}

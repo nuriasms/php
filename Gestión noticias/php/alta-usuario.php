@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
-	<script src="lib/js/jquery.min.js"></script>
-	<script src="lib/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+	<script src="../lib/js/jquery.min.js"></script>
+	<script src="../lib/js/bootstrap.min.js"></script>
     <title>Gestión noticias-Login</title>
-	<link rel="stylesheet" href="css/style.css"> 
+	<link rel="stylesheet" href="../css/style.css"> 
     <?php
 			require ('php/funciones.php');
 	?>
@@ -45,34 +45,31 @@
 	?>    
     
         <div class="login">
-			<form method="post">
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <div class="loginCab">    
-                    <img src="img/avatar.png" alt="Avatar">	
+                    <img src="../img/avatar.png" alt="Avatar">	
                 </div>  
                 <div class="loginCuerpo">    
 			      	<br>
 					<span class="error"><?php echo $mostrarError;?></span>
 					<br>
-			        <label for="nombre"><b>Usuario</b></label><br>
-			        <input type="text" placeholder="Nombre usuario" name="nombre" required>
-					<br><br>
-			        <label for="contrasena"><b>Contraseña</b></label><br>
-			        <input type="password" placeholder="Password" name="contrasena" required>
-			        <br><br> 
-			        <!--input type="submit" name="enviar" value="Iniciar sesión"></input-->
-					<button type="submit" name="enviar" class="btn btn-success"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión </button>
+			        <label>Usuario: <input type="text" name="usuario" value="<?php echo $usuario;?>">
+                    <span class="error"><?php echo $usuarioError;?></span></label>
+                    <br><br>
+                    <label>Contraseña: <input type="password" name="contrasena" minlength="6" maxlength="8" value="<?php echo $contrasena;?>">
+                    <span class="error"><?php echo $contrasenaError;?></span></label>
+                    <br><br>	
+                    <label>Repite contraseña: <input type="password" name="contrasena2" minlength="6" maxlength="8">
+                    <span class="error"><?php echo $contrasena2Error;?></span></label>
+                    <br><br><br>
+                    <input type="submit" name="enviar" value="Aceptar"><span class="verde"><?php echo $envio;?></span>
+					
 			        <br><br>
 			        <label>
 			         <input type="checkbox" checked name="recordar"> Recordar usuario
                     </label>
-                    <br>
-					<a class="altaUsuario" href="php/alta-usuario.php">Alta nuevo usuario</a>
 					<br><br>
-                </div>
-			    <div class="loginPie">
-			        <span class="psw">Olvidar <a href="#" onclick="borrarCookie();">usuario?</a></span>
-			    </div>
-				
+                </div>				
 			</form>
 		</div>    
    
