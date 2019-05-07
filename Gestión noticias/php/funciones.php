@@ -36,10 +36,11 @@
 		}
     }
 
-    function iniciarSesion($usuario)
+    function iniciarSesion($usuario,$contrasena)
     {
         $_SESSION["nombre_usuario"] = $usuario;
-		if(isset($_SESSION["nombre_usuario"]))
+        $_SESSION["contrasena"] = $contrasena;
+		if(isset($_SESSION["nombre_usuario"]) && isset($_SESSION["contrasena"]) )
 		{
 			header("Location: php/menu.php");
 		}
@@ -47,12 +48,19 @@
 
     function validarSesionAbierta()
     {
-        $nombre="";
+        $nombre = $tmp = "";
         if (isset($_SESSION["nombre_usuario"])||(isset($_COOKIE["usuario"])&&(isset($_COOKIE["contrasena"]))))
         {
             if(isset($_SESSION["nombre_usuario"]))
             {
-                $nombre="Bienvenid@: ".$_SESSION['nombre_usuario'];    
+                if (!$tmp=validarUsuario($_SESSION['nombre_usuario'],$_SESSION['contrasena']))
+				{		
+					header("Location: ../index.php");										
+                }
+                else
+                {
+                    $nombre="Bienvenid@: ".$_SESSION['nombre_usuario']; 
+                }   
             }
             else
             {     
@@ -120,7 +128,25 @@
 		}
         return $error;
     }
-
+    function validarFichero()
+	{
+		$nombre="";
+		if (is_uploaded_file($_FILES['fichero']['tmp_name']))
+		{ 
+			$nombreDirectorio= "../img/";
+			$nombreFichero= $_FILES['fichero']['name'];
+			$nombreCompleto= $nombreDirectorio. $nombreFichero;
+			if(is_file($nombreCompleto))
+			{
+				$idUnico= time();
+				$nombreFichero= $idUnico. "-" . $nombreFichero;
+			}
+			move_uploaded_file($_FILES['fichero']['tmp_name'],$nombreDirectorio.
+			$nombreFichero);
+			$nombre=($nombreDirectorio.$nombreFichero);
+		}
+		return $nombre;
+	}
 
 
 

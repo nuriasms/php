@@ -37,7 +37,7 @@
 				else
 				{
 					guardarCookie($_REQUEST['nombre'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
-					iniciarSesion($_REQUEST['nombre']);
+					iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']);
 				}
 			}
 		}

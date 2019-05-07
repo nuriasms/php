@@ -131,4 +131,40 @@ input[type=submit] {
       font-weight: 1000;
       padding: 25px;
   }
+  .altaNoticia{
+      width: 80%;
+      padding-left: 12%;
+  }
+  /*-------------------------------ARTICULOS------------------------------------------*/
+  .main {
+    background: white;
+    margin-left: 10%;
+    width: 85%;
+  }
+  
+  .artIzquierda .titular, .artIzquierda .contenido{
+     
+    float: right;     
+  }
+  .artIzquierda img{
+    
+    float:left;    
+  }
+  .artDerecha .titular, .artDerecha .contenido{     
+    float: left;      
+  }
+  .artDerecha img{   
+      float: right;
+      padding: 30px 0;      
+  }
+  .fecha{
+      text-align: right;
+  }
+  .autor{
+      text-align: left;
+  }
+  .contenido{
+      width: 500px;
+      text-align: justify;
+  }
   
