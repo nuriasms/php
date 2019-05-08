@@ -1,0 +1,141 @@
+
+body{
+    margin: 0px;
+	font-family: verdana;
+    background-color: #8ba987;
+}
+
+/*----------------------------CABECERA---------------------------------------------------*/
+header {
+    width: 100%;
+    height: 200px;
+    background:#8ba987 url('../img/bloqueo.jpg') no-repeat center center; 
+}
+header h1{
+    font-size: 55px;
+    margin:0px;
+    padding: 10px 0 0 20px;
+    color: white;/*#cfd1d2;*/
+    font-weight: bold;
+}
+.clear{
+	clear: both;
+}
+/*---------------------------LOGIN-------------------------------------------------------*/
+.login{
+    width: 300px;
+    height: 450px;
+    background-color: white;
+    margin: 15px 0 15px 35%;
+}
+.loginCab img{
+    width: 60%;
+    padding-top:20px;
+    padding-left: 90px;
+}
+.loginCuerpo{
+    padding:5px 0 10px 60px;
+}
+.loginPie{
+    background-color: #bdc7bb;/*#f1f1f1;*/
+    text-align: right;
+    padding-right: 30px;
+}
+.error{
+    color:red;
+    margin-left: 10px;
+}
+.altaUsuario{
+    /*font-size: 16px;*/
+    font-weight: bold;
+}
+/*------------------------------------Alta usuario----------------------------------------*/
+.registro{
+    width: 750px;
+    height: 560px;
+    background-color: white;
+    position: relative;
+    top:30px;
+    left: 20%;
+}
+.registroCab img{
+    /*width: 100px;*/
+    padding:20px 30px 0 50px;
+    float: left;
+}
+.registroCab h2{
+    float: left;
+    padding:20px 20px 0 20px;
+}
+.registroCuerpo{
+    clear: both;
+    padding:10px 50px 10px 50px;
+}
+label{
+    float: left;
+    width: 135px;
+}
+input { 
+  float: left;
+}
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #39703b;
+  }
+
+/*-------------------------------------Footer---------------------------------------------*/
+footer{
+	width: 100%;
+    height: 120px;
+    background:#8ba987 url('../img/pie.jpg') no-repeat center center;
+    color: #cfd1d2;
+    font-weight: bold;
+    padding: 30px;
+}
+footer #redes li{
+	list-style:none;
+	float:left;
+}
+#facebook, #twitter, #correu{
+	width:50px;
+	height:50px;
+	margin-right:7px;
+}
+#copyright, #derecha a{
+	text-align:right;
+	font-size:16px;
+	font-family:century gothic;
+	padding-top:10px;
+	margin-right: 50px;
+}
+#derecha{
+	display: block;
+	float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
