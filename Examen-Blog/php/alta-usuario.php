@@ -10,9 +10,12 @@
 	<meta name="description" content="Blog dedicada a la promoción de un deporte de equipo como es el VOLEIBOL.">
     <meta name="keywords" content="voleibol, saque, bloqueo, remate, libero, central, punta, opuesto, barillas, red, campo, receptor, zaguero, entrenador, club, arbitro, balón">
     <meta http-equip="Expires" content="no-cache">
-    <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 	<script src="../lib/js/jquery.min.js"></script>
 	<script src="../lib/js/bootstrap.min.js"></script>
+	<script src="../js/funciones.js"></script>
     <title>Blog voleibol</title>
 	<link rel="stylesheet" href="../css/style.css"> 
     <?php
@@ -27,41 +30,61 @@
 	<!---------------------------------INICIO cuerpo a cambiar----------------------------------->
     <?php
         //Inicializa variables
-        $usuario = $contrasena = $contrasena2 = $envio = $correo = $apellidos = $nacimiento ="";
+        $usuario = $contrasena = $contrasena2 = $envio = $correo = $apellidos = $nacimiento = $edad = "";
         $usuarioError = $contrasenaError = $contrasena2Error = $correoError = $apellidosError = $nacimientoError = "";
 		$salir=true;
 
 		if(isset($_REQUEST["enviar"])) 
 		{	
-            if (empty($_REQUEST['usuario']))
-            {
+
+            if (empty($_REQUEST["usuario"])) 
+			{
 				$usuarioError = "Nombre usuario obligatorio";
 				$salir=false;
 			} 
 			else 
-			{
+            {
 				$usuario = test_input($_REQUEST["usuario"]);
 				// comprueba que lleva solo letras y espacios
-                if (!preg_match("/^[a-zA-Z ]*$/",$usuario)) 
-               {
-				  $usuarioError = "Solo se admiten letras y espacios en blanco"; 
-				  $salir=false;
+				if (!preg_match("/^[a-zA-Z áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ·\-]*$/",$usuario))
+               	{ 
+					$usuarioError = "Solo se admiten letras y espacios en blanco";
+				  	$salir=false;
 				}
-            }
+			}
 			
 			if (empty($_REQUEST["apellidos"])) 
 			{
-				$apellidosError = "Nombre usuario obligatorio";
+				$apellidosError = "Apellidos obligatorios";
 				$salir=false;
 			} 
 			else 
 			{
 				$apellidos = test_input($_REQUEST["apellidos"]);
 				// comprueba que lleva solo letras y espacios
-				if (!preg_match("/^[a-zA-Z ]*$/",$apellidos)) 
+				if (!preg_match("/^[a-zA-Z áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ·\-]*$/",$apellidos)) 
 				{
 				  $apellidosError = "Solo se admiten letras y espacios en blanco";
 				  $salir=false;
+				}
+			}
+
+			if (empty($_REQUEST["nacimiento"])) 
+			{
+				$nacimientoError = "fecha nacimiento obligatorio";
+				$salir=false;
+			} 
+			else 
+			{
+				$edad = calculaEdad($_REQUEST["nacimiento"]);
+				if ($edad < 18) 
+				{
+				  $nacimientoError = "Solo se permite el alta a mayores de edad";
+				  $salir=false;
+				}
+				else
+				{
+					$nacimiento = $_REQUEST["nacimiento"];
 				}
 			}
 			
@@ -113,32 +136,7 @@
 					$salir=false;
 				}
 			}  
-			
-			if (!empty($_REQUEST["edad"])) 
-				{
-					$edad=$_REQUEST["edad"];
-					if ($edad<18)
-					{
-						$edadError= "Solo se permite el alta a personas mayores de 18 años.";
-						$salir=false;
-					}
-				}
-
-				if (empty($_REQUEST["correo"])) 
-				{
-					$correoError = "Correo obligatorio";
-					$salir=false;
-				} 
-				else 
-				{
-					$correo = test_input($_REQUEST["correo"]);
-					// Comprueba que el formato es correcto
-					if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) 
-					{
-					  $correoError = "Formato de correo erróneo";
-					  $salir=false; 
-					}
-				}		
+				
 			if ($salir==true)
 			{
 				$envio="Envio correcto";
@@ -148,40 +146,44 @@
 		}		
 		?>    
     
-        <div class="registro">
+        <div id="registro">
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <div class="registroCab"> 
-					<img src="../img/avatar.jpg" alt="Avatar" width="60px">
+                <div id="registroCab"> 
+					<img src="../img/jugadora.png" alt="Avatar" >
 					<h2>Registro de alta</h2>	
                 </div>  
-                <div class="registroCuerpo"> 
+                <div id="registroCuerpo"> 
 					<hr>
+					<span class="errorReg"><?php echo $usuarioError;?></span>
+					<br>					
+					<label>Nombre usuario: </label><input type="text" name="usuario" size="25" value="<?php echo $usuario;?>">
+					<br><br>
+					<span class="errorReg"><?php echo $apellidosError;?></span>
 					<br>
-					<label>Nombre usuario *: </label><input type="text" name="usuario" value="<?php echo $usuario;?>">
-                    <span class="error"><?php echo $usuarioError;?></span>
+					<label>Apellidos: </label><input type="text" name="apellidos" size="50" value="<?php echo $apellidos;?>">
 					<br><br>
-					<label>Apellidos *: </label><input type="text" name="apellidos" value="<?php echo $apellidos;?>">
-  					<span class="error"><?php echo $apellidosError;?></span>
+					<span class="errorReg"><?php echo $nacimientoError;?></span>
+  					<br>
+					<label>Fecha nacimiento: </label><input type="date" name="nacimiento" value="<?php echo $nacimiento;?>">
 					<br><br>
-					<label>Fecha nacimiento *: </label><input type="date" name="nacimiento" value="<?php echo $nacimiento;?>">
-  					<span class="error"><?php echo $nacimientoError;?></span>
-  					<br><br>
-					<label>Correo *: </label><input type="email" name="correo" value="<?php echo $correo;?>">
-  					<span class="error"><?php echo $correoError;?></span>
-  					<br><br>
-					<label>Contraseña *: </label><input type="password" name="contrasena" minlength="6" maxlength="8" value="<?php echo $contrasena;?>">	
-                    <span class="error"><?php echo $contrasenaError;?></span>
-                    <br><br>	
-					<label>Repite contraseña *: </label><input type="password" name="contrasena2" minlength="6" maxlength="8">	
-					<span class="error"><?php echo $contrasena2Error;?></span>
-					<br><br><br>
-					<hr>
+					<span class="errorReg"><?php echo $correoError;?></span>
+  					<br>
+					<label>Correo: </label><input type="email" name="correo" size="25" value="<?php echo $correo;?>">
+					<br><br>
+					<span class="errorReg"><?php echo $contrasenaError;?></span>
                     <br>
+					<label>Contraseña: </label><input type="password" name="contrasena" size="25" minlength="6" maxlength="8" value="<?php echo $contrasena;?>">	
+					<br><br>
+					<span class="errorReg"><?php echo $contrasena2Error;?></span>
+					<br>	
+					<label>Repite contraseña: </label><input type="password" name="contrasena2" size="25" minlength="6" maxlength="8">	
+					<br><br>
+					<hr>                    
 					<label>Recordar usuario</label><input type="checkbox" name="recordar">
 					<br><br>
 					<input type="submit" name="enviar" value="Alta usuario"><span class="verde"><?php echo $envio;?></span>
 					<br><br>
-					<p><i>* Campos obligatorios para el alta de un nuevo usuario</i></p>
+					<p><i>Todos los campos son obligatorios para el alta de un nuevo usuario</i></p>
                 </div>				
 			</form>
 		</div>

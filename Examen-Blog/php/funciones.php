@@ -47,14 +47,14 @@
                 }
                 else
                 {
-                    $nombre="Bienvenid@: ".$_SESSION['nombre_usuario']; 
+                    $nombre="Bienvenid@:  <span class='nom'>".$_SESSION['nombre_usuario']."</span>"; 
                 }   
             }
             else
             {     
                 if ($tmp=validarCookie($_COOKIE["usuario"],$_COOKIE["contrasena"]))
                 {
-                    $nombre="Bienvenid@: ".$_COOKIE['usuario'];
+                    $nombre="Bienvenid@:   <span class='nom'>".$_COOKIE['usuario']."</span>";
                 } 
                 else
                 {
@@ -105,6 +105,20 @@
         return $error;
     }
 
+    function calculaEdad($fechanacimiento)
+    {
+        list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+        $ano_diferencia  = date("Y") - $ano;
+        $mes_diferencia = date("m") - $mes;
+        $dia_diferencia   = date("d") - $dia;
+        //print ($ano_diferencia."-".$ano."-".$mes_diferencia."-".$mes."-".$dia_diferencia."-".$dia);
+        if ($dia_diferencia < 0 || $mes_diferencia < 0)
+          $ano_diferencia--;
+        return $ano_diferencia;
+    }
+
+    
+      
 
 
 

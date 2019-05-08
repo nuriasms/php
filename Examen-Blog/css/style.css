@@ -8,13 +8,13 @@ body{
 /*----------------------------CABECERA---------------------------------------------------*/
 header {
     width: 100%;
-    height: 200px;
-    background:#8ba987 url('../img/bloqueo.jpg') no-repeat center center; 
+    height: 250px;
+    background:#8ba987 url('../img/cabecera.jpg') no-repeat center center; 
 }
 header h1{
     font-size: 55px;
     margin:0px;
-    padding: 10px 0 0 20px;
+    padding: 20px 0 0 30px;
     color: white;/*#cfd1d2;*/
     font-weight: bold;
 }
@@ -24,7 +24,7 @@ header h1{
 /*---------------------------LOGIN-------------------------------------------------------*/
 .login{
     width: 300px;
-    height: 450px;
+    /*height: 450px;*/
     background-color: white;
     margin: 15px 0 15px 35%;
 }
@@ -34,7 +34,7 @@ header h1{
     padding-left: 90px;
 }
 .loginCuerpo{
-    padding:5px 0 10px 60px;
+    margin:5px 0 10px 50px;
 }
 .loginPie{
     background-color: #bdc7bb;/*#f1f1f1;*/
@@ -46,37 +46,39 @@ header h1{
     margin-left: 10px;
 }
 .altaUsuario{
-    /*font-size: 16px;*/
+    font-size: 16px;
     font-weight: bold;
 }
 /*------------------------------------Alta usuario----------------------------------------*/
-.registro{
+#registro{
     width: 750px;
-    height: 560px;
+    /*height: 900px;*/
     background-color: white;
-    position: relative;
-    top:30px;
-    left: 20%;
+    margin: 15px 0 15px 20%;
 }
-.registroCab img{
+#registroCab img{
     /*width: 100px;*/
     padding:20px 30px 0 50px;
     float: left;
 }
-.registroCab h2{
+#registroCab h2{
     float: left;
     padding:20px 20px 0 20px;
 }
-.registroCuerpo{
+#registroCuerpo{
     clear: both;
     padding:10px 50px 10px 50px;
 }
 label{
     float: left;
-    width: 135px;
+    width: 170px;
 }
 input { 
   float: left;
+}
+.errorReg{
+    color:red;
+    margin-left: 170px;
 }
 input[type=submit] {
     width: 100%;
@@ -99,7 +101,7 @@ footer{
 	width: 100%;
     height: 120px;
     background:#8ba987 url('../img/pie.jpg') no-repeat center center;
-    color: #cfd1d2;
+    color:white;/* #cfd1d2;*/
     font-weight: bold;
     padding: 30px;
 }
@@ -114,16 +116,56 @@ footer #redes li{
 }
 #copyright, #derecha a{
 	text-align:right;
-	font-size:16px;
-	font-family:century gothic;
-	padding-top:10px;
-	margin-right: 50px;
+	font-size:18px;
+	margin-top:5px;
+	margin-right: 150px;
 }
 #derecha{
 	display: block;
 	float: right;
 }
+/*-----------------------------------------BARRA MENU----------------------------*/
+.navbar-default .navbar-nav>.active>a{
+    background-color: #8ba987;/* #949899;  */
+    color:white;
+}
 
+.navbar-default, .form-control, .btn{
+    border-color: #8ba987;
+}
+.navbar-default .navbar-nav>li>a {
+    color: black;/*#777;*/
+    font-size: 18px;
+}
+.navbar-default .navbar-nav>.active>a:hover, .container-fluid .nav li a:hover{
+	background-color: #8ba987;
+	color:white;/*#555;*/
+}
+.navbar-nav  li a{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.navbar-right li a{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 10px;
+}
+.container-fluid {
+	background-color:white;/* #cfd1d2;*/
+}
+.cerrar li h4{
+    padding-top: 3px;
+}
+.navbar-header img{
+    margin-right: 20px;
+}
+.cerrar li button{
+    margin: 7px 30px 0 30px;
+}
+.nom{
+    font-weight: bold;
+    font-size: 22px;
+}
 
 
 

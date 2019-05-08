@@ -10,7 +10,9 @@
 	<meta name="description" content="Blog dedicada a la promoción de un deporte de equipo como es el VOLEIBOL.">
     <meta name="keywords" content="voleibol, saque, bloqueo, remate, libero, central, punta, opuesto, barillas, red, campo, receptor, zaguero, entrenador, club, arbitro, balón">
     <meta http-equip="Expires" content="no-cache">
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+	<link rel="stylesheet" href="lib/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script src="lib/js/jquery.min.js"></script>
 	<script src="lib/js/bootstrap.min.js"></script>
     <title>Blog voleibol</title>
@@ -25,31 +27,31 @@
 		<h1>Blog voleibol</h1>
 	</header>
 	<!---------------------------------INICIO cuerpo a cambiar----------------------------------->
-    <?php	
-		$mostrarError="";
+	<div class="login">
+		<?php	
+			$mostrarError="";
 
-		if(isset($_REQUEST["enviar"])) 
-		{	
-			if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
-			{
-				$mostrarError="Debe introducir el nombre y la contraseña no puede estar vacío."; 
-			}
-			else
-			{
-				if (!$tmp=validarUsuario($_REQUEST['nombre'],$_REQUEST['contrasena']))
-				{		
-					$mostrarError="ERROR al validar usuario";										
+			if(isset($_REQUEST["enviar"])) 
+			{	
+				if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
+				{	
+					$mostrarError="Debe introducir el nombre y la contraseña no puede estar vacío."; 
 				}
 				else
 				{
-					guardarCookie($_REQUEST['nombre'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
-					iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']);
+					if (!$tmp=validarUsuario($_REQUEST['nombre'],$_REQUEST['contrasena']))
+					{		
+						$mostrarError="ERROR al validar usuario";										
+					}
+					else
+					{
+						guardarCookie($_REQUEST['nombre'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
+						iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']);
+					}
 				}
-			}
-		}		
-	?>    
-		
-    <div class="login">
+			}		
+		?>    
+
 		<form method="post">
             <div class="loginCab">    
                 <img src="img/avatar.jpg" alt="Avatar">	
@@ -67,16 +69,15 @@
 		        <!--input type="submit" name="enviar" value="Iniciar sesión"></input-->
 				<button type="submit" name="enviar" class="btn btn-success"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión </button>
 		        <br><br>
-		        <label>
-			        <input type="checkbox" checked name="recordar"> Recordar usuario
-                </label>
-                <br>
+		        <label><input type="checkbox" checked name="recordar"> Recordar usuario</label>
+                <br><br>
 				<a class="altaUsuario" href="php/alta-usuario.php">Registrar nuevo usuario</a>
 				<br>
             </div>
 			<div class="loginPie">
 			    <span class="psw">Olvidar <a href="#" onclick="borrarCookie();">usuario?</a></span>
-			</div>				
+			</div>
+			<br>				
 		</form>
 	</div>
 	<!-------------------------------FIN cuerpo a cambiar-----------------------------------> 
