@@ -25,6 +25,7 @@
     <noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<header>
 			<h1>Blog voleibol</h1>
+			<span id="inicio"></span>
 		</header>
 
 		<nav class="navbar navbar-default">		 

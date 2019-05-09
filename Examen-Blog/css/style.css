@@ -169,8 +169,18 @@ footer #redes li{
     font-weight: bold;
     font-size: 22px;
 }
-
-
+/*-------------------------------------------PUBLICACIÓN---------------------------------*/
+.publicacion img{
+    margin-left: 15%;
+}
+.publicacion h4 small{
+    color:white;
+}
+.publicacion a{
+    color:rgba(163, 248, 4, 0.986);
+    font-size: 18px;
+    float: right;
+}
 
 
 

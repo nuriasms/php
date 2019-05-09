@@ -1,19 +1,37 @@
 <?php
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function validarUsuario:                                                                     */
+    /* Comprueba que el usuario y la contraseña introducidos por el usuario coincide con la guardada*/
+    /*                                                                                              */
+    /* Parametros: recibe el nombre y la contraseña                                                 */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
     function validarUsuario($nombre,$contrasena)
     {
         $respuesta=false;
         if (($nombre==="Mireia") && (md5(sha1($contrasena)==="700c8b805a3e2a265b01c77614cd8b21"))) $respuesta=true;
         return $respuesta;	
     }
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function validarCookie:                                                                     */
+    /* Comprueba que el usuario y la contraseña introducidos por el usuario coincide con la guardada*/
+    /* en la cookie                                                                                 */
+    /*                                                                                              */
+    /* Parametros: recibe el nombre y la contraseña                                                 */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
     function validarCookie($nombre,$contrasena)
     {
         $respuesta=false;
         if (($nombre==="Mireia") && ($contrasena==="700c8b805a3e2a265b01c77614cd8b21")) $respuesta=true;
         return $respuesta;	
     }
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function guardarCookie:                                                                     */
+    /* Guarda el usuario y la contraseña en cookies durante 30 dias                                 */
+    /*                                                                                              */
+    /* Parametros: recibe el nombre, la contraseña y si desea guardar                               */
+    /*----------------------------------------------------------------------------------------------*/
     function guardarCookie($usuario,$contrasena,$recordar)
     {
         if ((isset($recordar)) && ($recordar == 1))
@@ -23,7 +41,13 @@
 			setcookie("contrasena",$psw,strtotime( '+30 days' ),"/",false, false);  
 		}
     }
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function iniciarSesion:                                                                      */
+    /* Abre una nueva sesión                                                                        */
+    /*                                                                                              */
+    /* Parametros: recibe el usuario y la contraseña                                                */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
     function iniciarSesion($usuario,$contrasena)
     {
         $_SESSION["nombre_usuario"] = $usuario;
@@ -33,7 +57,11 @@
 			header("Location: php/menu.php");
 		}
     }    
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function validarSesionAbierta:                                                               */
+    /* Comprueba que los datos estan activos para que el usuario acceda a la página                 */
+    /*                                                                                              */
+    /*----------------------------------------------------------------------------------------------*/
     function validarSesionAbierta()
     {
         $nombre = $tmp = "";
@@ -69,7 +97,13 @@
             header("Location: ../index.php");
         }
     } 
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function test_input:                                                                         */
+    /* revisa el campo recibido y quita los espacios blanco de más                                  */
+    /*                                                                                              */
+    /* Parametros: recibe el campo a examinar                                                       */
+    /* Devuelve: campo                                                                              */
+    /*----------------------------------------------------------------------------------------------*/
     function test_input($data) 
 	{
 		$data = trim($data);
@@ -77,7 +111,14 @@
 		$data = htmlspecialchars($data);
 		return $data;
     }
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function validarContrasena:                                                                 */
+    /* Comprueba que la contraseña cumpla los requisitos: longitud entre 6 y 8 carácteres.          */
+    /* minimo una letra mayuscula, una letra minuscula y un caracter especial                       */                                 */
+    /*                                                                                              */
+    /* Parametros: recibe el campo a examinar                                                       */
+    /* Devuelve: campo                                                                              */
+    /*----------------------------------------------------------------------------------------------*/
     function validarContrasena($clau)
     {
 		$error="";
@@ -104,7 +145,13 @@
 		}
         return $error;
     }
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function calculaEdad:                                                                        */
+    /* Comprueba que sea mayor de edad a partir de la fecha introducida                             */
+    /*                                                                                              */
+    /* Parametros: recibe fecha de nacimiento                                                       */
+    /* Devuelve: edad                                                                               */
+    /*----------------------------------------------------------------------------------------------*/
     function calculaEdad($fechanacimiento)
     {
         list($ano,$mes,$dia) = explode("-",$fechanacimiento);
@@ -116,7 +163,34 @@
           $ano_diferencia--;
         return $ano_diferencia;
     }
-
+    /*----------------------------------------------------------------------------------------------*/
+    /* function validarFichero:                                                                        */
+    /* Guarda el fichero y le cambia el nombre para evitar que se duplique con la entrada de otro usuario*/                                                                                           */
+    /*                                                                                              */
+    /* Devuelve: el nombre                                                                          */
+    /*----------------------------------------------------------------------------------------------*/
+    function validarFichero()
+	{
+		$nombre="";
+		if (is_uploaded_file($_FILES['fichero']['tmp_name']))
+		{ 
+			$nombreDirectorio= "../img/";
+			$nombreFichero= $_FILES['fichero']['name'];
+			$nombreCompleto= $nombreDirectorio. $nombreFichero;
+			if(is_file($nombreCompleto))
+			{
+				$idUnico= time();
+				$nombreFichero= $idUnico. "-" . $nombreFichero;
+			}
+			move_uploaded_file($_FILES['fichero']['tmp_name'],$nombreDirectorio.
+			$nombreFichero);
+			$nombre=($nombreDirectorio.$nombreFichero);
+		}
+		return $nombre;
+	}
+    /*----------------------------------------------------------------------------------------------*/
+    /* Prueba de contador de likes                                                                  */
+    /*----------------------------------------------------------------------------------------------*/
     function contadorLikes()
     {
         $contador=0;
@@ -149,7 +223,8 @@
             fwrite($f, $contador);
             fclose($f);
         }
-        return $contador;
+        print ($contador);
+        //return $contador;
     }
 
     
