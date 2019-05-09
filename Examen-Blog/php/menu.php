@@ -21,7 +21,7 @@
 		<title>Blog voleibol</title>
 		<link rel="stylesheet" href="../css/style.css"> 
 	</head>
-	<body onload="cargar('consulta.php','menu1')">
+	<body onload="cargar('publicaciones.php','menu1')">
     <noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<header>
 			<h1>Blog voleibol</h1>
@@ -40,10 +40,8 @@
 					<img src="../img/balon.jpg">
     		</div>
 			  <ul class="nav navbar-nav">
-					<li id="menu1" class="active"><a onclick="cargar('consulta.php','menu1')">Inicio</a></li>
-			    <li id="menu2" class="inactive"><a onclick="cargar('planetas.html','menu2')">Planetas</a></li>
-			    <li id="menu3" class="inactive"><a onclick="cargar('galeria.html','menu3')">Galeria</a></li>
-			    <li id="menu4" class="inactive"><a onclick="cargar('formulario.html','menu4')">Registro</a></li>
+					<li id="menu1" class="active"><a onclick="cargar('publicaciones.php','menu1')">Inicio</a></li>
+			    <li id="menu2" class="inactive"><a onclick="cargar('alta-publicaciones.php','menu2')">Alta publicaciones</a></li>
 			  </ul>
 		  	<ul class="nav navbar-nav navbar-right cerrar"> 
 					<li><h4><?php echo $usuario;?></h4></li>
@@ -52,8 +50,8 @@
 		  </div>
     </nav>
 		<!---------------------------------INICIO cuerpo a cambiar-----------------------------------> 
-		<div class="container planetario" id="capa">
-		
+		<div class="container" id="capa">
+
 		</div>
 		<!---------------------------------FIN cuerpo a cambiar--------------------------------------> 
 		<footer>

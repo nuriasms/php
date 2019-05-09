@@ -24,7 +24,6 @@ header h1{
 /*---------------------------LOGIN-------------------------------------------------------*/
 .login{
     width: 300px;
-    /*height: 450px;*/
     background-color: white;
     margin: 15px 0 15px 35%;
 }
@@ -52,7 +51,6 @@ header h1{
 /*------------------------------------Alta usuario----------------------------------------*/
 #registro{
     width: 750px;
-    /*height: 900px;*/
     background-color: white;
     margin: 15px 0 15px 20%;
 }
@@ -130,6 +128,11 @@ footer #redes li{
     color:white;
 }
 
+.navbar-default .navbar-nav>.inactive>a{
+    background-color:white;
+    color: black;
+  }
+
 .navbar-default, .form-control, .btn{
     border-color: #8ba987;
 }
@@ -151,7 +154,7 @@ footer #redes li{
 	margin-right: 10px;
 }
 .container-fluid {
-	background-color:white;/* #cfd1d2;*/
+	background-color:white;
 }
 .cerrar li h4{
     padding-top: 3px;

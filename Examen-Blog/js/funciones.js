@@ -1,7 +1,7 @@
 function cargar(pag,escogido)
 {
 	$("#capa").load(pag);
-	for (var i = 1; i < 5; i++) 
+	for (var i = 1; i < 3; i++) 
 	{
 		var tmp="menu"+i;
 		document.getElementById(tmp).className="inactive";
