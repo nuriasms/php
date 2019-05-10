@@ -54,7 +54,7 @@
         $_SESSION["contrasena"] = $contrasena;
 		if(isset($_SESSION["nombre_usuario"]) && isset($_SESSION["contrasena"]) )
 		{
-			header("Location: php/menu.php");
+			header("Location: publicaciones.php");
 		}
     }    
     /*----------------------------------------------------------------------------------------------*/
@@ -114,7 +114,7 @@
     /*----------------------------------------------------------------------------------------------*/
     /* function validarContrasena:                                                                 */
     /* Comprueba que la contraseña cumpla los requisitos: longitud entre 6 y 8 carácteres.          */
-    /* minimo una letra mayuscula, una letra minuscula y un caracter especial                       */                                 */
+    /* minimo una letra mayuscula, una letra minuscula y un caracter especial                       */
     /*                                                                                              */
     /* Parametros: recibe el campo a examinar                                                       */
     /* Devuelve: campo                                                                              */
@@ -165,7 +165,7 @@
     }
     /*----------------------------------------------------------------------------------------------*/
     /* function validarFichero:                                                                        */
-    /* Guarda el fichero y le cambia el nombre para evitar que se duplique con la entrada de otro usuario*/                                                                                           */
+    /* Guarda el fichero y le cambia el nombre para evitar que se duplique con la entrada de otro usuario*/
     /*                                                                                              */
     /* Devuelve: el nombre                                                                          */
     /*----------------------------------------------------------------------------------------------*/

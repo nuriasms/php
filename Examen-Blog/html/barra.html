@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">		 
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="container-fluid collapse navbar-collapse" id="myNavbar">
+        <div class="navbar-header">
+            <img src="../img/balon.jpg">
+        </div>
+        <ul class="nav navbar-nav">
+            <li id="menu1" class="active"><a href="../php/publicaciones.php">Publicaciones</a></li>
+            <li id="menu2" class="inactive"><a href="../php/alta-publicaciones.php">Alta publicaciones</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right cerrar"> 
+            <li><h4><?php echo $usuario;?></h4></li>
+            <li><button type="button" class="btn btn-danger" onclick="cerrarSesion()"> <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión </button></li>
+        </ul>
+    </div>
+</nav>
