@@ -177,9 +177,69 @@ footer #redes li{
     color:white;
 }
 .publicacion a{
-    color:rgba(163, 248, 4, 0.986);
+    color:#c9e4f3;
     font-size: 18px;
     float: right;
+}
+.btn-primary-outline{   
+    background-color: transparent;
+}
+.descripcion p, .descripcion ul li{
+    text-align: justify;
+}
+.btn-publicacion {  
+    background-color: #39703b;
+    color: white;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+} 
+.btn-publicacion:hover {
+    background-color: #53aa56;
+}
+.verde{
+    color: green;
+}
+/*------------------------------ALTA NOTICIA----------------------------------------------*/
+.altaNoticia{
+    margin-left: 15%;
+}
+.altaNoticia form .errorNoticia{
+    color: red;
+    margin-left: 170px;
+}
+.btn-sub{
+    margin-left: 170px;
+}
+.btn-res{
+    margin-left: 15px;
+}
+/*-------------------------------PORTADA----------------------------------------------*/
+#portada{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 800px;
+    background:url('../img/red.jpg') no-repeat left center;  
+}
+#portada h1{
+    position: relative;
+    top: 400px;
+    left: 470px;
+    font-size: 65px;
+    color: white;
+    font-weight: bold;
+}
+#portada a{
+    position: relative;
+    top: 430px;
+    left: 840px;
+    font-size: 35px;
+    font-weight: bold;
 }
 
 

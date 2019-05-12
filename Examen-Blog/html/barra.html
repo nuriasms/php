@@ -1,3 +1,9 @@
+<?php
+    if(isset($_REQUEST["cerrar"])) 
+    {	
+        cerrarSesion();
+    } 
+?>
 <nav class="navbar navbar-default">		 
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -16,7 +22,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right cerrar"> 
             <li><h4><?php echo $usuario;?></h4></li>
-            <li><button type="button" class="btn btn-danger" onclick="cerrarSesion()"> <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión </button></li>
+            <li><form method="get">
+                <button type="submit" name="cerrar" class="btn btn-danger" > <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión </button>
+                </form></li>
         </ul>
     </div>
 </nav>

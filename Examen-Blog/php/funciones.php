@@ -98,6 +98,23 @@
         }
     } 
     /*----------------------------------------------------------------------------------------------*/
+    /* function cerrarSesion:                                                                       */
+    /* borra la sesión activa del navegador                                                         */
+    /*                                                                                              */
+    /*----------------------------------------------------------------------------------------------*/
+    function cerrarSesion()
+    {
+        session_start();
+        //borra variables de la sesión
+        unset($_SESSION["nombre_usuario"]);  
+        //cierra sesión
+        session_destroy();
+        //borra coockie
+        //borrarCookie();
+        header("Location: index.php");
+        exit;
+    }
+    /*----------------------------------------------------------------------------------------------*/
     /* function test_input:                                                                         */
     /* revisa el campo recibido y quita los espacios blanco de más                                  */
     /*                                                                                              */
@@ -189,43 +206,42 @@
 		return $nombre;
 	}
     /*----------------------------------------------------------------------------------------------*/
-    /* Prueba de contador de likes                                                                  */
+    /* function contadorLikes:                                                                      */
+    /* Cuenta los "me gusta" o "no me gusta" de las publicaciones                                   */
+    /*                                                                                              */
+    /* Argumentos: recibe el nombre de la cookie en la que se guarda el contador de la publicación  */
+    /* Devuelve: los  likes acumulados en la cookie                                                 */
     /*----------------------------------------------------------------------------------------------*/
-    function contadorLikes()
+    function contadorLikes($nom)
     {
-        $contador=0;
-        if (isset($_COOKIE["MireiaMartorell10052019"]))
+        if (isset($_COOKIE[$nom]))
         {
-            $contador=$_COOKIE["MireiaMartorell10052019"];
-            $contador++;
+            $contador = $_COOKIE[$nom] + 1;
         }
         else
         {
-            setcookie("MireiaMartorell10052019",$contador,strtotime( '+30 days' ),"/",false, false);
+            $contador = 1;
         }
-        
+        setcookie($nom,$contador,strtotime( '+30 days' ),"/",false, false);   
+        return $contador;
+    }
+    /*----------------------------------------------------------------------------------------------*/
+    /* function leerContador:                                                                       */
+    /* Inicializa el contador de los likes, según el último valor giardado en las cookie            */
+    /*                                                                                              */
+    /* Argumentos: recibe el nombre de la cookie en la que se guarda el contador de la publicación  */
+    /* Devuelve: el contador                                                                        */
+    /*----------------------------------------------------------------------------------------------*/
+    function leerContador($nom)
+    {
+        $contador=0;
+        if (isset($_COOKIE[$nom]))
+        {
+            $contador = $_COOKIE[$nom];
+        }
         return $contador;
     }
 
-    function contador()
-    {
-        $archivo = "contador.txt"; //el archivo que contiene en numero
-        $f = fopen($archivo, "r"); //abrimos el archivo en modo de lectura
-        if($f)
-        {
-            $contador = fread($f, filesize($archivo)); //leemos el archivo
-            $contador = $contador + 1; //sumamos +1 al contador
-            fclose($f);
-        }
-        $f = fopen($archivo, "w+");
-        if($f)
-        {
-            fwrite($f, $contador);
-            fclose($f);
-        }
-        print ($contador);
-        //return $contador;
-    }
 
     
       

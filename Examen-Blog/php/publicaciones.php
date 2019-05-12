@@ -1,7 +1,11 @@
 <?php
     session_start();
     require ('funciones.php');
-    $usuario=validarSesionAbierta();  
+	$usuario=validarSesionAbierta(); 
+	$contador1=leerContador('MireiaOK10051019'); 
+	$contador2=leercontador('MireiaKO10051019');
+	$contador3=leercontador('NuriaOK29041019');
+	$contador4=leercontador('NuriaKO29041019');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +29,7 @@
     <noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<span id="inicio"></span>
 		<?php
-			include ('../html/cabecera-publica.html');
+			include ('../html/cabecera.html');
 			include ('../html/barra.html');
 		?>
 		
@@ -37,26 +41,49 @@
 			</script>
 			<?php
 				//Inicializa variables
-				$comentario = $comentarioError = "";
+				$comentario = $comentarioError = $comentarioErrorVerde = "";
+				
+
+				if(isset($_REQUEST["MireiaOK10051019"])) 
+				{	
+					$contador1=contadorLikes($_REQUEST["MireiaOK10051019"]);
+				}
+				if(isset($_REQUEST["MireiaKO10051019"])) 
+				{	
+					$contador2=contadorLikes($_REQUEST["MireiaKO10051019"]);
+				}
+				if(isset($_REQUEST["NuriaOK29041019"])) 
+				{	
+					$contador3=contadorLikes($_REQUEST["NuriaOK29041019"]);
+				}
+				if(isset($_REQUEST["NuriaKO29041019"])) 
+				{	
+					$contador4=contadorLikes($_REQUEST["NuriaKO29041019"]);
+				}
 
 				if(isset($_REQUEST["enviar"])) 
 				{	
 					if (empty($_REQUEST["comentario"])) 
 					{
-						$comentarioError = "Nombre usuario obligatorio";
+						$comentarioError = "No has puesto ningún comentario, para tramitar.";
 					} 
 					else 
 					{
 						$comentario = test_input($_REQUEST["comentario"]);
+						$comentario=str_replace("\r\n"," ",$comentario);
 						// comprueba que lleva solo letras y espacios
-						if (!preg_match("/^[a-zA-Z áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ·\-]*$/",$comentario))
+						if (!preg_match("/^[a-zA-Z0-9\. áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ,;]*$/",$comentario))
 						{ 
 							$comentarioError = "Solo se admiten letras y espacios en blanco";
 						}
 						if ((strlen($comentario)>250))
 						{
-							$comentarioError = "<br><br>El comentario admite un máximo de 250 carácteres."; 
-							$salir=false;
+							$comentarioError = "El comentario admite un máximo de 250 carácteres."; 
+						}
+						if ($comentarioError=="")
+						{
+							$comentarioErrorVerde="El comentario se ha tramitado correctamente.";
+							$comentario = "";
 						}
 					}
 				}  
@@ -75,11 +102,15 @@
 						<li><span><b>Prueba aplicando fuerza.</b> ¿Qué es demasiado? ¿Qué es muy poco? Muy pronto tus músculos recordarán lo que funciona y podrás apuntar la pelota como si se tratara de una bala en una pistola.</span></li>
 					</ul>
 				</span>
+				<br>
 				<img src="../img/saque-flotante.jpg">
+				<br><br>
 				<h5><span class="glyphicon glyphicon-time"></span><span class="autor"> Mireia Martorell, 10 de mayo de 2019.</h5>
-				<button type="button" name="cuenta" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span></button><span> 14 </span>
-				<br><br><br>
-						
+				<form method="get">
+					<button type="submit" name="MireiaOK10051019" value="MireiaOK10051019" class="btn btn-primary-outline" ><img src="../img/pulgar-arriba.png"></button><span><?php echo "  $contador1";?></span>
+					<button type="submit" name="MireiaKO10051019" value="MireiaKO10051019" class="btn btn-primary-outline" ><img src="../img/pulgar-abajo.png"></button><span><?php echo "  $contador2";?></span>
+				</form>
+				<br><br>			
 				<h4><small>PUBLICACIÓN RECIENTE</small></h4>
 				<hr>
 				<span class="titulo"><h2>Mejorar tus habilidades de jugador, I parte</h2></span>
@@ -90,17 +121,22 @@
 						<li><span><b>Al recepcionar la pelota,</b> deberás golpearla con la parte interior del antebrazo. Al principio será complicado, pero te permitirá tener una superficie plana y regular para que la pelota pueda rebotar. Practica tus pases de ida y vuelta con un compañero, tratando de colocar la pelota en el mismo lugar cada vez. Ni siquiera necesitas una red.</span></li>
 					<ul>
 				</span>
+				<br>
 				<img src="../img/recepcion.gif">
+				<br><br>
 				<h5><span class="glyphicon glyphicon-time"></span><span class="autor"> Núria Pons, 29 de abril de 2019.</h5>
-				<button type="button" name="cuenta" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span></button><span> 9 </span>
+				<form method="get">
+					<button type="submit" name="NuriaOK29041019" value="NuriaOK29041019" class="btn btn-primary-outline" ><img src="../img/pulgar-arriba.png"></button><span><?php echo " $contador3";?></span>
+					<button type="submit" name="NuriaKO29041019" value="NuriaKO29041019" class="btn btn-primary-outline" ><img src="../img/pulgar-abajo.png"></button><span><?php echo " $contador4";?></span>
+				</form>
+				<br><br>	
 				<hr>
-
 				<h4>Deja un comentario:</h4>
 				<form role="form" method="post">
 					<div class="form-group">
-						<textarea name="comentario" class="form-control" rows="3" maxlength="250"><?php echo $comentario;?></textarea><span class="error"><?php echo $comentarioError;?></span>
+						<textarea name="comentario" class="form-control" rows="3" maxlength="250"><?php echo $comentario;?></textarea><span class="error"><?php echo $comentarioError;?></span><span class="verde"><?php echo $comentarioErrorVerde;?></span>
 					</div>
-					<button type="submit" name="enviar" class="btn ">Enviar</button>
+					<button type="submit" name="enviar" class="btn btn-publicacion">Enviar</button>
 				</form>
 				<br><br>     
 				<p><span class="badge">2</span> Comentarios:</p>
@@ -123,8 +159,8 @@
 						<br>
 					</div>
 				</div>
+				<a href="#inicio">Ir al inicio</a><br><br>
 			</div>
-			<a href="#inicio">Ir al inicio</a><br><br>
 		</div>
 		<!---------------------------------FIN --------------------------------------> 
 		<?php

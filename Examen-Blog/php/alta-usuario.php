@@ -23,7 +23,7 @@
 <body>
 	<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 	<?php
-		include ('../html/cabecera-publica.html');
+		include ('../html/cabecera.html');
 	?>
 	<!---------------------------------INICIO ---------------------------------->
     <?php
