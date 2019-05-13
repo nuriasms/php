@@ -138,7 +138,7 @@
 			if ($salir==true)
 			{
 				$envio="Envio correcto";
-				header("Location: ../index.php");
+				header("Location: index.php");
 				exit;
 			}
 		}		

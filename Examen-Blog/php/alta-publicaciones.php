@@ -93,9 +93,12 @@
 				
 				if ($salir)
 				{
-					print("<p>Titular: ".$titulo."</p><br>");	
-					print("<p>Contenido: ".$contenido."</p><br>");
-					print("<img src='".$nombreFichero."'><br>");
+					print("<div class='salida'>");
+					print("<h3>Última publicación</h3><br>");
+					print("<span class='tituloSalida'>Titular: </span><p>".$titulo."</p><br>");	
+					print("<span class='tituloSalida'>Contenido: </span><p>".$contenido."</p><br>");
+					print("<img src='".$nombreFichero."'><br><br>");
+					print("</div>");
 				}
 			}
 			if (!$salir || !isset($_REQUEST["enviar"]))

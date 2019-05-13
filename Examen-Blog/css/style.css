@@ -203,6 +203,15 @@ footer #redes li{
 .verde{
     color: green;
 }
+#ocultarComentario{
+    display: none;
+}
+p .aIzquierda{
+    float: left;
+    color:black;
+    padding-right: 10px;
+}
+
 /*------------------------------ALTA NOTICIA----------------------------------------------*/
 .altaNoticia{
     margin-left: 15%;
@@ -216,6 +225,24 @@ footer #redes li{
 }
 .btn-res{
     margin-left: 15px;
+}
+.salida{
+    width: 500px;
+    background: white;
+    margin-left: 200px;
+    margin-bottom: 15px;
+    padding: 30px 0 0 50px;
+}
+.salida h3{
+    font-weight: 700;
+    color:rgb(64, 112, 64);
+}
+.salida p{
+    color: gray;
+}
+.tituloSalida{
+    font-size: 18px;
+    font-weight: bold;
 }
 /*-------------------------------PORTADA----------------------------------------------*/
 #portada{
@@ -236,9 +263,9 @@ footer #redes li{
 }
 #portada a{
     position: relative;
-    top: 430px;
-    left: 840px;
-    font-size: 35px;
+    top: 420px;
+    left: 750px;
+    font-size: 25px;
     font-weight: bold;
 }
 

@@ -41,8 +41,8 @@
 			</script>
 			<?php
 				//Inicializa variables
-				$comentario = $comentarioError = $comentarioErrorVerde = "";
-				
+				$comentario = $comentarioError = $comentarioErrorVerde = $fechaNueva = $nombreNuevo = $articuloNuevo = $fechaNueva = $avatarNuevo = "";
+				$cont=2;
 
 				if(isset($_REQUEST["MireiaOK10051019"])) 
 				{	
@@ -71,6 +71,7 @@
 					{
 						$comentario = test_input($_REQUEST["comentario"]);
 						$comentario=str_replace("\r\n"," ",$comentario);
+						$articuloNuevo = $comentario;
 						// comprueba que lleva solo letras y espacios
 						if (!preg_match("/^[a-zA-Z0-9\. áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ,;]*$/",$comentario))
 						{ 
@@ -82,7 +83,17 @@
 						}
 						if ($comentarioError=="")
 						{
-							$comentarioErrorVerde="El comentario se ha tramitado correctamente.";
+							$comentarioErrorVerde="El comentario se ha añadido correctamente.";
+							$articuloNuevo = $comentario;
+							$nombreNuevo ="Xènia";
+							$data=strtotime(date("d-m-Y"));
+							//para ver la fecha en español LINUX
+							//setlocale(LC_TIME,'es_ES');
+							//para ver la fecha en español en XAMPP
+							setlocale(LC_TIME,'spanish');
+							$fechaNueva =utf8_encode(ucfirst(strftime(" %d de %B de %Y", $data)));
+							$avatarNuevo="<img src='../img/xenia.jpg' class='img-circle' height='65' width='65' alt='Avatar'>";
+							$cont++;
 							$comentario = "";
 						}
 					}
@@ -138,26 +149,34 @@
 					</div>
 					<button type="submit" name="enviar" class="btn btn-publicacion">Enviar</button>
 				</form>
-				<br><br>     
-				<p><span class="badge">2</span> Comentarios:</p>
+				<br><br>    
+				<p><span class="badge"><?php echo $cont;?></span><a href="#" class="aIzquierda" onclick="visibilidad('ocultarComentario');">Comentarios</a></p>
 				<br>    
-				<div class="row">
+				<div class="row" id="ocultarComentario">
 					<div class="col-sm-2 text-center">
-						<img src="../img/hombre.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+						<?php echo $avatarNuevo;?>
 					</div>
 					<div class="col-sm-10">
-						<h4>Edgar <small>01 mayo 2019, 9:12 PM</small></h4>
-						<p>¡Buen trabajo! Estoy haciendo los ejercicios recomendaros y he empezado a notar la mejoria en mi juego.</p>
+						<h4><?php echo $nombreNuevo;?> <small><?php echo $fechaNueva;?> </small></h4>
+						<p><?php echo $articuloNuevo;?></p>
 						<br>
 					</div>
 					<div class="col-sm-2 text-center">
-						<img src="../img/mujer.png" class="img-circle" height="65" width="65" alt="Avatar">
+						<img src="../img/shaila.png" class="img-circle" height="65" width="65" alt="Avatar">
 					</div>
 					<div class="col-sm-10">
-						<h4>Shaila <small>10 mayo 2019, 8:25 PM</small></h4>
+						<h4>Shaila <small>10 de mayo de 2019</small></h4>
 						<p>Estoy esperando el próximo articulo. Me gustaria que fuesen más frecuentes. Me gusta mucho el voleibol.</p>
 						<br>
 					</div>
+					<div class="col-sm-2 text-center">
+						<img src="../img/edgar.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+					</div>
+					<div class="col-sm-10">
+						<h4>Edgar <small>01 de mayo de 2019</small></h4>
+						<p>¡Buen trabajo! Estoy haciendo los ejercicios recomendaros y he empezado a notar la mejoria en mi juego.</p>
+						<br>
+					</div>					
 				</div>
 				<a href="#inicio">Ir al inicio</a><br><br>
 			</div>

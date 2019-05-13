@@ -3,7 +3,7 @@
     /* function validarUsuario:                                                                     */
     /* Comprueba que el usuario y la contraseña introducidos por el usuario coincide con la guardada*/
     /*                                                                                              */
-    /* Parametros: recibe el nombre y la contraseña                                                 */
+    /* Argumentos: recibe el nombre y la contraseña                                                 */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
     function validarUsuario($nombre,$contrasena)
@@ -17,7 +17,7 @@
     /* Comprueba que el usuario y la contraseña introducidos por el usuario coincide con la guardada*/
     /* en la cookie                                                                                 */
     /*                                                                                              */
-    /* Parametros: recibe el nombre y la contraseña                                                 */
+    /* Argumentos: recibe el nombre y la contraseña                                                 */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
     function validarCookie($nombre,$contrasena)
@@ -30,7 +30,7 @@
     /* function guardarCookie:                                                                     */
     /* Guarda el usuario y la contraseña en cookies durante 30 dias                                 */
     /*                                                                                              */
-    /* Parametros: recibe el nombre, la contraseña y si desea guardar                               */
+    /* Argumentos: recibe el nombre, la contraseña y si desea guardar                               */
     /*----------------------------------------------------------------------------------------------*/
     function guardarCookie($usuario,$contrasena,$recordar)
     {
@@ -45,7 +45,7 @@
     /* function iniciarSesion:                                                                      */
     /* Abre una nueva sesión                                                                        */
     /*                                                                                              */
-    /* Parametros: recibe el usuario y la contraseña                                                */
+    /* Argumentos: recibe el usuario y la contraseña                                                */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
     function iniciarSesion($usuario,$contrasena)
@@ -71,7 +71,7 @@
             {
                 if (!$tmp=validarUsuario($_SESSION['nombre_usuario'],$_SESSION['contrasena']))
                 {		
-                    header("Location: ../index.php");										
+                    header("Location: index.php");										
                 }
                 else
                 {
@@ -86,15 +86,14 @@
                 } 
                 else
                 {
-                    header("Location: ../index.php");
+                    header("Location: index.php");
                 }    
             }
             return $nombre;
-            //print ("<a href='cerrar-sesion.php' title='Cerrar sesión'>Cerrar sesión</a>");
         }
         else
         {
-            header("Location: ../index.php");
+            header("Location: index.php");
         }
     } 
     /*----------------------------------------------------------------------------------------------*/
@@ -118,7 +117,7 @@
     /* function test_input:                                                                         */
     /* revisa el campo recibido y quita los espacios blanco de más                                  */
     /*                                                                                              */
-    /* Parametros: recibe el campo a examinar                                                       */
+    /* Argumentos: recibe el campo a examinar                                                       */
     /* Devuelve: campo                                                                              */
     /*----------------------------------------------------------------------------------------------*/
     function test_input($data) 
@@ -133,7 +132,7 @@
     /* Comprueba que la contraseña cumpla los requisitos: longitud entre 6 y 8 carácteres.          */
     /* minimo una letra mayuscula, una letra minuscula y un caracter especial                       */
     /*                                                                                              */
-    /* Parametros: recibe el campo a examinar                                                       */
+    /* Argumentos: recibe el campo a examinar                                                       */
     /* Devuelve: campo                                                                              */
     /*----------------------------------------------------------------------------------------------*/
     function validarContrasena($clau)
@@ -166,7 +165,7 @@
     /* function calculaEdad:                                                                        */
     /* Comprueba que sea mayor de edad a partir de la fecha introducida                             */
     /*                                                                                              */
-    /* Parametros: recibe fecha de nacimiento                                                       */
+    /* Argumentos: recibe fecha de nacimiento                                                       */
     /* Devuelve: edad                                                                               */
     /*----------------------------------------------------------------------------------------------*/
     function calculaEdad($fechanacimiento)
@@ -241,21 +240,4 @@
         }
         return $contador;
     }
-
-
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
