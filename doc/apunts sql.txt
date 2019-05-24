@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS restaurante; --comentario
+USE restaurante;
+CREATE TABLE plats(
+	nom VARCHAR(50) PRIMARY KEY,
+	tipus VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE vi(
+	codi int(4) PRIMARY KEY AUTO_INCREMENT,
+	nom VARCHAR(50) NOT NULL,
+   	collita VARCHAR(10) NOT NULL,
+    varietat VARCHAR(50) NOT NULL,
+    preu FLOAT(4,2) NOT NULL
+)AUTO_INCREMENT=1;
+
+CREATE TABLE distribuidor(
+	cif VARCHAR(10) PRIMARY KEY,
+	nom VARCHAR(20) NOT NULL,
+    poblacio VARCHAR(20) NOT NULL 
+);
+DROP DATABASE IF EXISTS restaurante;
