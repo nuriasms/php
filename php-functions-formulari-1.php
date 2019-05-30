@@ -67,12 +67,72 @@
 		return $resultado;
 	}
 
-	function validarUsuario($nombre,$contrasena)
+	function validarUsuarioAqui($nombre,$contrasena)
 	{
 		$respuesta=false;
 		if (($nombre==="USER") && ($contrasena==="PASSWORD")) $respuesta=true;
 		return $respuesta;	
 	}
+
+	function validarUsuario($nombre,$contrasena)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+			
+			$consulta = mysqli_query($con, "SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$contrasena'");
+			if (mysqli_num_rows($consulta) > 0)
+			{
+				$respuesta=true;
+			}
+		}
+		mysqli_close($con);
+		return $respuesta;	
+	}
+
+	function altaUsuario()
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+			
+			$consulta = mysqli_query($con, "insert into formulariv4 (nombre,apellido,edad,correo,comentario,fichero) values ('$_REQUEST(nombre)','$_REQUEST(apellido)','$_REQUEST(edad)','$_REQUEST(comentario)','$_REQUEST(fichero)'");
+			if (mysqli_num_rows($consulta) > 0)
+			{
+				$respuesta=true;
+			}
+		}
+		mysqli_close($con);
+		return $respuesta;	
+	}
+
+
 	
 	function test_input($data) 
 	{
