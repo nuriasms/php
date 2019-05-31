@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Formulari V4</title>
+		<title>Consulta</title>
 		<?php
-			require ('php-functions-formulari-1.php');
+			require ('funcions.php');
 		?>
 		<style>
 			.error {
@@ -85,20 +85,16 @@
 
 				if ($estado==true)
 				{
-          			if (!$tmp=altaUsuario($_REQUEST['nombre'],$_REQUEST['apellidos'],$_REQUEST['edad'],$_REQUEST['correo'],$_REQUEST['comentarios'],$nombreFichero))
-					{	
-						print("<br><span class='rojo'>ERROR al dar de alta el usuario. Vuelva ha intentarlo</span><br><br>");										
-					}
-					/*print("<p>Nombre: ".$nombre."</p>");
+					print("<p>Nombre: ".$nombre."</p>");
 					print("<p>Apellidos: ".$apellidos."</p>");
 					print("<p>Edad: ".$edad."</p>");
 					print("<p>Correo: ".$correo."</p>");
 					print("<p>Comentario: ".$comentarios."</p>");
-          			print("<img src='".$nombreFichero."'>");*/
+					print("<img src='".$nombreFichero."'>");
 				}
-			} 
-			/*else
-			{*/
+			}
+			else
+			{
 		?>
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">  
   			<label>Nombre *: </label><input type="text" name="nombre" value="<?php echo $nombre;?>">
@@ -123,7 +119,7 @@
 				<input type="submit" name="enviar" value="Enviar">
 			</form>
 		<?php
-		/*}*/
+		}
 		?>
 	</body>
 </html> 

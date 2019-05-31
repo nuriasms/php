@@ -92,8 +92,8 @@
 		}
 		else
 		{
-			
-			$consulta = mysqli_query($con, "SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$contrasena'");
+			$sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$contrasena'";
+			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 			if (mysqli_num_rows($consulta) > 0)
 			{
 				$respuesta=true;
@@ -103,7 +103,7 @@
 		return $respuesta;	
 	}
 
-	function altaUsuario()
+	function altaUsuario($nombre,$apellido,$edad,$correo,$comentario,$fichero)
 	{
 		$respuesta=false;
 		// dades de configuració
@@ -121,18 +121,13 @@
 		}
 		else
 		{
-			
-			$consulta = mysqli_query($con, "insert into formulariv4 (nombre,apellido,edad,correo,comentario,fichero) values ('$_REQUEST(nombre)','$_REQUEST(apellido)','$_REQUEST(edad)','$_REQUEST(comentario)','$_REQUEST(fichero)'");
-			if (mysqli_num_rows($consulta) > 0)
-			{
-				$respuesta=true;
-			}
+			$sql="insert into formulariv4 (nombre,apellido,edad,correo,comentarios,fichero) values ('$nombre','$apellido','$edad','$correo','$comentario','$fichero')";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
 		}
 		mysqli_close($con);
 		return $respuesta;	
 	}
-
-
 	
 	function test_input($data) 
 	{
