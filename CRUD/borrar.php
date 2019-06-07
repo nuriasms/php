@@ -31,7 +31,7 @@
 			
 			$estado = true;
 
-			if(isset($_POST["modificar"]))
+			if(isset($_POST["borrar"]))
 			{	
 				if (empty($_POST["nombre"])) 
 				{
@@ -91,9 +91,9 @@
 
 				if ($estado==true)
 				{
-          			if (!$tmp=modificarUsuario($_REQUEST['id'],$_REQUEST['nombre'],$_REQUEST['apellidos'],$_REQUEST['edad'],$_REQUEST['correo'],$_REQUEST['comentarios']))
+          			if (!$tmp=borrarUsuario($_REQUEST['id'],$_REQUEST['nombre'],$_REQUEST['apellidos'],$_REQUEST['edad'],$_REQUEST['correo'],$_REQUEST['comentarios']))
 					{	
-						print("<br><span class='rojo'>ERROR al modificar el usuario. Vuelva ha intentarlo</span><br><br>");										
+						print("<br><span class='rojo'>ERROR al borrar el usuario. Vuelva ha intentarlo</span><br><br>");										
 					}
 					else
 					{
@@ -148,7 +148,7 @@
   				<span class="error"><?php echo $ficheroError;?></span>
 			  	<input type="hidden" name="id" value="<?php echo $id;?>">
 				<br><br><br>
-				<input type="submit" name="modificar" value="Modificar">
+				<input type="submit" name="borrar" value="Borrar">
 	</form>
 
     </body>

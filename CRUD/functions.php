@@ -129,6 +129,60 @@
 		return $respuesta;	
 	}
 
+	function modificarUsuario($id,$nombre,$apellido,$edad,$correo,$comentario)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+			$sql="update formulariv4 set nombre='$nombre', apellido='$apellido', edad='$edad', correo='$correo', comentarios='$comentario' where id='$id'";
+			//echo " $sql";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
+		mysqli_close($con);
+		return $respuesta;	
+	}
+
+	function borrarUsuario($id,$nombre,$apellido,$edad,$correo,$comentario)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+			$sql="delete from formulariv4 where id='$id'";
+			//echo " $sql";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
+		mysqli_close($con);
+		return $respuesta;	
+	}
+
 	function conexionBBDD()
 	{
 		$respuesta=false;
@@ -186,8 +240,9 @@
 				{
 					echo "<td>$col_value</td>";
 				}
-				echo "<td><a href='editar.php?id=<?php echo $registre[id]; ?>'>Editar</a></td>";
-				echo "<td><a href='borrar.php?id=<?php echo $registre[id]; ?>'>Borrar</a></td>";
+				//printf ("REGISTRO:".$registre[id]."<br>");
+				echo "<td><a href='editar.php?id=$registre[id]'>Editar</a></td>";
+				echo "<td><a href='borrar.php?id=$registre[id]'>Borrar</a></td>";
 				echo "</tr>";
 			}
 			echo "</table>";		
