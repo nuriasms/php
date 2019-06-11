@@ -240,12 +240,15 @@
 				{
 					echo "<td>$col_value</td>";
 				}
-				//printf ("REGISTRO:".$registre[id]."<br>");
+				//printf ("REGISTRO:".$registre[id]."<br>"); Mostra totes les dades juntes
+				//Confirmación borrado mediante pregunta formulario, descomentar
 				//echo "<td><a href='editar.php?id=$registre[id]'>Editar</a></td>";
 				//echo "<td><a href='borrar.php?id=$registre[id]'>Borrar</a></td>";
 				
 				echo "<td><a href='editar.php?id=$registre[id]'><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></button></a></td>";
-				echo "<td><a href='borrar.php?id=$registre[id]' onclick='if(!confirm(\'¿Estás seguro de que quiere eliminar este elemento?\')) return false;'><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button></a></td>";
+				// Aquesta línea es correcte. Un altra manera de fer-ho
+				//echo "<td><a href='borrar.php?id=".$registre['id']."' onClick=\"javascript:return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button></a></td>";
+				echo "<td><a href='borrar.php?id=$registre[id]' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button></a></td>";
 				echo "</tr>";
 			}
 			echo "</table>";		
