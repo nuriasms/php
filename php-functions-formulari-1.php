@@ -195,6 +195,184 @@
 		return $nombre;
 	}
 
+	function modificarUsuario($id,$nombre,$apellido,$edad,$correo,$comentario)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+			$sql="update formulariv4 set nombre='$nombre', apellido='$apellido', edad='$edad', correo='$correo', comentarios='$comentario' where id='$id'";
+			//echo " $sql";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
+		mysqli_close($con);
+		return $respuesta;	
+	}
+
+	function borrarUsuario($id,$nombre,$apellido,$edad,$correo,$comentario)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+			$sql="delete from formulariv4 where id='$id'";
+			//echo " $sql";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
+		mysqli_close($con);
+		return $respuesta;	
+	}
+
+	function conexionBBDD()
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{			
+			$respuesta=true;	
+		}
+		return $respuesta;	
+	}	
+
+	function cerrarBBDD($con)
+	{
+		mysqli_close($con);
+	}
+
+	function consultaBBDD()
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{	
+			$sql = "SELECT * FROM formulariv4";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			echo "<table>";
+			while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
+			{
+				echo "<tr>";
+				// només si volem mostrar tots els camps de la consulta
+				foreach ($registre as $col_value) 
+				{
+					echo "<td>$col_value</td>";
+				}
+				//printf ("REGISTRO:".$registre[id]."<br>"); Mostra totes les dades juntes
+				//Confirmación borrado mediante pregunta formulario, descomentar
+				//echo "<td><a href='editar.php?id=$registre[id]'>Editar</a></td>";
+				//echo "<td><a href='borrar.php?id=$registre[id]'>Borrar</a></td>";
+				
+				echo "<td><a href='editar.php?id=$registre[id]'><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></button></a></td>";
+				// Aquesta línea es correcte. Un altra manera de fer-ho
+				//echo "<td><a href='borrar.php?id=".$registre['id']."' onClick=\"javascript:return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button></a></td>";
+				echo "<td><a href='borrar.php?id=$registre[id]' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button></a></td>";
+				echo "</tr>";
+			}
+			echo "</table>";		
+			$respuesta=true;	
+		}
+		//mysql_free_result($resultat);
+		mysqli_close($con);
+		return $respuesta;	
+
+	}
+
+	function randomPassword() {
+		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+		$pass = array(); //remember to declare $pass as an array
+		$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+		for ($i = 0; $i < 4; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass); //turn the array into a string
+	}
+
+
+	function recuperarContrasena($nom,$correu)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+		$nova_pass= '';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{		
+			$sql = "SELECT contrasenya FROM usuari WHERE nom='$nom'";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			if (!empty($resultat))
+			{
+				$nova_pass=randomPassword();
+				$sql="update usuari set contrasenya='$nova_pass' where nom='$nom'";
+				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+				header("Location: sql-correo.php?pass=".$nova_pass);
+			}	
+			$respuesta=true;	
+		}
+		//mysql_free_result($resultat);
+		mysqli_close($con);
+		//return $respuesta;	
+
+	}
 	
 
 ?>

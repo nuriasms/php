@@ -21,6 +21,7 @@
 	<body>
 		<?php
 			
+
 			if(isset($_REQUEST["enviar"])) 
 			{	
 				if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
@@ -51,6 +52,18 @@
 					}
 				}
 			}
+			if(isset($_REQUEST["recuperar"])) 
+			{
+				if (empty($_REQUEST['nombre']))
+				{
+					print ("Debe introducir el nombre para recuperar la contraseña. <br>"); 
+				}
+				else
+				{
+					//header("Location: sql-recupera-contrasena.php?nombre=$_REQUEST['nombre']");
+					header("Location: sql-recupera-contrasena.php?nombre=".$_REQUEST['nombre']);
+				}
+			}
 			
 		?>
 			<form method="POST">
@@ -61,6 +74,11 @@
 				<label>Recordar sesión <input type="checkbox" name="recordar" value="1"></label>
 				<br><br>
 				<input type="submit" name="enviar" value="Aceptar">
+				<br><br>
+				¿Has olvidado tu contraseña?
+				<br><br>
+				<input type="submit" name="recuperar" value="Recuperar contraseña">
+				<br><br>
 			</form>		
 		
 	</body>
