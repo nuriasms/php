@@ -364,15 +364,51 @@
 				$nova_pass=randomPassword();
 				$sql="update usuari set contrasenya='$nova_pass' where nom='$nom'";
 				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-				header("Location: sql-correo.php?pass=".$nova_pass);
+				header("Location: sql-correo.php?pass=".$nova_pass."&nom=".$nom."&correu=".$correu);
+				$respuesta=true;
 			}	
-			$respuesta=true;	
+				
 		}
 		//mysql_free_result($resultat);
 		mysqli_close($con);
-		//return $respuesta;	
-
+		return $respuesta;	
 	}
-	
+
+	function recuperarContrasenaLink($nom,$correu)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+		$nova_pass= '';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{		
+			$sql = "SELECT contrasenya FROM usuari WHERE nom='$nom'";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			if (!empty($resultat))
+			{
+				$nova_pass=randomPassword();
+				$sql="update usuari set contrasenya='$nova_pass' where nom='$nom'";
+				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+				header("Location: sql-correo.php?pass=".$nova_pass."&nom=".$nom."&correu=".$correu);
+				$respuesta=true;
+			}	
+				
+		}
+		//mysql_free_result($resultat);
+		mysqli_close($con);
+		return $respuesta;	
+	}
+
 
 ?>

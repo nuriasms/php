@@ -1,4 +1,5 @@
 <?php
+//https://programacion.net/articulo/sistema_de_recuperacion_de_contrasenas_con_php_y_mysql_1707
     use  PHPMailer \ PHPMailer \ PHPMailer ; 
     use  PHPMailer \ PHPMailer \ Exception ;
     
@@ -11,6 +12,11 @@
     $mail = new PHPMailer(true);
     try 
     {
+        //genera cadena única
+        $uniqidStr = md5(uniqid(mt_rand()));
+        //formulari
+        $resetPassLink = 'formulario-link.php?codigo='.$uniqidStr;
+
         //Server settings
         $mail->CharSet = 'UTF-8';
         $mail->SMTPDebug = 0;                     // Enable verbose debug output
@@ -27,14 +33,10 @@
         // Content
         $mail->isHTML(true);                                     // Set email format to HTML
         $mail->Subject = 'Pràctica canvi contrasenya';
-        //$mailContent = 'Dear '.$userDetails['first_name'].', 
-        //        <br/>Recently a request was submitted to reset a password for your account. If this was a mistake, just ignore this email and nothing will happen.
-        //       <br/>To reset your password, visit the following link: <a href="'.$resetPassLink.'">'.$resetPassLink.'</a>
-        //        <br/><br/>Regards';
         $mail->Body    = 'Apreciad@ '.$_REQUEST['nom'].',
-                <br><br>Li adjuntem la seva nova contrasenya:
-                <br><br><b>'.$_REQUEST['pass'].'</b>
-                <br><br>Atentamente,
+                <br><br>Recentment es va enviar una sol·licitud per restablir una contrasenya del vostre compte. Si s’ha produït un error, simplement ignoreu aquest correu electrònic i no passarà res.
+                <br>Per restablir la contrasenya, visiteu l’enllaç següent: <a href="'.$resetPassLink.'">'.$resetPassLink.'</a>
+                <br><br>Salutacions,
                 <br><br>Núria';
         $mail->AltBody = 'Apreciad@ '.$_REQUEST['nom'].',
         Li adjuntem la seva nova contrasenya:

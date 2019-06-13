@@ -29,12 +29,7 @@
                 
                 if ($estado)
                 {
-                    
-                    $respuesta=recuperarContrasena($_REQUEST["nombre"],$correo);
-                    if ($respuesta)
-                    {
-                        header("Location: sql-valida-login.php");
-                    }
+                    header("Location: sql-correo-V2.php?nom=".$_REQUEST["nombre"]."&correu=".$correo);
                 }
             }
         ?>
