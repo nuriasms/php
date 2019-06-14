@@ -5,8 +5,8 @@
 <html>
     <body>
         <?php
-            $correo = $correoError = '';
-            $estado=true;
+            $correo = $correoError = $token = '';
+            $estado = $respuesta = true;
             
             if(isset($_REQUEST["envia"])) 
 			{	
@@ -29,7 +29,12 @@
                 
                 if ($estado)
                 {
-                    header("Location: sql-correo-V2.php?nom=".$_REQUEST["nombre"]."&correu=".$correo);
+                    if (!empty($token=generarToken($_REQUEST["nombre"])))
+                    {
+                        echo "Ya he generado token";
+                        $resetPassLink = 'http://localhost/php/sql-formulario-link.php?codigo='.$token;
+                        header("Location: sql-correo-V2.php?nom=".$_REQUEST["nombre"]."&correu=".$correo."&token=".$token);
+                    }
                 }
             }
         ?>

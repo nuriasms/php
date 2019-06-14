@@ -374,9 +374,9 @@
 		return $respuesta;	
 	}
 
-	function recuperarContrasenaLink($nom,$correu)
+	function generarToken($nom)
 	{
-		$respuesta=false;
+		$token = $resetPassLink = '';
 		// dades de configuració
 		$ip = 'localhost';
 		$usuari = 'root';
@@ -397,10 +397,40 @@
 			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 			if (!empty($resultat))
 			{
-				$nova_pass=randomPassword();
-				$sql="update usuari set contrasenya='$nova_pass' where nom='$nom'";
+				//genera cadena única
+				$token = md5(uniqid(mt_rand()));
+				$temps = getdate();
+				$sql="INSERT token VALUES (null,'$token','$temps',null,'$nom')";
 				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-				header("Location: sql-correo.php?pass=".$nova_pass."&nom=".$nom."&correu=".$correu);
+			}			
+		}
+		mysqli_close($con);
+		return $token;	
+	}
+
+	validaToken($token)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+		$nova_pass= '';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{		
+			$sql = "SELECT * FROM token WHERE token='$token'";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			if (!empty($resultat))
+			{
 				$respuesta=true;
 			}	
 				
@@ -410,5 +440,39 @@
 		return $respuesta;	
 	}
 
+	guardaContrasena($contrasena,$token)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'root';
+		$password = '';
+		$db_name = 'valida_login';
+		$nova_pass= '';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{		
+			$sql = "SELECT usuari FROM token WHERE token='$token'";
+			$usuari = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			if (!empty($usuari))
+			{
+				$sql = "UPDATE usuari set contrasenya='$contrasenya' where nom='$usuari'";
+				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+				$respuesta=true;
+			}	
+				
+		}
+		//mysql_free_result($resultat);
+		mysqli_close($con);
+		return $respuesta;	
+
+	}
 
 ?>
