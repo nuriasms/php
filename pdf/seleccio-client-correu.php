@@ -19,10 +19,11 @@
             $sql="SELECT nom FROM clients WHERE numclie='$idRec'";
 			$resultat = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
 			$registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC);
-			$nom = $registre['nom'];
+			$nom = utf8_encode($registre['nom']);
 			if ($nom != '')
 			{
-				$bufferHTML = "<h1> LListat de comandes de ".$nom."</h1><br><br>";
+				//$bufferHTML ="<html><head><style>table,td,tr,th{border-collapse: collapse; border: 1px solid black; padding:5px;}</style></head></html>";
+				$bufferHTML = $bufferHTML."<h1> LListat de comandes de ".$nom."</h1><br><br>";
 			}
 
 			$sql="SELECT * FROM comanda WHERE clie='$idRec'";
@@ -30,14 +31,15 @@
 			
 			while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC))
 			{	
-				$bufferHTML = $bufferHTML."<table>";
+				$bufferHTML = $bufferHTML."<table style='width:70%';'border-collapse:collapse';'border: 1px solid black';'padding:5px'>";
+				$bufferHTML = $bufferHTML."<tr><th>Cliente</th><th>Fecha</th><th>Importe</th><th>Pedido</th><th>Vendedor</th></tr>";
                 while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
                 {
                     $bufferHTML = $bufferHTML."<tr>";
                     // només si volem mostrar tots els camps de la consulta
                     foreach ($registre as $col_value) 
                     {
-						$bufferHTML = $bufferHTML."<td>$col_value</td>";
+						$bufferHTML = $bufferHTML.(utf8_encode("<td>$col_value</td>"));
 					}
 					$bufferHTML = $bufferHTML."</tr>";
                 }
@@ -52,7 +54,9 @@
 		require_once 'dompdf/autoload.inc.php';
 	
 		// reference the Dompdf namespace
-		use Dompdf\Dompdf;	
+		use Dompdf\Dompdf;
+		//
+	
 	
 		// instantiate and use the dompdf class
 		$dompdf = new Dompdf();
@@ -75,7 +79,6 @@
 		//$dompdf->stream('doc/taules.pdf');
 		
 		echo "<h2>Impressió correcta!</h2><br><br>";
-		echo "<a href='../doc/LListat_comandes_client.pdf'>Veure Llistat de comandes</a>";
-		
-
+		echo "<a href='../doc/LListat_comandes_client.pdf'>Veure Llistat de comandes de ".$nom."</a><br><br>";
+		echo "<a href='enviar-correu-client.php?nom=$nom&url=../doc/Llistat_clients.pdf&fitxer=Llistat_clients.pdf'>Enviar Llistat de comandes de ".$nom."</a>";
 ?>
