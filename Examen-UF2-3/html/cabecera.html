@@ -1,0 +1,33 @@
+<?php
+    if(isset($_REQUEST["cerrar"])) 
+    {	
+        cerrarSesion();
+    } 
+?>
+<header>
+    <ul class="barraUsuari"> 
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+        <li><a href="#"></a></li>
+        
+    </ul>
+    <h1>LOOK</h1>
+    
+</header>
+<nav class="navbar navbar-default">		 
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="container-fluid collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li id="menu1" class="active"><a href="#">Inicio</a></li>
+            <li id="menu2" class="inactive"><a href="../php/publicaciones.php">Consulta noticias</a></li>
+            <li id="menu3" class="inactive"><a href="../php/alta-publicaciones.php">Alta artículo</a></li>
+            <li id="menu4" class="inactive"><a href="../php/alta-publicaciones.php">Borrar artículo</a></li>
+        </ul>
+    </div>
+</nav>

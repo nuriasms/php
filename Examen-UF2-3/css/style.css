@@ -1,0 +1,268 @@
+
+body{
+    margin: 0px;
+	font-family: verdana;
+}
+
+/*----------------------------CABECERA---------------------------------------------------*/
+
+header h1{
+    font-family: century;
+    font-size: 55px;
+    margin:0px;
+    text-align: center;
+}
+.clear{
+	clear: both;
+}
+
+.barraUsuari ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+.barraUsuari li{
+    display: inline;
+    float: right;
+    margin-right: 10px;
+}
+.glyphicon{
+    color:gray;
+}
+.glyphicon:hover{
+    color:black;
+    font-weight: bolder;
+}
+/*-----------------------------------------BARRA MENU----------------------------*/
+.navbar {
+    border: none;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover{
+    background-color:white;
+}
+.navbar-nav>.active>a:hover, .container-fluid .nav li a:hover, .navbar-nav>.active>a{
+    font-weight: bold;
+}
+.navbar-nav{
+    margin-left: 250px;
+}
+.container-fluid {
+	background-color:white;         /*Color fons de la barra de navegació*/
+}
+.cerrar li h4{
+    padding-top: 3px;
+}
+/*---------------------------LOGIN-------------------------------------------------------*/
+.login{
+    width: 300px;
+    background-color: white;
+    margin: 15px 0 15px 35%;
+}
+.loginCab img{
+    width: 60%;
+    padding-top:20px;
+    padding-left: 90px;
+}
+.loginCuerpo{
+    margin:5px 0 10px 50px;
+}
+.loginPie{
+    background-color: #bdc7bb;/*#f1f1f1;*/
+    text-align: right;
+    padding-right: 30px;
+}
+.error{
+    color:red;
+    margin-left: 10px;
+}
+.altaUsuario{
+    font-size: 16px;
+    font-weight: bold;
+}
+/*------------------------------------Alta usuario----------------------------------------*/
+#registro{
+    width: 750px;
+    background-color: white;
+    margin: 15px 0 15px 20%;
+}
+#registroCab img{
+    /*width: 100px;*/
+    padding:20px 30px 0 50px;
+    float: left;
+}
+#registroCab h2{
+    float: left;
+    padding:20px 20px 0 20px;
+}
+#registroCuerpo{
+    clear: both;
+    padding:10px 50px 10px 50px;
+}
+label{
+    float: left;
+    width: 170px;
+}
+input { 
+  float: left;
+}
+.errorReg{
+    color:red;
+    margin-left: 170px;
+}
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #39703b;
+  }
+
+/*-------------------------------------Footer---------------------------------------------*/
+footer{
+	width: 100%;
+    height: 120px;
+    background:#8ba987 url('../img/pie.jpg') no-repeat center center;
+    color:white;/* #cfd1d2;*/
+    font-weight: bold;
+    padding: 30px;
+}
+footer #redes li{
+	list-style:none;
+	float:left;
+}
+#facebook, #twitter, #correu{
+	width:50px;
+	height:50px;
+	margin-right:7px;
+}
+#copyright, #derecha a{
+	text-align:right;
+	font-size:18px;
+	margin-top:5px;
+	margin-right: 150px;
+}
+#derecha{
+	display: block;
+	float: right;
+}
+
+/*-------------------------------------------PUBLICACIÓN---------------------------------*/
+.publicacion img{
+    margin-left: 15%;
+}
+.publicacion h4 small{
+    color:white;
+}
+.publicacion a{
+    color:#c9e4f3;
+    font-size: 18px;
+    float: right;
+}
+.btn-primary-outline{   
+    background-color: transparent;
+}
+.descripcion p, .descripcion ul li{
+    text-align: justify;
+}
+.btn-publicacion {  
+    background-color: #39703b;
+    color: white;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+} 
+.btn-publicacion:hover {
+    background-color: #53aa56;
+}
+.verde{
+    color: green;
+}
+#ocultarComentario{
+    display: none;
+}
+p .aIzquierda{
+    float: left;
+    color:black;
+    padding-right: 10px;
+}
+
+/*------------------------------ALTA NOTICIA----------------------------------------------*/
+.altaNoticia{
+    margin-left: 15%;
+}
+.altaNoticia form .errorNoticia{
+    color: red;
+    margin-left: 170px;
+}
+.btn-sub{
+    margin-left: 170px;
+}
+.btn-res{
+    margin-left: 15px;
+}
+.salida{
+    width: 500px;
+    background: white;
+    margin-left: 200px;
+    margin-bottom: 15px;
+    padding: 30px 0 0 50px;
+}
+.salida h3{
+    font-weight: 700;
+    color:rgb(64, 112, 64);
+}
+.salida p{
+    color: gray;
+}
+.tituloSalida{
+    font-size: 18px;
+    font-weight: bold;
+}
+/*-------------------------------PORTADA----------------------------------------------*/
+#portada{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 800px;
+    background:url('../img/red.jpg') no-repeat left center;  
+}
+#portada h1{
+    position: relative;
+    top: 400px;
+    left: 470px;
+    font-size: 65px;
+    color: white;
+    font-weight: bold;
+}
+#portada a{
+    position: relative;
+    top: 420px;
+    left: 750px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
