@@ -22,7 +22,7 @@
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<?php
-			include ('html/cabecera.html');
+			include ('html/inicio.html');
 		?>
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>

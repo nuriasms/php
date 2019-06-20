@@ -3,20 +3,15 @@ body{
     margin: 0 auto;
 	font-family: verdana;
 }
-
 /*----------------------------CABECERA---------------------------------------------------*/
-
-
 header h1{
     font-family: century;
     font-size: 55px;
     text-align: center;
 }
-
 .clear{
 	clear: both;
 }
-
 .barraUsuari{
     list-style:none;
     margin:0;
@@ -30,12 +25,12 @@ header h1{
 }
 .glyphicon{
     color:DARKGRAY;
-    font-size: 20px; 
+    font-size: 25px; 
 }
 .glyphicon:hover{
-    color:black;
-    
+    color:black;  
 }
+
 /*-----------------------------------------BARRA MENU----------------------------*/
 .navbar {
     border: none;
@@ -56,7 +51,7 @@ header h1{
 }
 
 .container-fluid {
-	background-color:white;         /*Color fons de la barra de navegació*/
+	background-color:white; /*Color fons de la barra de navegació*/
 }
 .cerrar li h4{
     padding-top: 3px;
@@ -74,33 +69,120 @@ header h1{
     position: relative;
     top: 260px;
 }
-/*---------------------------LOGIN-------------------------------------------------------*/
-.login{
-    width: 300px;
-    background-color: white;
-    margin: 15px 0 15px 35%;
+/*-------------------------------------LOGIN----------------------------------------------------*/
+.loginIndex input[type=text], .loginIndex input[type=password] {
+    width: 320px;
+    padding: 12px 0 12px 10px;
+    margin: 8px 12px;
+   /* display: inline-block;*/
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    float:left;
+    clear: both;
 }
-.loginCab img{
-    width: 60%;
-    padding-top:20px;
-    padding-left: 90px;
+.loginIndex button[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 0 12px 10px;
+    margin: 8px 12px;
+    border: none;
+    cursor: pointer;
+    width: 320px;
+    float: left;
+    clear: both;
 }
-.loginCuerpo{
-    margin:5px 0 10px 50px;
+#id01 button:hover {
+    opacity: 0.8;
 }
 .loginPie{
-    background-color: #bdc7bb;/*#f1f1f1;*/
-    text-align: right;
-    padding-right: 30px;
+    width: 100%;
+    height: 70px;
 }
-.error{
-    color:red;
-    margin-left: 10px;
+.loginPie .cancelbtn {        
+    padding: 10px 18px;
+    background-color: #f44336;
+    color:white;
+    margin: 10px 0 0 30px;
 }
-.altaUsuario{
-    font-size: 16px;
-    font-weight: bold;
+.imgcontainer {
+    width: 320px;
+    height: 158px;
+    text-align: center;
+    margin: 30px 30px 0 30px;
+    background:url("../img/look-5.jpg");
+    position: relative;
 }
+.look {
+    font-family: century;
+    font-weight: bolder;
+    text-align: center;
+    position: relative;
+    top: 90px;
+}
+.loginIndex label {
+    float: left;
+    margin-left: 12px;
+    clear: both;
+}
+span.psw {
+    float: right;
+    padding: 20px 30px 0 0;
+}
+.modalInd {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+.modal-content-ind{
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 380px; /* Could be more or less, depending on screen size */
+}
+/* Boton de cierre (x) */
+.close {
+   position: relative;
+   right: 6px;
+   top: 6px;
+   color: #000;
+   font-size: 20px;
+   font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+}
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+     animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}     
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+}
+.loginPie
+{
+	width: auto;
+}	
 /*------------------------------------Alta usuario----------------------------------------*/
 #registro{
     width: 750px;
@@ -122,7 +204,7 @@ header h1{
 }
 label{
     float: left;
-    width: 170px;
+    /*width: 170px;*/
 }
 input { 
   float: left;
