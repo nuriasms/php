@@ -30,15 +30,10 @@
 		<span id="inicio"></span>
 		<?php
 			include ('../html/cabecera.html');
-			include ('../html/barra.html');
 		?>
 		
 		<!---------------------------------INICIO cuerpo a cambiar-----------------------------------> 
 		<div class="container">
-			<script>
-				document.getElementById("menu1").className="active";
-				document.getElementById("menu2").className="inactive";
-			</script>
 			<?php
 				//Inicializa variables
 				$comentario = $comentarioError = $comentarioErrorVerde = $fechaNueva = $nombreNuevo = $articuloNuevo = $fechaNueva = $avatarNuevo = "";

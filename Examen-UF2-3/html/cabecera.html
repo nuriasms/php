@@ -1,0 +1,34 @@
+<?php
+    if(isset($_REQUEST["cerrar"])) 
+    {	
+        cerrarSesion();
+    } 
+?>
+<!----------------------------------CABECERA------------------------------------------------>
+<header class="container">
+    <ul class="barraUsuari"> 
+        <li><a href="#" data-toggle="modal" data-target="#login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-out bannerformmodal"></span></a></li>
+        <li><h4><?php echo $usuario;?></h4><!--span class="glyphicon glyphicon-search"></span--></a></li>
+        <li><a href="#"></a></li>   
+    </ul>
+    <h1>LOOK</h1>   
+</header>
+<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
+<nav class="navbar navbar-default">		 
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="container-fluid collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li id="menu1" class="active"><a href="#" onclick="cambiar('menu1')">Inicio</a></li>
+            <li id="menu2" class="inactive"><a href="#" >Consulta noticias</a></li>
+            <li id="menu3" class="inactive"><a href="#" >Alta artículo</a></li>
+            <li id="menu4" class="inactive"><a href="#" >Borrar artículo</a></li>
+        </ul>
+    </div>
+</nav>
+

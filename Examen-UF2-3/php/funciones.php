@@ -54,7 +54,7 @@
         $_SESSION["contrasena"] = $contrasena;
 		if(isset($_SESSION["nombre_usuario"]) && isset($_SESSION["contrasena"]) )
 		{
-			header("Location: publicaciones.php");
+			header("Location: look.php");
 		}
     }    
     /*----------------------------------------------------------------------------------------------*/

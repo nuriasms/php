@@ -60,7 +60,9 @@ header h1{
 .fotoPortada{
     width: 90%;
     height: 520px;
-    background: url("../img/revista33.jpg");
+    background-image: url("../img/revista33.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 .fotoPortada h1{
     color:white;
@@ -91,10 +93,10 @@ header h1{
     float: left;
     clear: both;
 }
-#id01 button:hover {
+#id01 button:hover, #avis button:hover{
     opacity: 0.8;
 }
-.loginPie{
+.loginPie, .modal-footer{
     width: 100%;
     height: 70px;
 }
@@ -141,7 +143,7 @@ span.psw {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
 }
-.modal-content-ind{
+.modal-content-ind, .modal-content{
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
@@ -182,7 +184,45 @@ span.psw {
 .loginPie
 {
 	width: auto;
+}
+/*--------------------------------Condicions------------------------------------------------*/
+#condiciones .modal-content .modal-body h2{
+    font-size: 20px;
+    color:#353599;
+    font-weight: bolder;
+}
+#condiciones .modal-content{
+    width: 500px;
+}
+#condiciones .modal-content .modal-body p{
+    text-align: justify;
+}
+#condiciones .modal-content .modal-header img{
+    margin-left: 150px;
+}
+#condiciones .modal-content .modal-header .modal-title{
+    margin-left: 15px;
+}
+/*------------------------------------Avis------------------------------------------------*/
+.modal-header img{
+    margin-left: 100px;
+}
+.modal-body{
+    margin-left: 10px;
+}
+.modal-body h3{
+    color: #dd1717;
+    font-weight: bolder;
+}
+.modal-footer .cancelbtn{
+   /* height: 80px;*/
+    padding: 5px 9px;
+    background-color: #f44336;
+    color:white;
 }	
+.modal-footer{
+     height: auto;
+}
 /*------------------------------------Alta usuario----------------------------------------*/
 #registro{
     width: 750px;
@@ -223,12 +263,10 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  input[type=submit]:hover {
+}
+input[type=submit]:hover {
     background-color: #39703b;
-  }
-
+}
 /*-------------------------------------Footer---------------------------------------------*/
 footer{
 	width: 100%;

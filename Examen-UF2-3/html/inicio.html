@@ -7,26 +7,27 @@
     //Validaciones de usuario
     $mostrarError="";
 
-			if(isset($_REQUEST["validar"])) 
-			{	
-				if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
-				{	
-					$mostrarError="Debe introducir el nombre y la contraseña no puede estar vacío."; 
-				}
-				else
-				{
-					if (!$tmp=validarUsuario($_REQUEST['nombre'],$_REQUEST['contrasena']))
-					{		
-						$mostrarError="ERROR al validar usuario";										
-					}
-					else
-					{
-						guardarCookie($_REQUEST['nombre'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
-						iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']);
-					}
-				}
-			}		
+	if(isset($_REQUEST["validar"])) 
+	{	
+		if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
+		{	
+			$mostrarError="Debe introducir el nombre y la contraseña no puede estar vacío."; 
+		}
+		else
+		{
+			if (!$tmp=validarUsuario($_REQUEST['nombre'],$_REQUEST['contrasena']))
+			{		
+				$mostrarError="ERROR al validar usuario";										
+			}
+			else
+			{
+				guardarCookie($_REQUEST['nombre'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
+				iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']);
+			}
+		}
+	}		
 ?>
+<!----------------------------------CABECERA------------------------------------------------>
 <header class="container">
     <ul class="barraUsuari"> 
         <li><a href="#" data-toggle="modal" data-target="#login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in bannerformmodal"></span></a></li>
@@ -35,6 +36,7 @@
     </ul>
     <h1>LOOK</h1>   
 </header>
+<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 <nav class="navbar navbar-default">		 
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -46,47 +48,70 @@
     <div class="container-fluid collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
             <li id="menu1" class="active"><a href="#">Inicio</a></li>
-            <li id="menu2" class="inactive"><a href="../php/publicaciones.php">Consulta noticias</a></li>
-            <li id="menu3" class="inactive"><a href="../php/alta-publicaciones.php">Alta artículo</a></li>
-            <li id="menu4" class="inactive"><a href="../php/alta-publicaciones.php">Borrar artículo</a></li>
+            <li id="menu2" class="inactive"><a href="#" data-toggle="modal" data-target="#avis" >Consulta noticias</a></li>
+            <li id="menu3" class="inactive"><a href="#" data-toggle="modal" data-target="#avis" >Alta artículo</a></li>
+            <li id="menu4" class="inactive"><a href="#" data-toggle="modal" data-target="#avis" >Borrar artículo</a></li>
         </ul>
     </div>
 </nav>
-    <div id="id01" class="modalInd">
-    
-        <form class="modal-content-ind animate" method="post">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Cerrar Modal">&times;</span>
-            <div class="imgcontainer">
-                <h1 class="look">LOOK</h1>
-            </div>
+<!----------------------------MODAL LOGIN--------------------------------------------------->
+<div id="id01" class="modalInd">    
+    <form class="modal-content-ind animate" method="post">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Cerrar Modal">&times;</span>
+        <div class="imgcontainer">
+            <h1 class="look">LOOK</h1>
+        </div>
         
-            <div class="container loginIndex espacio">
-                <br>
-                <span class="error"><?php echo $mostrarError;?></span>
-                <br>
-                <label for="nombre"><b>Usuario</b></label><br>
-                <input type="text" placeholder="Nombre usuario" name="nombre" required>
-                <br>
-                <label for="contrasena"><b>Contraseña</b></label><br>
-                <input type="password" placeholder="Password" name="contrasena" required>
-                <br> 
-                <button type="submit" name="validar">Iniciar sesión</button>
-                <br><br>
-                <label>
-                    <input type="checkbox" checked="checked"  name="recordar"> Recordar usuario
-                </label>
-                <br><br><br>
-                <label>
-				    <a class="altaUsuario" href="../php/alta-usuario.php">Registrar nuevo usuario</a>
-                </label>
-                <br><br>
-            </div>
+        <div class="container loginIndex espacio">
+            <br>
+            <span class="error"><?php echo $mostrarError;?></span>
+            <br>
+            <label for="nombre"><b>Usuario</b></label><br>
+            <input type="text" placeholder="Nombre usuario" name="nombre" required>
+            <br>
+            <label for="contrasena"><b>Contraseña</b></label><br>
+            <input type="password" placeholder="Password" name="contrasena" required>
+            <br> 
+            <button type="submit" name="validar">Iniciar sesión</button>
+            <br><br>
+            <label>
+                <input type="checkbox" checked="checked"  name="recordar"> Recordar usuario
+            </label>
+            <br><br><br>
+            <label>
+        	    <a class="altaUsuario" href="../php/alta-usuario.php">Registrar nuevo usuario</a>
+            </label>
+            <br><br>
+        </div>
         
-            <div class="loginPie" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
-                <span class="psw">Olvidar <a href="#" onclick="borrarCookie();">usuario?</a></span>
-            </div>
-        </form>
-      </div>
-    
+        <div class="loginPie" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+            <span class="psw">Olvidar <a href="#" onclick="borrarCookie();">usuario?</a></span>
+        </div>
+    </form>
+</div>
+<!----------------------------AVISO NO ACTIVO MENÚ-------------------------------------------->
+<div id="avis" class="modal fade" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <!--h1 class="modal-title">LOOK</h1-->
+            <img src="img/look-22.png" width="40%">
+            <br>
+        </div>
+        <div class="modal-body">
+            <h3>AVISO:</h3>
+            <h3>MENÚ NO ACTIVO</h3>
+            <br>
+            <p><b>Para acceder a cualquier menú, debe iniciar la sesión con su usuario.</b></p>
+            <br>
+            <p>Si no dispone de usuario, puede crear uno nuevo.</p>
+            <br>
+            <a class="altaUsuario" href="../php/alta-usuario.php">Registrar nuevo usuario</a>
+        </div>
+        <div class="modal-footer" style="background-color:#f1f1f1" >
+            <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+        </div>    
+    </div>
+</div>    
 

@@ -1,20 +1,28 @@
+/*---------------------------------------------------------------------------------------------*/
+
+var modal = document.getElementById('id01');
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 /*----------------------------------------------------------------------------------------------*/
-/* function cambiar(arg1,arg2):                                                                 */
+/* function cambiar(arg1):                                                                 */
 /* Cambia la clase activo/inactivo según requiera la selección del cliente                      */
 /*                                                                                              */
-/* Parametros: recibe pestaña activa en menú y pestaña inactiva                                 */
+/* Parametros: recibe pestaña activa en menú                                 */
 /*----------------------------------------------------------------------------------------------*/
-function cambiar(act,inact)
+function cambiar(activar)
 {
 	/* Pone todas las pestañas del menu a inactivo*/
-	for (var i = 1; i < 3; i++) 
+	for (var i = 1; i < 6; i++) 
 	{
 		var tmp="menu"+i;
 		document.getElementById(tmp).className="inactive";
 	}
 	/* Al tratarse de dos pestañas pone el estado directamente*/
-	document.getElementById(act).className="active";
-	document.getElementById(inact).className="inactive";
+	document.getElementById(activar).className="active";
 }
 /*----------------------------------------------------------------------------------------------*/
 /* function visibilidad(arg):                                                                   */
