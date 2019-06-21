@@ -6,12 +6,42 @@
     /* Argumentos: recibe el nombre y la contraseña                                                 */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
-    function validarUsuario($nombre,$contrasena)
+    /*function validarUsuario($nombre,$contrasena)
     {
         $respuesta=false;
         if (($nombre==="Mireia") && (md5(sha1($contrasena)==="700c8b805a3e2a265b01c77614cd8b21"))) $respuesta=true;
-        return $respuesta;	
-    }
+        return $respuesta;	 
+    }*/
+    function validarUsuario($nombre,$contrasena)
+	{
+		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            //$tmp_psw=md5(sha1($contrasena));
+            //$sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$tmp_psw'";
+            $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$contrasena'";
+			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+			if (mysqli_num_rows($consulta) > 0)
+			{
+				$respuesta=true;
+            }
+		}
+		mysqli_close($con);
+		return $respuesta;	
+	}
     /*----------------------------------------------------------------------------------------------*/
     /* function validarCookie:                                                                     */
     /* Comprueba que el usuario y la contraseña introducidos por el usuario coincide con la guardada*/

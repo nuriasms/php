@@ -5,19 +5,18 @@
     } 
 
     //Validaciones de usuario
-    $mostrarError="";
-
-	if(isset($_REQUEST["validar"])) 
+    
+	if(isset($_REQUEST["inicio"])) 
 	{	
 		if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
 		{	
-			$mostrarError="Debe introducir el nombre y la contraseña no puede estar vacío."; 
+			echo 'alert("Debe introducir el nombre y la contraseña no puede estar vacío.")'; 
 		}
 		else
 		{
 			if (!$tmp=validarUsuario($_REQUEST['nombre'],$_REQUEST['contrasena']))
-			{		
-				$mostrarError="ERROR al validar usuario";										
+			{		             
+                echo 'alert("ERROR al validar usuario. \n Compruebe si su usuario o su contraseña son correctas")';         
 			}
 			else
 			{
@@ -55,7 +54,8 @@
     </div>
 </nav>
 <!----------------------------MODAL LOGIN--------------------------------------------------->
-<div id="id01" class="modalInd">    
+<div id="id01" class="modalInd"> 
+       
     <form class="modal-content-ind animate" method="post">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Cerrar Modal">&times;</span>
         <div class="imgcontainer">
@@ -64,15 +64,15 @@
         
         <div class="container loginIndex espacio">
             <br>
-            <span class="error"><?php echo $mostrarError;?></span>
+            <!--span class="error"><?php echo $mostrarError;?></span-->
             <br>
             <label for="nombre"><b>Usuario</b></label><br>
-            <input type="text" placeholder="Nombre usuario" name="nombre" required>
+            <input type="text" placeholder="Nombre usuario" name="nombre" maxlength="30" required>
             <br>
             <label for="contrasena"><b>Contraseña</b></label><br>
-            <input type="password" placeholder="Password" name="contrasena" required>
+            <input type="password" placeholder="Password" name="contrasena" minlength="4" maxlength="8" required>
             <br> 
-            <button type="submit" name="validar">Iniciar sesión</button>
+            <button type="submit" name="inicio">Iniciar sesión</button>
             <br><br>
             <label>
                 <input type="checkbox" checked="checked"  name="recordar"> Recordar usuario
@@ -106,6 +106,8 @@
             <p><b>Para acceder a cualquier menú, debe iniciar la sesión con su usuario.</b></p>
             <br>
             <p>Si no dispone de usuario, puede crear uno nuevo.</p>
+            <br>
+            <a href="#" data-toggle="modal" data-target="#login" data-dismiss="modal" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Iniciar sesión</a>
             <br>
             <a class="altaUsuario" href="../php/alta-usuario.php">Registrar nuevo usuario</a>
         </div>

@@ -185,6 +185,10 @@ span.psw {
 {
 	width: auto;
 }
+.error{
+    color: red;
+    margin: 12px;
+}
 /*--------------------------------Condicions------------------------------------------------*/
 #condiciones .modal-content .modal-body h2{
     font-size: 20px;
@@ -203,6 +207,7 @@ span.psw {
 #condiciones .modal-content .modal-header .modal-title{
     margin-left: 15px;
 }
+
 /*------------------------------------Avis------------------------------------------------*/
 .modal-header img{
     margin-left: 100px;
@@ -223,6 +228,7 @@ span.psw {
 .modal-footer{
      height: auto;
 }
+
 /*------------------------------------Alta usuario----------------------------------------*/
 #registro{
     width: 750px;
