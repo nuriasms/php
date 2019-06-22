@@ -6,12 +6,6 @@
     /* Argumentos: recibe el nombre y la contraseña                                                 */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
-    /*function validarUsuario($nombre,$contrasena)
-    {
-        $respuesta=false;
-        if (($nombre==="Mireia") && (md5(sha1($contrasena)==="700c8b805a3e2a265b01c77614cd8b21"))) $respuesta=true;
-        return $respuesta;	 
-    }*/
     function validarUsuario($nombre,$contrasena)
 	{
 		$respuesta=false;
@@ -30,9 +24,8 @@
 		}
 		else
 		{
-            //$tmp_psw=md5(sha1($contrasena));
-            //$sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$tmp_psw'";
-            $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$contrasena'";
+            $tmp_psw=md5(sha1($contrasena));
+            $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$tmp_psw'";
 			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 			if (mysqli_num_rows($consulta) > 0)
 			{
@@ -53,7 +46,30 @@
     function validarCookie($nombre,$contrasena)
     {
         $respuesta=false;
-        if (($nombre==="Mireia") && ($contrasena==="700c8b805a3e2a265b01c77614cd8b21")) $respuesta=true;
+        // dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            $tmp_psw=md5(sha1($contrasena));
+            $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$nombre' AND contrasenya = '$tmp_psw'";
+			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+			if (mysqli_num_rows($consulta) > 0)
+			{
+				$respuesta=true;
+            }
+		}
+		mysqli_close($con);
         return $respuesta;	
     }
     /*----------------------------------------------------------------------------------------------*/
@@ -64,12 +80,12 @@
     /*----------------------------------------------------------------------------------------------*/
     function guardarCookie($usuario,$contrasena,$recordar)
     {
-        if ((isset($recordar)) && ($recordar == 1))
-		{
+       // if ($recordar == 1)
+		//{
             $psw=md5(sha1($contrasena));
 			setcookie("usuario",$usuario,strtotime( '+30 days' ),"/",false, false);
-			setcookie("contrasena",$psw,strtotime( '+30 days' ),"/",false, false);  
-		}
+            setcookie("contrasena",$psw,strtotime( '+30 days' ),"/",false, false);   
+       // }
     }
     /*----------------------------------------------------------------------------------------------*/
     /* function iniciarSesion:                                                                      */
@@ -84,7 +100,7 @@
         $_SESSION["contrasena"] = $contrasena;
 		if(isset($_SESSION["nombre_usuario"]) && isset($_SESSION["contrasena"]) )
 		{
-			header("Location: look.php");
+			header("Location: php/look.php");
 		}
     }    
     /*----------------------------------------------------------------------------------------------*/
@@ -101,29 +117,29 @@
             {
                 if (!$tmp=validarUsuario($_SESSION['nombre_usuario'],$_SESSION['contrasena']))
                 {		
-                    header("Location: index.php");										
+                    header("Location: ../index.php");										
                 }
                 else
                 {
-                    $nombre="Bienvenid@:  <span class='nom'>".$_SESSION['nombre_usuario']."</span>"; 
+                    $nombre=$_SESSION['nombre_usuario']; 
                 }   
             }
             else
             {     
                 if ($tmp=validarCookie($_COOKIE["usuario"],$_COOKIE["contrasena"]))
                 {
-                    $nombre="Bienvenid@:   <span class='nom'>".$_COOKIE['usuario']."</span>";
+                    $nombre=$_COOKIE['usuario'];
                 } 
                 else
                 {
-                    header("Location: index.php");
+                    header("Location: ../index.php");
                 }    
             }
             return $nombre;
         }
         else
         {
-            header("Location: index.php");
+            header("Location: ../index.php");
         }
     } 
     /*----------------------------------------------------------------------------------------------*/
@@ -140,7 +156,7 @@
         session_destroy();
         //borra coockie
         //borrarCookie();
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit;
     }
     /*----------------------------------------------------------------------------------------------*/

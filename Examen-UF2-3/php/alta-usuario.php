@@ -3,33 +3,29 @@
 	require ('funciones.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="description" content="Blog dedicada a la promoción de un deporte de equipo como es el VOLEIBOL.">
-    <meta name="keywords" content="voleibol, saque, bloqueo, remate, libero, central, punta, opuesto, barillas, red, campo, receptor, zaguero, entrenador, club, arbitro, balón">
-    <meta http-equip="Expires" content="no-cache">
-	<link rel="stylesheet" href="../lib/css/bootstrap.min.css">
-	<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
-	<script src="../lib/js/jquery.min.js"></script>
-	<script src="../lib/js/bootstrap.min.js"></script>
-	<script src="../js/funciones.js"></script>
-    <title>Blog voleibol</title>
-	<link rel="stylesheet" href="../css/style.css"> 
-</head>
-<body>
-	<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
-	<?php
-		include ('../html/cabecera.html');
-	?>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="description" content="Consulta toda la información para la mujer en el suplemento de LOOK: Moda, tendencias, belleza, pareja, Lifestyle, vídeos  noticias de famosas. ¡Entra!">
+		<meta name="keywords" content="Look, revista online, revista look, belleza, trucos de belleza, consejos de belleza, tratamientos esteticos, maquillaje, peluqueria, perfumes, trucos de belleza de famosas,">
+		<meta http-equip="Expires" content="no-cache">
+		<link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+		<script src="../lib/js/jquery.min.js"></script>
+		<script src="../lib/js/bootstrap.min.js"></script>
+		<title>LOOK</title>
+		<link rel="stylesheet" href="../css/style.css"> 
+	</head>
+	<body>
+		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 	<!---------------------------------INICIO ---------------------------------->
     <?php
         //Inicializa variables
-        $usuario = $contrasena = $contrasena2 = $envio = $correo = $apellidos = $nacimiento = $edad = "";
-        $usuarioError = $contrasenaError = $contrasena2Error = $correoError = $apellidosError = $nacimientoError = "";
+        $usuario = $contrasena = $contrasena2 = $envio = $correo = $nacimiento = $edad = "";
+        $usuarioError = $contrasenaError = $contrasena2Error = $correoError = $nacimientoError = "";
 		$salir=true;
 
 		if(isset($_REQUEST["enviar"])) 
@@ -51,21 +47,6 @@
 				}
 			}
 			
-			if (empty($_REQUEST["apellidos"])) 
-			{
-				$apellidosError = "Apellidos obligatorios";
-				$salir=false;
-			} 
-			else 
-			{
-				$apellidos = test_input($_REQUEST["apellidos"]);
-				// comprueba que lleva solo letras y espacios
-				if (!preg_match("/^[a-zA-Z áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ·\-]*$/",$apellidos)) 
-				{
-				  $apellidosError = "Solo se admiten letras y espacios en blanco";
-				  $salir=false;
-				}
-			}
 
 			if (empty($_REQUEST["nacimiento"])) 
 			{
@@ -142,23 +123,20 @@
 				exit;
 			}
 		}		
-		?>    
-    
+		?> 
+		<div class="recuadro">   
+		<div class="vanity">
+		</div>
         <div id="registro">
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <div id="registroCab"> 
-					<img src="../img/jugadora.png" alt="Avatar" >
-					<h2>Registro de alta</h2>	
+					<h3>Registro de alta</h3>	
                 </div>  
                 <div id="registroCuerpo"> 
 					<hr>
 					<span class="errorReg"><?php echo $usuarioError;?></span>
 					<br>					
 					<label>Nombre usuario: </label><input type="text" name="usuario" size="25" value="<?php echo $usuario;?>">
-					<br><br>
-					<span class="errorReg"><?php echo $apellidosError;?></span>
-					<br>
-					<label>Apellidos: </label><input type="text" name="apellidos" size="50" value="<?php echo $apellidos;?>">
 					<br><br>
 					<span class="errorReg"><?php echo $nacimientoError;?></span>
   					<br>
@@ -185,9 +163,7 @@
                 </div>				
 			</form>
 		</div>
+		</div>
 	<!-------------------------------FIN -----------------------------------> 
-	<?php
-		include ('../html/pie.html');
-	?>
-</body>
+	</body>
 </html>

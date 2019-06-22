@@ -16,8 +16,9 @@ header h1{
     list-style:none;
     margin:0;
     padding:0;
-    position: relative;
+    position: absolute;
     top: 40px;
+    right: 40px;
   }
 .barraUsuari li{
     float: right; 
@@ -30,7 +31,9 @@ header h1{
 .glyphicon:hover{
     color:black;  
 }
-
+.nomUsuari{
+    font-size: 14px;
+}
 /*-----------------------------------------BARRA MENU----------------------------*/
 .navbar {
     border: none;
@@ -43,13 +46,13 @@ header h1{
     position: relative; 
     right: 50%;
 }
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover{
+
+.navbar-default .navbar-nav>.activo>a, .navbar-default .navbar-nav>.activo>a:hover{
     background-color:white;
 }
-.navbar-nav>.active>a:hover, .container-fluid .nav li a:hover, .navbar-nav>.active>a{
+.navbar-nav>.activo>a:hover, .container-fluid .nav li a:hover, .navbar-nav>.activo>a{
     font-weight: bold;
 }
-
 .container-fluid {
 	background-color:white; /*Color fons de la barra de navegació*/
 }
@@ -230,23 +233,35 @@ span.psw {
 }
 
 /*------------------------------------Alta usuario----------------------------------------*/
+.recuadro{
+    width: 885px;
+    margin: auto;
+    margin-top: 20px;
+}
+.vanity{
+    width: 480px;
+    height: 636px;
+    background:url("../img/modelo2.jpg"); 
+    float: left;
+    border: 1.5px solid #c9c8c8;
+
+}
+
 #registro{
-    width: 750px;
-    background-color: white;
-    margin: 15px 0 15px 20%;
-}
-#registroCab img{
-    /*width: 100px;*/
-    padding:20px 30px 0 50px;
+    width: 400px;
+    height: 636px;
     float: left;
+    border-top: 1.5px solid #c9c8c8;
+    border-right: 1.5px solid #c9c8c8;
+    border-bottom: 1.5px solid #c9c8c8;
 }
-#registroCab h2{
-    float: left;
-    padding:20px 20px 0 20px;
+
+#registroCab h3{  
+    margin-left:35px;
 }
 #registroCuerpo{
     clear: both;
-    padding:10px 50px 10px 50px;
+    padding:0 35px;
 }
 label{
     float: left;

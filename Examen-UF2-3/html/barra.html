@@ -1,9 +1,4 @@
-<?php
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-    } 
-?>
+<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 <nav class="navbar navbar-default">		 
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -13,18 +8,13 @@
         </button>
     </div>
     <div class="container-fluid collapse navbar-collapse" id="myNavbar">
-        <div class="navbar-header">
-            <img src="../img/balon.jpg">
-        </div>
         <ul class="nav navbar-nav">
-            <li id="menu1" class="active"><a href="../php/publicaciones.php">Publicaciones</a></li>
-            <li id="menu2" class="inactive"><a href="../php/alta-publicaciones.php">Alta publicaciones</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right cerrar"> 
-            <li><h4><?php echo $usuario;?></h4></li>
-            <li><form method="get">
-                <button type="submit" name="cerrar" class="btn btn-danger" > <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión </button>
-                </form></li>
+            <li id="menu1" class="activo"><a href="#">Inicio</a></li>
+            <li id="menu2" class="inactivo"><a href="#" >Consulta noticias</a></li>
+            <li id="menu3" class="inactivo"><a href="#">Alta artículo</a></li>
+            <li id="menu4" class="inactivo"><a href="#" >Borrar artículo</a></li>
         </ul>
     </div>
 </nav>
+
+

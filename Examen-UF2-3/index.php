@@ -26,7 +26,7 @@
 		?>
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
-		</div>
+		</div>		
 		<?php
 			include ('html/pie.html');
 		?>

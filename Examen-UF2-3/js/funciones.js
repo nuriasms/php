@@ -19,10 +19,10 @@ function cambiar(activar)
 	for (var i = 1; i < 6; i++) 
 	{
 		var tmp="menu"+i;
-		document.getElementById(tmp).className="inactive";
+		document.getElementById(tmp).className="inactivo";
 	}
 	/* Al tratarse de dos pestañas pone el estado directamente*/
-	document.getElementById(activar).className="active";
+	document.getElementById(activar).className="activo";
 }
 /*----------------------------------------------------------------------------------------------*/
 /* function visibilidad(arg):                                                                   */
@@ -37,6 +37,39 @@ function visibilidad(datos)
 		tmp.style.display = 'none';
 	else
 		tmp.style.display = 'block';
+}
+/*----------------------------------------------------------------------------------------------*/
+/* function validarLogin():                                                                          */
+/* Comprueba que se han rellenado los campos del login                                          */
+/*----------------------------------------------------------------------------------------------*/
+function validarLogin()
+{
+	var estado=true;
+	var nombre = document.getElementById('lnombre').value;
+	if ((nombre.length == 0) || (nombre.length >30) || (/^\s+$/.test(nombre)) || (!isNaN(nombre)))
+	{	
+		document.getElementById('mostrarError').innerHTML="Nombre obligatorio.";
+		document.getElementById('mostrarError').style.color="red";
+		estado=false;
+	}
+	else
+	{
+		document.getElementById('mostrarError').innerHTML="";
+	}
+
+	var contrasena = document.getElementById('lcontrasena').value;
+	if ((contrasena.length > 8) || (contrasena.length < 4)) 
+	{
+		errorTexto(datos,error,literal);	
+		document.getElementById('mostrarError').innerHTML="Contraseña obligatoria.";
+		document.getElementById('mostrarError').style.color="red";
+		estado=false;
+	}
+	else
+	{
+		document.getElementById('mostrarError').innerHTML="";
+	}	
+	return estado;
 }
 
 
