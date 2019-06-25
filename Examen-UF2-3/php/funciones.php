@@ -298,8 +298,13 @@
 		//return ucfirst(strftime("%#x", $data));
 		
     }
-
-
+	/*----------------------------------------------------------------------------------------------*/
+    /* function guardarNoticia:                                                                      */
+    /* Inserta una nueva noticia en la tabla     						                             */
+    /*                                                                                               */
+    /* Argumentos: titulo, contenido, foto, autor,fecha                                              */
+    /* Devuelve: true/false                                                                          */
+    /*----------------------------------------------------------------------------------------------*/
     function guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data)
     {
         $respuesta=false;
@@ -327,7 +332,13 @@
 		mysqli_close($con);
 		return $respuesta;	
     }
-
+	/*----------------------------------------------------------------------------------------------*/
+    /* function borrarNoticia:                                                                      */
+    /* Borra la noticia indicada en la tabla     						                             */
+    /*                                                                                               */
+    /* Argumentos: autor,identificador                                                               */
+    /* Devuelve: true/false                                                                          */
+    /*----------------------------------------------------------------------------------------------*/
     function borrarNoticia($nom,$id)
     {
         $respuesta=false;
@@ -354,9 +365,14 @@
 		}
 		mysqli_close($con);
 		return $respuesta;
-
     }
-
+	/*----------------------------------------------------------------------------------------------*/
+    /* function validarAdmin:                                                                       */
+    /* Comprueba que el usuario conectado en la web es administrador     						    */
+    /*                                                                                              */
+    /* Argumentos: usuario                                                                          */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
     function validarAdmin($usuario)
     {
         $respuesta=false;
@@ -386,7 +402,13 @@
 		mysqli_close($con);
 		return $respuesta;	
     }
-    
+	/*----------------------------------------------------------------------------------------------*/
+    /* function buscaNoticia:                                                                       */
+    /* Busca la noticia que se le indica en el argumento 						                    */
+    /*                                                                                              */
+    /* Argumentos: id de la noticia                                                                 */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/    
     function buscaNoticia($id)
     {
         $respuesta=false;
@@ -414,8 +436,14 @@
 		mysqli_close($con);
 		return "";	
     }
-
-    function actualizarNoticia($id,$titulo,$contenido,$nombreFichero)
+	/*----------------------------------------------------------------------------------------------*/
+    /* function actualizarNoticia:                                                                  */
+    /* Actualiza el contenido de la noticia que se le pasa por argumento     	                    */
+    /*                                                                                              */
+    /* Argumentos: id, titulo, contenido, foto                                                      */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
+	function actualizarNoticia($id,$titulo,$contenido,$nombreFichero)
     {
         $respuesta=false;
         $tmp_psw="";
@@ -441,8 +469,14 @@
 		mysqli_close($con);
 		return $respuesta;	
     }
-
-    function validaToken($token)
+	/*----------------------------------------------------------------------------------------------*/
+    /* function validaToken:                                                                        */
+    /* Busca el token en la tabla     						                                        */
+    /*                                                                                              */
+    /* Argumentos: token                                                                            */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
+	function validaToken($token)
 	{
 		$respuesta=false;
 		// dades de configuració
@@ -473,7 +507,13 @@
 		mysqli_close($con);
 		return $respuesta;	
 	}
-
+	/*----------------------------------------------------------------------------------------------*/
+    /* function guardarContrasena:                                                                  */
+    /* Actualiza la contraseña en la tabla de usuario     						                    */
+    /*                                                                                              */
+	/* Argumentos: contraseña, token                                              					*/
+	/* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
 	function guardaContrasena($contrasena,$token)
 	{
 		$respuesta=false;

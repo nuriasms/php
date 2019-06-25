@@ -50,7 +50,7 @@
 			</div>
 			<div class="container-fluid collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-                <li><a href="look.php">Inicio</a></li>
+                	<li><a href="look.php">Inicio</a></li>
 					<li><a href="look-consulta.php" >Consulta noticias</a></li>
 					<li><a href="look-alta-noticia.php">Alta artículo</a></li>
 					<li class="active"><a href="look-edita.php" >Editar artículo</a></li>
