@@ -10,14 +10,13 @@
 	{
 		$respuesta=false;
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -49,14 +48,13 @@
     {
         $respuesta=false;
         // dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -214,14 +212,13 @@
         $respuesta=false;
         $tmp_psw="";
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -231,7 +228,7 @@
 		{
             $tmp=strtolower($nombre);
             $tmp_psw=md5(sha1($contrasena));
-			$sql="insert into usuari (nom,naixement,correu,contrasenya,nivell) values ('$tmp','$edad','$correo','$tmp_psw','$nivel')";
+			$sql="insert into usuari (id_usuari,nom,naixement,correu,contrasenya,nivell) values ('null','$tmp','$edad','$correo','$tmp_psw','$nivel')";
 			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
 			$respuesta=true;	
 		}
@@ -313,14 +310,13 @@
         $respuesta=false;
         $tmp_psw="";
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -347,14 +343,13 @@
     {
         $respuesta=false;
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -382,14 +377,13 @@
     {
         $respuesta=false;
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -419,14 +413,13 @@
     {
         $respuesta=false;
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -455,14 +448,13 @@
         $respuesta=false;
         $tmp_psw="";
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
-		$port = '13308';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -488,15 +480,14 @@
 	{
 		$respuesta=false;
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 		$nova_pass= '';
-		$port = '13308';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
@@ -527,15 +518,14 @@
 	{
 		$respuesta=false;
 		// dades de configuració
-		$ip = 'formacio.obsea.es';
-		$usuari = 'nuria';
-		$password = 'npons';
-		$db_name = 'nuria';
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 		$nova_pass= '';
-		$port = '13308';
 
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();

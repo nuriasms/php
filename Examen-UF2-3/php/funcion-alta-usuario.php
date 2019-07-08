@@ -148,7 +148,7 @@
                 </div>  
                 <div id="registroCuerpo"> 
 					<hr>
-					<input type="hidden" name="id" value="<?php echo $id;?>">
+					<!--input type="hidden" name="id" value="<?php //echo $id;?>"-->
 					<input type="hidden" name="nivel" value="basic">
 					<span class="errorReg"><?php echo $usuarioError;?></span>
 					<br>					
