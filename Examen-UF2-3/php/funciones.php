@@ -11,14 +11,25 @@
         //funció per executar amb XAMPP
 		$respuesta=false;
 		$con = '';
-		// dades de configuració
-		$ip = 'localhost';
+		// dades de configuració XAMPP
+		/*$ip = 'localhost';
 		$usuari = 'prova';
 		$password = 'prova';
-		$db_name = 'prova';
+        $db_name = 'prova';*/
+        
+        // dades de configuració SERVER
+		$ip = 'formacio.obsea.es';
+		$usuari = 'nuria';
+		$password = 'npons';
+		$db_name = 'nuria';
+		$port = '13308';
 
-		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		// connectem amb la db XAMPP
+        //$con = mysqli_connect($ip,$usuari,$password,$db_name);
+        
+        // connectem amb la db SERVER
+        $con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+        
 		if (!$con)  
 		{
 			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();

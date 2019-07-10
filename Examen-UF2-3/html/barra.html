@@ -10,22 +10,32 @@
         </div>
         <div class="container-fluid collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li id="menu1" class="inactive" ><a href="look.php">Inicio</a></li>
-                <li id="menu2" class="inactive"><a href="look-consulta.php" >Consulta noticias</a></li>
-                <li id="menu3" class="inactive"><a href="look-alta-noticia.php">Alta artículo</a></li>
-                <li id="menu4" class="inactive"><a href="look-edita.php" >Edita artículos</a></li>
+                <?php
+                    if ($barra == "inicio")
+                    {
+                ?>
+                        <li class="active"><a href="#">Inicio</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#avis" >Consulta noticias</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#avis" >Alta artículo</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#avis" >Edita artículos</a></li>
+                <?php
+                    }
+                    else
+                    {        
+                ?>   
+                        <li id="menu1" class="inactive" ><a href="look.php">Inicio</a></li>
+                        <li id="menu2" class="inactive"><a href="look-consulta.php" >Consulta noticias</a></li>
+                        <li id="menu3" class="inactive"><a href="look-alta-noticia.php">Alta artículo</a></li>
+                        <li id="menu4" class="inactive"><a href="look-edita.php" >Edita artículos</a></li>
+                <?php
+                    }   
+                ?>   
             </ul>
         </div>
     </nav>
-    <?php
-        if(isset($_REQUEST["opcio"])) 
-        {
-    ?>
-            <script>                    
-                cargar('menu1');
-            </script>
-    <?php
-        }
-    ?>
+    <script>
+        cargar('<?php echo $opcio;?>');
+    </script>
+
 
 

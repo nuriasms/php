@@ -76,24 +76,11 @@
 			include ('../html/cabecera.html');
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
-		
-		<nav class="navbar navbar-default">		 
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-            </div>
-            <div class="container-fluid collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Inicio</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#avis" >Consulta noticias</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#avis" >Alta artículo</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#avis" >Edita artículos</a></li>
-                </ul> 
-            </div>
-        </nav>
+		<?php
+            $opcio="menu1";
+            $barra="inicio";
+			include ('../html/barra.html');
+		?>
         <!----------------------------MODAL LOGIN--------------------------------------------------->
         <div id="id01" class="modalInd">             
             <form class="modal-content-ind animate" method="post" onsubmit="return validarLogin()"><!--/form> action="http://localhost/php/Examen-UF2-3/php/inicio.php"-->

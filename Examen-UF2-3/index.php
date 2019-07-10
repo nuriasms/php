@@ -21,12 +21,26 @@
 	</head>
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
+		
+		<!----------------------------------CABECERA------------------------------------------------>
+		<?php
+			include ('html/cabecera.html');
+		?>
+		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
+		<?php
+			$opcio="menu1";
+			$barra="inicio";
+			include ('html/barra.html');
+		?>
+		<!-------------------------------INICIO ------------------------------------------------------>
 		<?php
 			include ('html/inicio.html');
 		?>
+		<!----------------------------------CONTENIDO--------------------------------------------------->
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
-		</div>		
+		</div>	
+		<!------------------------------------PIE------------------------------------------------------->	
 		<?php
 			include ('html/pie.html');
 		?>

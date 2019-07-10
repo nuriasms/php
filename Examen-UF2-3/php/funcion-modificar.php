@@ -34,24 +34,12 @@
 			include ('../html/cabecera.html');
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
-		<nav class="navbar navbar-default">		 
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="container-fluid collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-				<li><a href="look.php">Inicio</a></li>
-					<li><a href="look-consulta.php" >Consulta noticias</a></li>
-					<li><a href="look-alta-noticia.php">Alta artículo</a></li>
-					<li class="active"><a href="look-edita.php" >Editar artículo</a></li>
-				</ul>
-			</div>
-		</nav>	
-<!-------------------------------------------MODIFICAR NOTICIA------------------------------------>
+		<?php
+			$opcio="menu4";
+			$barra="look";
+			include ('../html/barra.html');
+		?>
+		<!------------------------------------MODIFICAR NOTICIA------------------------------------>
 		<?php
 
 			//Inicializa variables
