@@ -1,16 +1,14 @@
 <?php
-	/*----------------------------------------------------------------------------------------------*/
-    /* function conectaBBDD:                                                                        */
-    /* Conecta PHP con la BBDD para poder trabajar con la información que contiene                  */
+    /*----------------------------------------------------------------------------------------------*/
+    /* function validarUsuario:                                                                     */
+    /* Comprueba que el usuario y la contraseña introducidos por el usuario coincide con la guardada*/
     /*                                                                                              */
-    /* Argumentos: ninguno                                                                          */
+    /* Argumentos: recibe el nombre y la contraseña                                                 */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
-    function conectaBBDD()
+    function validarUsuario($nombre,$contrasena)
 	{
-        //funció per executar amb XAMPP
 		$respuesta=false;
-		$con = '';
 		// dades de configuració
 		$ip = 'localhost';
 		$usuari = 'prova';
@@ -26,37 +24,15 @@
 		}
 		else
 		{
-			if (!mysqli_set_charset($con,"utf8"))
+            $tmp=strtolower($nombre);
+            $tmp_psw=md5(sha1($contrasena));
+            $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$tmp' AND contrasenya = '$tmp_psw'";
+			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+			if (mysqli_num_rows($consulta) > 0)
 			{
-				echo "Ha fallat la lectura dels caracters utf8: " . mysqli_error($con);
-				exit();
-			} 
+				$respuesta=true;
+            }
 		}
-		return $con;
-	}
-    /*----------------------------------------------------------------------------------------------*/
-    /* function validarUsuario:                                                                     */
-    /* Comprueba que el usuario y la contraseña introducidos por el usuario coincide con la guardada*/
-    /*                                                                                              */
-    /* Argumentos: recibe el nombre y la contraseña                                                 */
-    /* Devuelve: true/false                                                                         */
-    /*----------------------------------------------------------------------------------------------*/
-    function validarUsuario($nombre,$contrasena)
-	{
-		$respuesta=false;
-		$tmp = $tmp_psw = $sql = $consulta = $con = '';
-		
-		$con = conectaBBDD();
-		//$tmp=strtolower($nombre);
-		$tmp = mb_strtolower($nombre, 'UTF-8');
-        $tmp_psw=md5(sha1($contrasena));
-        $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$tmp' AND contrasenya = '$tmp_psw'";
-		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
-		if (mysqli_num_rows($consulta) > 0)
-		{
-			$respuesta=true;
-        }
-		
 		mysqli_close($con);
 		return $respuesta;	
 	}
@@ -70,20 +46,31 @@
     /*----------------------------------------------------------------------------------------------*/
     function validarCookie($nombre,$contrasena)
     {
-		$respuesta=false;
-		$tmp = $tmp_psw = $sql = $consulta = $con = '';
-		
-        $con = conectaBBDD();  
-		//$tmp=strtolower($nombre);
-		$tmp = mb_strtolower($nombre, 'UTF-8');
-        $tmp_psw=md5(sha1($contrasena));
-        $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$tmp' AND contrasenya = '$tmp_psw'";
-		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
-		if (mysqli_num_rows($consulta) > 0)
+        $respuesta=false;
+        // dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
 		{
-			$respuesta=true;
-        }
-		
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            $tmp=strtolower($nombre);
+            $tmp_psw=md5(sha1($contrasena));
+            $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$tmp' AND contrasenya = '$tmp_psw'";
+			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+			if (mysqli_num_rows($consulta) > 0)
+			{
+				$respuesta=true;
+            }
+		}
 		mysqli_close($con);
         return $respuesta;	
     }
@@ -97,8 +84,7 @@
     {
        // if ($recordar == 1)
 		//{
-			//$tmp=strtolower($usuario);
-			$tmp = mb_strtolower($usuario, 'UTF-8');
+            $tmp=strtolower($usuario);
             $psw=md5(sha1($contrasena));
 			setcookie("usuario",$tmp,strtotime( '+30 days' ),"/",false, false);
             setcookie("contrasena",$psw,strtotime( '+30 days' ),"/",false, false);   
@@ -114,7 +100,7 @@
     function iniciarSesion($usuario,$contrasena)
     {
         $respuesta=false;
-		$_SESSION["nombre_usuario"] = mb_strtolower($usuario, 'UTF-8');
+        $_SESSION["nombre_usuario"] = strtolower($usuario);
         $_SESSION["contrasena"] = $contrasena;
 		if(isset($_SESSION["nombre_usuario"]) && isset($_SESSION["contrasena"]) )
 		{
@@ -223,18 +209,29 @@
     /*----------------------------------------------------------------------------------------------*/    
     function altaUsuario($nombre,$edad,$correo,$contrasena,$nivel)
 	{
-		$respuesta=false;
-		$tmp = $tmp_psw = $minusc = $sql = $consulta = $con = '';
-		
-        $con = conectaBBDD();
-		//$tmp=strtolower($nombre);
-		$tmp = mb_strtolower($nombre, 'UTF-8');
-		//$tmp = html_entity_decode($minusc, ENT_QUOTES | ENT_HTML401, "UTF-8");
-        $tmp_psw=md5(sha1($contrasena));
-		$sql="insert into usuari (nom,naixement,correu,contrasenya,nivell) values ('$tmp','$edad','$correo','$tmp_psw','$nivel')";
-		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
-		$respuesta=true;	
-		
+        $respuesta=false;
+        $tmp_psw="";
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            $tmp=strtolower($nombre);
+            $tmp_psw=md5(sha1($contrasena));
+			$sql="insert into usuari (id_usuari,nom,naixement,correu,contrasenya,nivell) values ('null','$tmp','$edad','$correo','$tmp_psw','$nivel')";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
 		mysqli_close($con);
 		return $respuesta;	
 	}
@@ -311,14 +308,27 @@
     function guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data)
     {
         $respuesta=false;
-		$tmp = $con = $sql = $consulta = "";
-		
-		$con = conectaBBDD();
-        $tmp=mb_strtolower($nombre, 'UTF-8');
-		$sql="insert into noticies (idnoticia,titular,noticia,data,foto,autor) values ('null','$titulo','$contenido','$data','$nombreFichero','$tmp')";
-		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
-		$respuesta=true;	
-		
+        $tmp_psw="";
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            $tmp=strtolower($nombre);
+			$sql="insert into noticies (idnoticia,titular,noticia,data,foto,autor) values ('null','$titulo','$contenido','$data','$nombreFichero','$tmp')";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
 		mysqli_close($con);
 		return $respuesta;	
     }
@@ -331,16 +341,28 @@
     /*----------------------------------------------------------------------------------------------*/
     function borrarNoticia($nom,$id)
     {
-		$respuesta=false;
-		$con = $sql = $consulta = $tmp = '';
-		
-		$con = conectaBBDD();
-        $tmp=mb_strtolower($nom, 'UTF-8');
-		$sql="DELETE FROM noticies WHERE autor='$tmp' && idnoticia='$id'";
-		//echo " $sql";
-		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
-		$respuesta=true;	
-		
+        $respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            $tmp=strtolower($nom);
+			$sql="DELETE FROM noticies WHERE autor='$tmp' && idnoticia='$id'";
+			echo " $sql";
+			$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
 		mysqli_close($con);
 		return $respuesta;
     }
@@ -353,18 +375,30 @@
     /*----------------------------------------------------------------------------------------------*/
     function validarAdmin($usuario)
     {
-		$respuesta=false;
-		$tmp = $consulta = $sql = $con = '';
-		
-		$con = conectaBBDD();
-        $tmp=mb_strtolower($usuario, 'UTF-8');
-        $sql="SELECT * FROM usuari WHERE nom = '$tmp' AND nivell = 'admin'";
-		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
-		if (mysqli_num_rows($consulta) > 0)
+        $respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
 		{
-			$respuesta=true;
-        }
-		
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            $tmp=strtolower($usuario);
+            $sql="SELECT * FROM usuari WHERE nom = '$tmp' AND nivell = 'admin'";
+			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+			if (mysqli_num_rows($consulta) > 0)
+			{
+				$respuesta=true;
+            }
+		}
 		mysqli_close($con);
 		return $respuesta;	
     }
@@ -377,20 +411,30 @@
     /*----------------------------------------------------------------------------------------------*/    
     function buscaNoticia($id)
     {
-		$respuesta=false;
-		$sql = $consulta = $registre = $con = '';
+        $respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
 
-		$con = conectaBBDD();
-        $sql="SELECT * FROM noticies WHERE idnoticia = '$id'";
-		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
-		
-		if (!empty($consulta))
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
 		{
-			$respuesta=true;
-			$registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-		}	            
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{            
+            $sql="SELECT * FROM noticies WHERE idnoticia = '$id'";
+			$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+            $registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);            
+			mysqli_close($con);
+		    return $registre;            
+		}
 		mysqli_close($con);
-		return $registre;            
+		return "";	
     }
 	/*----------------------------------------------------------------------------------------------*/
     /* function actualizarNoticia:                                                                  */
@@ -402,13 +446,26 @@
 	function actualizarNoticia($id,$titulo,$contenido,$nombreFichero)
     {
         $respuesta=false;
-		$con = $sql = $consulta = "";
-		
-		$con = conectaBBDD();
-        $sql="UPDATE noticies SET titular='".$titulo."', noticia='".$contenido."', foto='".$nombreFichero."' WHERE idnoticia=".$id;
-        $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
-		$respuesta=true;
-				
+        $tmp_psw="";
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
+		{
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{
+            $sql="UPDATE noticies SET titular='".$titulo."', noticia='".$contenido."', foto='".$nombreFichero."' WHERE idnoticia=".$id;
+            $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$respuesta=true;	
+		}
 		mysqli_close($con);
 		return $respuesta;	
     }
@@ -422,15 +479,30 @@
 	function validaToken($token)
 	{
 		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+		$nova_pass= '';
 
-		$con = conectaBBDD();
-		$sql = "SELECT * FROM tokens WHERE token='$token'";
-		$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-		if (!empty($resultat))
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
 		{
-			$respuesta=true;
-		}	
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{		
+			$sql = "SELECT * FROM tokens WHERE token='$token'";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			if (!empty($resultat))
+			{
+				$respuesta=true;
+			}	
 				
+		}
 		//mysql_free_result($resultat);
 		mysqli_close($con);
 		return $respuesta;	
@@ -445,22 +517,36 @@
 	function guardaContrasena($contrasena,$token)
 	{
 		$respuesta=false;
+		// dades de configuració
+		$ip = 'localhost';
+		$usuari = 'prova';
+		$password = 'prova';
+		$db_name = 'prova';
+		$nova_pass= '';
 
-		$con = conectaBBDD();
-		$sql = "SELECT nom FROM tokens WHERE token='$token'";			
-        $consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
-		$registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-		$usuari = $registre['nom'];
-            
-        if (!empty($usuari))
+		// connectem amb la db
+		$con = mysqli_connect($ip,$usuari,$password,$db_name);
+		if (!$con)  
 		{
-            $tmp=strtolower($usuari);
-            $tmp_psw=md5(sha1($contrasena));
-			$sql = "UPDATE usuari set contrasenya=$tmp_psw where nom='$tmp'";
-			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-			$respuesta=true;
-		}					
-		
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+		}
+		else
+		{		
+			$sql = "SELECT nom FROM tokens WHERE token='$token'";			
+            $consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+		    $registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
+		    $usuari = $registre['nom'];
+            
+            if (!empty($usuari))
+			{
+                $tmp=strtolower($usuari);
+                $tmp_psw=md5(sha1($contrasena));
+				$sql = "UPDATE usuari set contrasenya=$tmp_psw where nom='$tmp'";
+				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+				$respuesta=true;
+			}					
+		}
 		mysqli_close($con);
 		return $respuesta;	
 	}

@@ -1,0 +1,28 @@
+<!----------------------------------CABECERA------------------------------------------------>
+<header class="container">
+    <ul class="barraUsuari"> 
+        <?php 
+            if (!empty ($usuario))
+            {
+        ?>
+                <li><form method="get">
+                    <button type="submit" name="cerrar" class="glyphicon glyphicon-log-out nada"></button>
+                    </form></li>
+                <li>
+                    <span class="nomUsuari glyphicon glyphicon-user"> 
+                    <?php echo ucwords($usuario);?>
+                    </span>                        
+                </li> 
+        <?php
+            }
+            else
+            {
+        ?>
+                <li><a href="#" data-toggle="modal" data-target="#login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in bannerformmodal"></span></a></li>
+                <li><a href="#"></a></li> 
+        <?php  
+            }
+        ?>       
+    </ul>
+    <h1>LOOK</h1>   
+</header>

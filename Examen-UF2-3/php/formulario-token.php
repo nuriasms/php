@@ -72,15 +72,10 @@
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<!----------------------------------CABECERA------------------------------------------------>
-        <header class="container">
-            <ul class="barraUsuari"> 
-                <li><a href="#" data-toggle="modal" data-target="#login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in bannerformmodal"></span></a></li>
-                <li><a href="#"><!--span class="glyphicon glyphicon-search"></span--></a></li>
-                <li><a href="#"></a></li>   
-            </ul>
-            <h1>LOOK</h1>   
-        </header>
-        <!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
+		<?php
+			include ('../html/cabecera.html');
+		?>
+		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		
 		<nav class="navbar navbar-default">		 
 			<div class="navbar-header">
@@ -223,7 +218,7 @@
 
 
         <?php
-			include ('../html/pie_look.html');
+			include ('../html/pie.html');
 		?>        
 	</body>
 </html>

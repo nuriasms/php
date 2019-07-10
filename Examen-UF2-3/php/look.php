@@ -31,32 +31,19 @@
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<!----------------------------------CABECERA------------------------------------------------>
 		<?php
-			include ('../html/cabecera_look.html');
+			include ('../html/cabecera.html');
 		?>
-		
-		<nav class="navbar navbar-default">		 
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="container-fluid collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li class="active" ><a href="look.php">Inicio</a></li>
-					<li><a href="look-consulta.php" >Consulta noticias</a></li>
-					<li><a href="look-alta-noticia.php">Alta artículo</a></li>
-					<li><a href="look-edita.php" >Edita artículos</a></li>
-				</ul>
-			</div>
-		</nav>	
-
+		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
+		<?php
+			include ('../html/barra.html?opcio=menu1');
+		?>
+		<!---------------------------------CONTENIDO------------------------------------------------->
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
 		</div>
+		<!---------------------------------------PIE------------------------------------------------>
 		<?php
-			include ('../html/pie_look.html');
+			include ('../html/pie.html');
 		?>
 	</body>
 </html>

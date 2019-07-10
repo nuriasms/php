@@ -19,10 +19,10 @@ function cargar(activar)
 	for (var i = 1; i < 5; i++) 
 	{
 		var tmp="menu"+i;
-		document.getElementById(tmp).className="inactivo";
+		document.getElementById(tmp).className="inactive";
 	}
 	/* Al tratarse de dos pestañas pone el estado directamente*/
-	document.getElementById(activar).className="activo";	
+	document.getElementById(activar).className="active";	
 }
 /*----------------------------------------------------------------------------------------------*/
 /* function visibilidad(arg):                                                                   */

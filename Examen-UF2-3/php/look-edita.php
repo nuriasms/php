@@ -35,15 +35,10 @@
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<!----------------------------------CABECERA------------------------------------------------>
-		<header class="container">
-			<ul class="barraUsuari"> 
-				<li><form method="get">
-						<button type="submit" name="cerrar" class="glyphicon glyphicon-log-out nada"></button>
-					</form></li>
-				<li><span class="nomUsuari glyphicon glyphicon-user"> <?php echo ucwords($usuario);/*echo utf8_encode(ucwords($usuario));*/?></span></li>    
-			</ul>
-			<h1>LOOK</h1>   
-		</header>		
+		<?php
+			include ('../html/cabecera.html');
+		?>
+		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<nav class="navbar navbar-default">		 
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -134,7 +129,7 @@
 		
 		<!-----------------------------------PIE------------------------------------------------------>
 		<?php
-			include ('../html/pie_look.html');
+			include ('../html/pie.html');
 		?>
 	</body>
 </html>

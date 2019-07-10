@@ -36,7 +36,7 @@
 		}
 
 		//obtindre correu
-		$nom=strtolower($_REQUEST["nom"]);
+		$nom=mb_strtolower($_REQUEST["nom"], 'UTF-8');
 		$sql = "SELECT * FROM usuari WHERE nom='$nom'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 		$registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
