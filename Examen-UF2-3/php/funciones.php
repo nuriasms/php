@@ -12,23 +12,23 @@
 		$respuesta=false;
 		$con = '';
 		// dades de configuració XAMPP
-		/*$ip = 'localhost';
+		$ip = 'localhost';
 		$usuari = 'prova';
 		$password = 'prova';
-        $db_name = 'prova';*/
+        $db_name = 'prova';
         
         // dades de configuració SERVER
-		$ip = 'formacio.obsea.es';
+		/*$ip = 'formacio.obsea.es';
 		$usuari = 'nuria';
 		$password = 'npons';
 		$db_name = 'nuria';
-		$port = '13308';
+		$port = '13308';*/
 
 		// connectem amb la db XAMPP
-        //$con = mysqli_connect($ip,$usuari,$password,$db_name);
+        $con = mysqli_connect($ip,$usuari,$password,$db_name);
         
         // connectem amb la db SERVER
-        $con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+        //$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
         
 		if (!$con)  
 		{
@@ -474,6 +474,56 @@
 		
 		mysqli_close($con);
 		return $respuesta;	
-	}
+    }
+    
+    /*----------------------------------------------------------------------------------------------*/
+    /* function listado pdf:                                                                        */
+    /* Genera el listado de noticias en pdf     						                            */
+    /*----------------------------------------------------------------------------------------------*/
+	function listadoPDF()
+	{
+        
+        $html= "<h2>NOTICIAS RECIENTES</h2>";
+        $html.= "<hr>";
+        
+        // dades de configuració
+        $con = conectaBBDD();
+        
+        $sql = "SELECT * FROM noticies";
+        $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+        
+        //$cont=0;
+        while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
+        {	
+            /*if ($cont=6)
+            {
+                echo "<div style='width:800px;height:310px;margin-left:20px;page-break-after:always;'>";
+                $cont=0;
+                
+            }
+            else
+            {
+                echo "<div style='width:800px;height:310px;margin-left:20px;'>";
+                $cont++;
+            }*/
+            $html.= "<div style='width:700px;height:300px;'>";
+            $html.= "<div style='float:left;width: 390px;'>";				
+            $html.= "<h2>".$registre['titular']."</h2>";
+            $html.= "<p style='text-align:justify;margin-right:5px;'>".$registre['noticia']."</p>";
+            $html.= "<br>";
+            $html.= "<span style='font-size:17px;font-weight:bolder'>".ucwords($registre['autor']).",</span>&nbsp; <span style='font-size:14px'>".formatearFecha($registre['data'])."</span>";
+            $html.= "</div>";
+            $html.= "<div style='float:right;width: 300px;'>";
+            $html.= "<img src='".$registre['foto']."' width='300px' alt='Foto no disponible' align='middle'>";
+            $html.= "</div>";
+                    
+            $html.= "</div>";
+            $html.= "<hr>"; 
+            //header("Content-Type: text/html; charset=UTF-8");
+        }
+
+        return $html;
+    }
+
 
 ?>
