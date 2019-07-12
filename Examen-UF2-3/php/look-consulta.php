@@ -45,27 +45,14 @@
 		</div>
 		<!----------------------------------------CARGAR DATOS----------------------------->
 		<?php
-		$fecha = "";
-		// dades de configuració
-		$ip = 'localhost';
-		$usuari = 'prova';
-		$password = 'prova';
-		$db_name = 'prova';
-		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$password,$db_name);
-		if (!$con)  
-		{
-			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-		}
-		else
-		{	
+			$fecha = "";
+			$con = conectaBBDD();
 			$sql = "SELECT * FROM noticies";
 			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 			
 			while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
 			{			
-				?>		
+		?>		
 				<div class=" publicacion">
 					<div class="articulo">						
 						<span class="titulo"><h3><?php echo utf8_encode($registre['titular']);?></h3></span>
@@ -82,11 +69,10 @@
 					
 				</div>
 				<div class="limpiar"><br></div>
-				<?php
+		<?php
 			}
-		}
-		//mysql_free_result($resultat);
-		mysqli_close($con);
+			//mysql_free_result($resultat);
+			mysqli_close($con);
 		?>
 		<div class="subir">
 			<a href="#inicio" class="glyphicon glyphicon-chevron-up"></a>

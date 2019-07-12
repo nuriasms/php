@@ -59,12 +59,22 @@
             echo '<br><br><h2>No se ha podido leer o abrir fichero adjunto.</h2>';
         }
         $mail->send();
-        echo '<br><br><h2>Correu enviat!</h2>';
+        echo "<html>";
+            echo "<h1 style='font-size:55px;font-family:century;text-align:center;padding-top:100px'>LOOK</h1>";
+            echo "<h2 style='color:blue;text-align:center;padding:50px 0'>Correo enviado!</h2>";
+            echo "<a href='look-consulta.php'><p style='text-align:center'>Volver a la consulta</p></a>";
+        echo "</html>";   
+        //echo '<br><br><h2>Correu enviat!</h2>';
     } 
 
-    catch (Exception $e) 
+    catch (Exception $e)  
     {
-        echo "No s’ha pogut enviar el missatge. Error de Mailer: {$mail->ErrorInfo}";
+        echo "<html>";
+            echo "<h1 style='font-size:55px;font-family:century;text-align:center;padding-top:100px'>LOOK</h1>";
+            echo "<h2 style='color:blue;text-align:center;padding:50px 0'>No s’ha pogut enviar el missatge. Error de Mailer: {$mail->ErrorInfo}</h2>";
+            echo "<a href='look-consulta.php'><p style='text-align:center'>Volver a la consulta</p></a>";
+        echo "</html>";   
+        //echo "No s’ha pogut enviar el missatge. Error de Mailer: {$mail->ErrorInfo}";
     }
 
 

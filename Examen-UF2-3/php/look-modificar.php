@@ -12,20 +12,9 @@
 <!DOCTYPE html>
 	<html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta name="description" content="Consulta toda la información para la mujer en el suplemento de LOOK: Moda, tendencias, belleza, pareja, Lifestyle, vídeos  noticias de famosas. ¡Entra!">
-		<meta name="keywords" content="Look, revista online, revista look, belleza, trucos de belleza, consejos de belleza, tratamientos esteticos, maquillaje, peluqueria, perfumes, trucos de belleza de famosas,">
-		<meta http-equip="Expires" content="no-cache">
-		<link rel="stylesheet" href="../lib/css/bootstrap.min.css">
-		<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
-		<script src="../lib/js/jquery.min.js"></script>
-		<script src="../lib/js/bootstrap.min.js"></script>
-		<script src="../js/funciones.js"></script>
-		<title>LOOK</title>
-		<link rel="stylesheet" href="../css/style.css"> 
+		<?php
+			require ('../html/head.html');
+		?>
 	</head>
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
@@ -54,10 +43,10 @@
 				if (!empty($registre=buscaNoticia($_REQUEST["id"])))
 				{
 					$id=$registre['idnoticia'];
-					$titulo=utf8_encode($registre['titular']);
-					$contenido=utf8_encode($registre['noticia']);
+					$titulo=$registre['titular'];
+					$contenido=$registre['noticia'];
 					$nombreFichero=$registre['foto'];
-					$nombre=utf8_encode(ucwords($registre['autor']));
+					$nombre=ucwords($registre['autor']);
 					$data=$registre['data'];
 				}
 			}
@@ -104,7 +93,7 @@
 		?>
 				<div class="recuadronoticia">   
 					<div id="registronoticia" >
-						<h1>Nueva noticia:</h1>
+						<h1>Edición noticia:</h1>
 						<hr>
 						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">  
 							<input type="hidden" name="id" value="<?php echo $id;?>">
@@ -123,7 +112,6 @@
 							<?php  $hoy = formatearFecha(date('d-m-Y'));?>
 							<label for="ffecha">Fecha: &nbsp;&nbsp;&nbsp;<?php echo $hoy;?></label>
 							<br><br><hr>
-							<button type="reset" name="reset" class="btn btn-danger" value="Borrar">Limpiar datos</button>
 							<button type="submit" name="enviar" class="btn btn-success" value="Enviar">Guardar noticia</button>
 						</form>
 					</div>

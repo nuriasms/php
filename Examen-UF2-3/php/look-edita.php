@@ -40,22 +40,9 @@
 		</div>
 		<!----------------------------------------CARGAR DATOS----------------------------->
 		<?php		
-			// dades de configuració
-			$ip = 'localhost';
-			$usuari = 'prova';
-			$password = 'prova';
-			$db_name = 'prova';
-			// connectem amb la db
-			$con = mysqli_connect($ip,$usuari,$password,$db_name);
-			if (!$con)  
-			{
-				echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-				echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-			}
-			else
-			{	
-				$sql = "SELECT * FROM noticies";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$con = conectaBBDD();
+			$sql = "SELECT * FROM noticies";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 		?>
 		<div id="recuadrolistado">   
 			<div id="registrolistado" >
@@ -76,16 +63,18 @@
 				?>
 					<tr>				
 						<td valign="middle" align="left"><?php echo $registre['idnoticia'];?></td>						
-						<td colspan="9" valign="middle" align="left"><?php echo utf8_encode($registre['titular']);?></td>
+						<td colspan="9" valign="middle" align="left"><?php echo $registre['titular'];?></td>
 						<td colspan="2" valign="middle" align="left"><?php echo $registre['data'];?></td>
-						<td colspan="3" valign="middle" align="left"><?php echo utf8_encode(ucwords($registre['autor']));?></td>				
+						<td colspan="3" valign="middle" align="left"><?php echo ucwords($registre['autor']);?></td>				
 						<!--td><a href='editar.php?id=$registre[id]'><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></button></a></td-->
-						<td valign="middle" align="center"><a href='funcion-modificar.php?modificar&id=<?php echo $registre['idnoticia'];?>'><span class='glyphicon glyphicon-pencil'></span></a></td>
+						<td valign="middle" align="center"><a href='look-modificar.php?modificar&id=<?php echo $registre['idnoticia'];?>'><span class='glyphicon glyphicon-pencil'></span></a></td>
 						<!--td valign="middle" align="center"><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td-->
 
 						<!--td><a href='borrar.php?id=$registre[id]' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button></a></td-->
 						<!--td valign="middle" align="center"><a href='#' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><span class='glyphicon glyphicon-trash'></span></a></td-->
+						
 						<td valign="middle" align="center"><a href="funcion-borrar.php?nom=<?php echo $registre['autor'];?>&id=<?php echo $registre['idnoticia'];?>&cas=1" onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><span class='glyphicon glyphicon-trash'></span></a></td>
+						borrarNoticia($nom,$id,$cas)
 					</tr>
 				<?php
 				}
@@ -94,7 +83,6 @@
 			</div>
 		</div>
 		<?php		
-		}
 		//mysql_free_result($resultat);
 		mysqli_close($con);
 		?>

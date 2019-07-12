@@ -36,22 +36,9 @@
 		</div>
 		<!----------------------------------------CARGAR DATOS----------------------------->
 		<?php		
-			// dades de configuració
-			$ip = 'localhost';
-			$usuari = 'prova';
-			$password = 'prova';
-			$db_name = 'prova';
-			// connectem amb la db
-			$con = mysqli_connect($ip,$usuari,$password,$db_name);
-			if (!$con)  
-			{
-				echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-				echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-			}
-			else
-			{	
-				$sql = "SELECT * FROM noticies where autor = '$usuario'";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$con = conectaBBDD();
+			$sql = "SELECT * FROM noticies where autor = '$usuario'";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 		?>
 		<div id="recuadrolistado">   
 			<div id="registrolistado" >
@@ -84,7 +71,6 @@
 			</div>
 		</div>
 		<?php		
-		}
 		//mysql_free_result($resultat);
 		mysqli_close($con);
 		?>

@@ -32,14 +32,14 @@
         
 		if (!$con)  
 		{
-			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+			$html.= "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			$html.= "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
 		}
 		else
 		{
 			if (!mysqli_set_charset($con,"utf8"))
 			{
-				echo "Ha fallat la lectura dels caracters utf8: " . mysqli_error($con);
+				$html.= "Ha fallat la lectura dels caracters utf8: " . mysqli_error($con);
 				exit();
 			} 
 		}
@@ -348,7 +348,7 @@
 		$con = conectaBBDD();
         $tmp=mb_strtolower($nom, 'UTF-8');
 		$sql="DELETE FROM noticies WHERE autor='$tmp' && idnoticia='$id'";
-		//echo " $sql";
+		//$html.= " $sql";
 		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
 		$respuesta=true;	
 		
@@ -483,7 +483,7 @@
 	function listadoPDF()
 	{
         
-        $html= "<h2>NOTICIAS RECIENTES</h2>";
+        $html= "<h3>NOTICIAS RECIENTES</h3>";
         $html.= "<hr>";
         
         // dades de configuració
@@ -491,39 +491,68 @@
         
         $sql = "SELECT * FROM noticies";
         $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-        
-        //$cont=0;
+    
         while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
         {	
-            /*if ($cont=6)
-            {
-                echo "<div style='width:800px;height:310px;margin-left:20px;page-break-after:always;'>";
-                $cont=0;
-                
-            }
-            else
-            {
-                echo "<div style='width:800px;height:310px;margin-left:20px;'>";
-                $cont++;
-            }*/
-            $html.= "<div style='width:700px;height:300px;'>";
-            $html.= "<div style='float:left;width: 390px;'>";				
-            $html.= "<h2>".$registre['titular']."</h2>";
-            $html.= "<p style='text-align:justify;margin-right:5px;'>".$registre['noticia']."</p>";
-            $html.= "<br>";
-            $html.= "<span style='font-size:17px;font-weight:bolder'>".ucwords($registre['autor']).",</span>&nbsp; <span style='font-size:14px'>".formatearFecha($registre['data'])."</span>";
-            $html.= "</div>";
-            $html.= "<div style='float:right;width: 300px;'>";
-            $html.= "<img src='".$registre['foto']."' width='300px' alt='Foto no disponible' align='middle'>";
-            $html.= "</div>";
-                    
-            $html.= "</div>";
-            $html.= "<hr>"; 
-            //header("Content-Type: text/html; charset=UTF-8");
-        }
+            $html.= "<div style='width:700px;height:300px'>"; 
+                $html.= "<div style='float:left;width: 390px;'>";				
+                $html.= "<h2>".$registre['titular']."</h2>";
+                $html.= "<p style='text-align:justify;margin-right:5px;'>".$registre['noticia']."</p>";
+                $html.= "<br>";
+                $html.= "<span style='font-size:17px;font-weight:bolder'>".ucwords($registre['autor']).",</span>&nbsp; <span style='font-size:14px'>".formatearFecha($registre['data'])."</span>";
+                $html.= "</div>";
 
+                $html.= "<div style='float:right;width: 300px;'>";
+                $html.= "<img src='".$registre['foto']."' width='300px' alt='Foto no disponible' >";
+                $html.= "</div>";                    
+            $html.= "</div>";
+            $html.= "<hr style='clear: both;'>";          
+        }
+        //echo $html;
         return $html;
     }
+    /*----------------------------------------------------------------------------------------------*/
+    /* function inicioError:                                                                        */
+    /* Muestra el error producido al iniciar sesion     						                    */
+    /*                                                                                              */
+	/* Argumentos: error producido                                              					*/
+	/* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/
+	function inicioError($TextoError)
+	{
+		$respuesta=true;
 
-
+		//Validaciones de usuario   
+            
+        echo "<html>";
+            echo "<h1 style='font-size:55px;font-family:century;text-align:center;padding-top:100px'>LOOK</h1>";
+            echo "<h2 style='color:red;text-align:center;padding:50px 0'>";
+                echo $TextoError;
+            echo "</h2>";
+            echo "<a href='../index.php'><p style='text-align:center'>Volver al inicio</p></a>";
+        echo "</html>";
+            
+		return $respuesta;	
+    }
+    /*----------------------------------------------------------------------------------------------*/
+    /* function borrarNoticia:                                                                      */
+    /* Borra noticia indicada     						                                            */
+    /*                                                                                              */
+	/* Argumentos: nombre, id noticia, caso                                             			*/
+    /*----------------------------------------------------------------------------------------------*/
+	function borrarNoticia($nom,$id,$cas)
+	{		
+		$con = conectaBBDD();
+        $sql="DELETE FROM noticies WHERE autor='".$nom."' && idnoticia='".$id."'";
+        $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));	
+        mysqli_close($con);
+        if ($cas==1)
+        {
+            header("Location: look-edita.php");
+        }
+        else
+        {
+            header("Location: look-consulta.php");
+        }
+    }
 ?>
