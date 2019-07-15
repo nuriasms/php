@@ -36,6 +36,33 @@
     <script>
         cargar('<?php echo $opcio;?>');
     </script>
+    <!----------------------------AVISO NO ACTIVO MENÚ-------------------------------------------->
+<div id="avis" class="modal fade" role="dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <!--h1 class="modal-title">LOOK</h1-->
+            <img src="img/look-22.png" width="40%">
+            <br>
+        </div>
+        <div class="modal-body">
+            <h3>AVISO:</h3>
+            <h3>MENÚ NO ACTIVO</h3>
+            <br>
+            <p><b>Para acceder a cualquier menú, debe iniciar la sesión con su usuario.</b></p>
+            <br>
+            <p>Si no dispone de usuario, puede crear uno nuevo.</p>
+            <br>
+            <a href="#" data-toggle="modal" data-target="#login" data-dismiss="modal" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Iniciar sesión</a>
+            <br>
+            <a class="altaUsuario" href="php/alta-usuario.php">Registrar nuevo usuario</a>
+        </div>
+        <div class="modal-footer" style="background-color:#f1f1f1" >
+            <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+        </div>    
+    </div>
+</div>   
+
 
 
 

@@ -24,6 +24,24 @@ function cargar(activar)
 	/* Al tratarse de dos pestañas pone el estado directamente*/
 	document.getElementById(activar).className="active";	
 }
+function comprobarNombre(valor)
+{
+    if(document.forms[0].nombre.value.length<1)
+    {
+        alert("Se requiere el nombre para recuperar la contraseña");
+    }
+    else
+    {
+        if (valor=='passwd')
+        {
+            window.location.href="../php/enviar-passwd.php?nom="+document.forms[0].nombre.value;
+        }
+        else
+        {
+            window.location.href="../php/enviar-token.php?nom="+document.forms[0].nombre.value;
+        }
+    }
+}
 /*----------------------------------------------------------------------------------------------*/
 /* function visibilidad(arg):                                                                   */
 /* Oculta o hace visible un div según ha pulsado el usuario                                     */

@@ -1,0 +1,80 @@
+<?php
+
+    //Validaciones de usuario   
+    $mostrarError="";
+    if(isset($_REQUEST["inicio"])) 
+    {
+        if (empty($_REQUEST['nombre']) || empty($_REQUEST['contrasena']))
+        {	
+            $mostrarError="Nombre y contraseña obligatorios, no pueden estar vacíos."; 
+        }
+        else
+        {
+            if (!$tmp=validarUsuario(strtolower($_REQUEST['nombre']),$_REQUEST['contrasena']))
+            {		
+                $mostrarError="ERROR al validar usuario";										
+            }
+            else
+            {
+                guardarCookie(strtolower($_REQUEST['nombre']),$_REQUEST['contrasena'],$_REQUEST['recordar']);
+                if (iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']))
+                {
+                    header("Location: php/look.php");
+                    exit;
+                }
+            }
+        }
+        if (!empty($mostrarError))
+        {
+            inicioError($mostrarError); 
+        }  
+    }
+?>
+
+<script src="js/funciones.js"></script>
+
+<!----------------------------MODAL LOGIN--------------------------------------------------->
+<div id="id01" class="modalInd"> 
+       
+    <form class="modal-content-ind animate" method="post" onsubmit="return validarLogin()"><!--/form> action="http://localhost/php/Examen-UF2-3/php/inicio.php"-->
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Cerrar Modal">&times;</span>
+        <div class="imgcontainer">
+            <h1 class="look">LOOK</h1>
+        </div>
+        
+        <div class="container loginIndex espacio">
+            <br>
+            <!--span class="error"><?php echo $mostrarError;?></span-->
+            <span id="mostrarError"></span>
+            <br>
+            <label for="lnombre"><b>Usuario</b></label><br>
+            <input type="text" placeholder="Nombre usuario" name="nombre" id="lnombre" maxlength="20" required>
+            <br>            
+            <label for="lcontrasena"><b>Contraseña</b></label><br>
+            <input type="password" placeholder="Password" name="contrasena" id="lcontrasena" minlength="4" maxlength="8" required>
+            <br>             
+            <button type="submit" name="inicio">Iniciar sesión</button>
+            <br>
+            <label><br>¿Has olvidado tu contraseña?</label>                        
+            <label class="normal">
+        	    <a class="altaUsuario" onClick="comprobarNombre('passwd'); return false;" href="#">Recibe una nueva </a>
+             o bien
+        	    <a class="altaUsuario" onClick="comprobarNombre('token'); return false;" href="#"> un token</a>
+            <br><br></label>
+            <br>
+            <label>
+                <input type="checkbox" checked="checked"  name="recordar"> Recordar usuario
+            </label>
+            <br><br><br>
+            <label>
+        	    <a class="altaUsuario" href="php/alta-usuario.php">Registrar nuevo usuario</a>
+            </label>
+            <br><br>
+        </div>
+        
+        <div class="loginPie" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+            <span class="psw">Olvidar <a href="#" onclick="borrarCookie();">usuario?</a></span>
+        </div>
+    </form>
+</div>

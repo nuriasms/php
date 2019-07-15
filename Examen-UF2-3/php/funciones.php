@@ -333,28 +333,7 @@
 		mysqli_close($con);
 		return $respuesta;	
     }
-	/*----------------------------------------------------------------------------------------------*/
-    /* function borrarNoticia:                                                                      */
-    /* Borra la noticia indicada en la tabla     						                             */
-    /*                                                                                               */
-    /* Argumentos: autor,identificador                                                               */
-    /* Devuelve: true/false                                                                          */
-    /*----------------------------------------------------------------------------------------------*/
-    function borrarNoticia($nom,$id)
-    {
-		$respuesta=false;
-		$con = $sql = $consulta = $tmp = '';
-		
-		$con = conectaBBDD();
-        $tmp=mb_strtolower($nom, 'UTF-8');
-		$sql="DELETE FROM noticies WHERE autor='$tmp' && idnoticia='$id'";
-		//$html.= " $sql";
-		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
-		$respuesta=true;	
-		
-		mysqli_close($con);
-		return $respuesta;
-    }
+	
 	/*----------------------------------------------------------------------------------------------*/
     /* function validarAdmin:                                                                       */
     /* Comprueba que el usuario conectado en la web es administrador     						    */
@@ -555,4 +534,5 @@
             header("Location: look-consulta.php");
         }
     }
+   
 ?>

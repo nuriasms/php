@@ -62,7 +62,7 @@
 						<td><?php echo utf8_encode($registre['titular']);?></td>
 						<td><?php echo $registre['data'];?></td>
 						<td><?php echo utf8_encode(ucwords($registre['autor']));?></td>	
-						<td><a href='#' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><span class='glyphicon glyphicon-trash'></span></a></td>
+						<td><a href='#' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');borrarNoticia($nom,$id,$cas)\"><span class='glyphicon glyphicon-trash'></span></a></td>
 					</tr>
 				<?php
 				}
