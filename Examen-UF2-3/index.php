@@ -18,6 +18,7 @@
 		<script src="lib/js/bootstrap.min.js"></script>
 		<title>LOOK</title>
 		<link rel="stylesheet" href="css/style.css"> 
+		<script src="js/funciones.js"></script>
 	</head>
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
@@ -39,7 +40,7 @@
 		<!----------------------------------CONTENIDO--------------------------------------------------->
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
-		</div>	
+		</div>	 
 		<!------------------------------------PIE------------------------------------------------------->	
 		<?php
 			include ('html/pie.html');

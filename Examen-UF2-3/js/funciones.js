@@ -42,6 +42,44 @@ function comprobarNombre(valor)
         }
     }
 }
+
+function buscar(cadena) 
+{
+ 	if (parseInt(navigator.appVersion)<4) return;
+ 	var strFound;
+ 	if (window.find) 
+ 	{
+	  	strFound=self.find(cadena);
+	  	if (!strFound) 
+	  	{
+	   		strFound=self.find(cadena,0,1)
+   			while (self.find(cadena,0,1)) continue
+  		}
+ 	}
+ 	else if (navigator.appName.indexOf("Microsoft")!=-1) 
+	 	{
+		    if (TRange!=null) 
+		    {
+		   		TRange.collapse(false)
+		   		strFound=TRange.findText(cadena)
+		   		if (strFound) TRange.select()
+		  	}
+		  	if (TRange==null || strFound==0) 
+		  	{
+		   		TRange=self.document.body.createTextRange()
+		   		strFound=TRange.findText(str)
+		   		if (strFound) TRange.select()
+		  	}
+	 	}
+ 		else if (navigator.appName=="Opera") 
+ 		{
+  			alert ("Opera no soporta la busqueda");
+  			return;
+ 		}
+ 	if (!strFound) alert ("No se ha encontrado: "+cadena)
+ 	return;
+}
+
 /*----------------------------------------------------------------------------------------------*/
 /* function visibilidad(arg):                                                                   */
 /* Oculta o hace visible un div según ha pulsado el usuario                                     */

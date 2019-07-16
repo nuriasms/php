@@ -534,5 +534,9 @@
             header("Location: look-consulta.php");
         }
     }
+   function busquedaNoticias()
+    {
+        echo "hola";
+    }
    
 ?>
