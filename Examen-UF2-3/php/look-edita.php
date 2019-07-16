@@ -73,7 +73,7 @@
 						<!--td><a href='borrar.php?id=$registre[id]' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button></a></td-->
 						<!--td valign="middle" align="center"><a href='#' onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');\"><span class='glyphicon glyphicon-trash'></span></a></td-->
 						
-						<td valign="middle" align="center"><a href="funcion-borrar.php?nom=<?php echo $registre['autor'];?>&id=<?php echo $registre['idnoticia'];?>&cas=1" onClick=\"return confirm('¿Estás seguro de que quiere eliminar este elemento?');borrarNoticia($nom,$id,$cas)\"><span class='glyphicon glyphicon-trash'></span></a></td>
+						<td valign="middle" align="center"><a href="borrar.php?nom=<?php echo $registre['autor'];?>&id=<?php echo $registre['idnoticia'];?>&cas=1" onClick="return confirm('¿Estás seguro de que quiere eliminar este elemento?')"><span class='glyphicon glyphicon-trash'></span></a></td>
 						<!--borrarNoticia($nom,$id,$cas)-->
 					</tr>
 				<?php

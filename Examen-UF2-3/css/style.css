@@ -449,12 +449,15 @@ td a .glyphicon:hover{
     color: white;
     font-size: 17px;
 }
-.derechatop{
-	position: absolute;
+.izquierdatop{
+	/*position: absolute;
     top: 165px;
-    left: 60px;
+    left: 60px;*/
+    float: left;
+    margin-left: 60px;
+    margin-top: 7px;
 }
-.botodreta{
+.busquedadreta{
     margin-right: 40px;
 }
 /*----------------------------------ACCES DENEGAT ADMIN ----------------------------------*/
