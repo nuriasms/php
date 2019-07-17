@@ -79,6 +79,17 @@ header h1{
     position: relative;
     top: 260px;
 }
+.fotoPortada span{
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.visita  {
+    color: white;
+    font-weight: bolder;
+    margin-left: 25px;
+    font-size: 20px;
+}
 /*-------------------------------------LOGIN----------------------------------------------------*/
 .loginIndex input[type=text], .loginIndex input[type=password] {
     width: 320px;

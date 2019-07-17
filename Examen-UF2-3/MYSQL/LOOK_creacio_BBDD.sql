@@ -95,6 +95,18 @@ INSERT INTO `usuari` (`nom`, `naixement`, `correu`, `contrasenya`, `nivell`) VAL
 ('nuria', '2019-06-24 19:02:42', 'nuria-sms@live.com', 'ec3c2d0673ed0dbfb409b0cc131a004e', 'basic'),
 ('profe', '1970-04-04 22:00:00', 'profe@gmail.com', '700c8b805a3e2a265b01c77614cd8b21', 'basic');
 
+CREATE TABLE IF NOT EXISTS `visitas` (   
+  `idvisitas` int(7) NOT NULL auto_increment,   
+  `enlace` varchar(300) NOT NULL,   
+  `visitas` int(7) NOT NULL,   
+  PRIMARY KEY (`idvisitas`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4;
+
+--ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=4;
+
+
+
+
 --
 -- Índices para tablas volcadas
 --

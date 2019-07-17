@@ -40,7 +40,12 @@
 		<!----------------------------------CONTENIDO--------------------------------------------------->
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
-		</div>	 
+			
+    
+			<span>VISITAS</span>
+			<br>
+			<span class="visita"><script src="php/visitas.php"></script></span> 
+		</div>	
 		<!------------------------------------PIE------------------------------------------------------->	
 		<?php
 			include ('html/pie.html');
