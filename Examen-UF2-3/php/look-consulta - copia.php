@@ -1,13 +1,12 @@
 <?php
     session_start();
     require ('../php/funciones.php');
-	//$usuario=validarSesionAbierta();  //pasa a ser publico por lo que se quita el control
-	$usuario=validarColaborador(); 
+	$usuario=validarSesionAbierta(); 
 
     if(isset($_REQUEST["cerrar"])) 
     {	
         cerrarSesion();
-	} 	
+	}  
 ?>
 
 <!DOCTYPE html>
@@ -22,21 +21,12 @@
 		<!----------------------------------CABECERA------------------------------------------------>
 		<span id="inicio"></span>
 		<?php
-			$origen="consulta";
 			include ('../html/cabecera.html');
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu2";
-			$barra="";
-			if (!empty($usuario))
-			{
-				$barra = buscaTipoUsuario($usuario);
-			}
-			else
-			{
-				$barra="public";
-			}
+			$barra="look";
 			include ('../html/barra.html');
 		?>
 		<!---------------------------------BARRA BUSQUEDA------------------------------------------>
@@ -50,15 +40,7 @@
 					</form>
 					<div class="izquierdatop">
 						<a href="pdf.php" ><button type='button' class='glyphicon glyphicon-file redondo' title="Crear PDF con las noticias"></button></a>
-						
-						<?php	
-							if (validarTipoUsuario($usuario,'admin') || validarTipoUsuario($usuario,'basic'))
-							{
-						?>						
-								<a href="correo.php?nom=<?php echo $usuario;?>&url=../doc/Listado_noticias.pdf&fitxer=Listado_noticias.pdf" ><button type='button' class='glyphicon glyphicon-envelope redondo' title="Enviar PDF de noticias por correo"></button></a>																	
-						<?php	
-							}
-						?>
+						<a href="correo.php?nom=<?php echo $usuario;?>&url=../doc/Listado_noticias.pdf&fitxer=Listado_noticias.pdf" ><button type='button' class='glyphicon glyphicon-envelope redondo' title="Enviar PDF de noticias por correo"></button></a>																	
 					</div>
 					 
 	    	
@@ -78,57 +60,15 @@
 			$fecha = "";
 			$vacio = false;
 			$con = conectaBBDD();
-
 			if (isset($_REQUEST["buscar"]))
 			{
-				$sql = "SELECT COUNT(*) as total_noticies FROM noticies WHERE UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%')";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-				$registre = mysqli_fetch_assoc($resultat);
-				$total_filas = $registre['total_noticies'];				
+				$sql = "SELECT * FROM noticies WHERE UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%') ORDER BY data DESC";
 			}
 			else
 			{
-				$sql = "SELECT COUNT(*) as total_noticies FROM noticies";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-				$registre = mysqli_fetch_assoc($resultat);
-				$total_filas = $registre['total_noticies'];				
+				$sql = "SELECT * FROM noticies ORDER BY data DESC";
 			}
-			//-------------------------------------
-			if ($total_filas > 0) 
-			{
-				$page = false;
-				$NUM_ITEMS_BY_PAGE = 4;
-			
-				//examino la pagina a mostrar y el inicio del registro a mostrar
-				if (isset($_REQUEST["page"])) 
-				{
-					$page = $_REQUEST["page"];
-				}
-			 
-				if (!$page)
-				{
-					$start = 0;
-					$page = 1;
-				} 
-				else 
-				{
-					$start = ($page - 1) * $NUM_ITEMS_BY_PAGE;
-				}
-				//calculo el total de paginas
-				$total_pages = ceil($total_filas / $NUM_ITEMS_BY_PAGE);
-				
-				//-----------------------------------
-			
-				if (isset($_REQUEST["buscar"]))
-				{
-					$sql = "SELECT * FROM noticies WHERE UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%') ORDER BY data DESC LIMIT ".$start.", ".$NUM_ITEMS_BY_PAGE;
-				}
-				else
-				{				
-					$sql = "SELECT * FROM noticies ORDER BY data DESC LIMIT ".$start.", ".$NUM_ITEMS_BY_PAGE;
-				}
-
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 			
 				while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
 				{			
@@ -143,7 +83,7 @@
 							<h5><span class="autor"><?php echo ucwords($registre['autor']);?>,&nbsp; <?php echo formatearFecha($registre['data']);?>.</span></h5>
 							
 						<?php	
-							if (validarTipoUsuario($usuario,'admin') || ($usuario==$registre['autor']))
+							if (validarAdmin($usuario) || ($usuario==$registre['autor']))
 							{
 						?>
 								<a href="borrar.php?nom=<?php echo $registre['autor'];?>&id=<?php echo $registre['idnoticia'];?>&cas=2" ><button type='button' class='glyphicon glyphicon-trash redondo' title='Borrar articulo' onClick="return confirm('¿Estás seguro de que quiere eliminar este elemento?')" ></button></a>
@@ -163,29 +103,6 @@
 		<?php
 					$vacio = true;
 				}
-				echo '<nav>';
-				echo '<ul class="pagination">';
-			
-				if ($total_pages > 1) {
-					if ($page != 1) {
-						echo '<li class="page-item"><a class="page-link" href="look-consulta.php?page='.($page-1).'"><span aria-hidden="true">&laquo;</span></a></li>';
-					}
-			
-					for ($i=1;$i<=$total_pages;$i++) {
-						if ($page == $i) {
-							echo '<li class="page-item active"><a class="page-link" href="#">'.$page.'</a></li>';
-						} else {
-							echo '<li class="page-item"><a class="page-link" href="look-consulta.php?page='.$i.'">'.$i.'</a></li>';
-						}
-					}
-			
-					if ($page != $total_pages) {
-						echo '<li class="page-item"><a class="page-link" href="look-consulta.php?page='.($page+1).'"><span aria-hidden="true">&raquo;</span></a></li>';
-					}
-				}
-				echo '</ul>';
-				echo '</nav>';
-			}
 			if (!$vacio)
 			{
 				echo "<h3 style='color:red;text-align:center;padding:50px 0'>";

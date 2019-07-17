@@ -2,7 +2,7 @@
     session_start();
     require ('../php/funciones.php');
 	$usuario=validarSesionAbierta();
-	if (!validarAdmin($usuario))
+	if (!validarTipoUsuario($usuario,'admin')
 	{
 		header("Location: acceso-denegado.php");
 	}
@@ -29,7 +29,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu4";
-			$barra="look";
+			$barra="basic";
 			include ('../html/barra.html');
 		?>
 		<!----------------------------------CONSULTA NOTICIA------------------------------------>

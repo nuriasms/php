@@ -11,23 +11,27 @@
     <div class="container-fluid collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
             <?php
-                if ($barra == "inicio")
+                switch ($barra)                
                 {
-            ?>
-                    <li class="active"><a href="#">Inicio</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#avis" >Consulta noticias</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#avis" >Alta artículo</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#avis" >Edita artículos</a></li>
-            <?php
-                }
-                else
-                {        
-            ?>   
-                    <li id="menu1" class="inactive" ><a href="look.php">Inicio</a></li>
-                    <li id="menu2" class="inactive"><a href="look-consulta.php" >Consulta noticias</a></li>
-                    <li id="menu3" class="inactive"><a href="look-alta-noticia.php">Alta artículo</a></li>
-                    <li id="menu4" class="inactive"><a href="look-edita.php" >Edita artículos</a></li>
-            <?php
+                    case 'inicio':
+                        echo "<li class='active'><a href='index.php'>Inicio</a></li>";
+                        echo "<li><a href='php/look-consulta.php'>Consulta noticias</a></li>";
+                        break;
+                    case 'public':            
+                        echo "<li class='active'><a href='../index.php'>Inicio</a></li>";
+                        echo "<li><a href='look-consulta.php'>Consulta noticias</a></li>";
+                        break;
+                    case 'basic':
+                        echo "<li id='menu1' class='inactive' ><a href='look.php'>Inicio</a></li>";
+                        echo "<li id='menu2' class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>";
+                        echo "<li id='menu3' class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>";
+                        break;
+                    case 'admin':
+                        echo "<li id='menu1' class='inactive' ><a href='look.php'>Inicio</a></li>";
+                        echo "<li id='menu2' class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>";
+                        echo "<li id='menu3' class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>";
+                        echo "<li id='menu4' class='inactive'><a href='look-edita.php' >Edita artículos</a></li>";
+                        break;
                 }   
             ?>   
         </ul>

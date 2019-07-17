@@ -173,6 +173,37 @@
         }
     } 
     /*----------------------------------------------------------------------------------------------*/
+    /* function validarColaborador:                                                               */
+    /* Comprueba que los datos estan activos para que el usuario acceda a la página                 */
+    /*                                                                                              */
+    /*----------------------------------------------------------------------------------------------*/
+    function validarColaborador()
+    {
+        $nombre = $tmp = "";
+        if ((isset($_SESSION["nombre_usuario"])&&(isset($_SESSION["contrasena"])))||(isset($_COOKIE["usuario"])&&(isset($_COOKIE["contrasena"]))))
+        {
+            if(isset($_SESSION["nombre_usuario"]))
+            {
+                if (!$tmp=validarUsuario($_SESSION['nombre_usuario'],$_SESSION['contrasena']))
+                {		
+                    $nombre ="";										
+                }
+                else
+                {
+                    $nombre=$_SESSION['nombre_usuario']; 
+                }   
+            }
+            else
+            {     
+                if ($tmp=validarCookie($_COOKIE["usuario"],$_COOKIE["contrasena"]))
+                {
+                    $nombre=$_COOKIE['usuario'];
+                }                 
+            }            
+        }
+        return $nombre;
+    } 
+    /*----------------------------------------------------------------------------------------------*/
     /* function cerrarSesion:                                                                       */
     /* borra la sesión activa del navegador                                                         */
     /*                                                                                              */
@@ -341,14 +372,14 @@
     /* Argumentos: usuario                                                                          */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
-    function validarAdmin($usuario)
+    function validarTipoUsuario($usuario,$tipo)
     {
 		$respuesta=false;
 		$tmp = $consulta = $sql = $con = '';
 		
 		$con = conectaBBDD();
         $tmp=mb_strtolower($usuario, 'UTF-8');
-        $sql="SELECT * FROM usuari WHERE nom = '$tmp' AND nivell = 'admin'";
+        $sql="SELECT * FROM usuari WHERE nom = '$tmp' AND nivell = '$tipo'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 		if (mysqli_num_rows($consulta) > 0)
 		{
@@ -534,6 +565,20 @@
             header("Location: look-consulta.php");
         }
     }
-   
+    function buscaTipoUsuario($usuario)
+    {
+		$respuesta="";
+		$tmp = $consulta = $sql = $con = '';
+		
+		$con = conectaBBDD();
+        $tmp=mb_strtolower($usuario, 'UTF-8');
+        $sql="SELECT nivell FROM usuari WHERE nom = '$tmp'";
+		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+        $registre = mysqli_fetch_assoc($consulta);
+		$respuesta = $registre['nivell'];	
+        		
+		mysqli_close($con);
+		return $respuesta;	
+    }   
    
 ?>

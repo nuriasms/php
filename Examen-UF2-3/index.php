@@ -17,14 +17,14 @@
 		<script src="lib/js/jquery.min.js"></script>
 		<script src="lib/js/bootstrap.min.js"></script>
 		<title>LOOK</title>
-		<link rel="stylesheet" href="css/style.css"> 
-		<script src="js/funciones.js"></script>
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		
 		<!----------------------------------CABECERA------------------------------------------------>
 		<?php
+			$origen="inicio";
 			include ('html/cabecera.html');
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
@@ -35,7 +35,7 @@
 		?>
 		<!-------------------------------INICIO ------------------------------------------------------>
 		<?php
-			include ('html/login.html');
+			//include ('html/login.html');
 		?>
 		<!----------------------------------CONTENIDO--------------------------------------------------->
 		<div class="container fotoPortada">
