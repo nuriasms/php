@@ -16,29 +16,23 @@
 
                     case 'inicio':
             ?>
-                        <li id='menu1' class='active'><a href='index.php'>Inicio</a></li>
-                        <li id='menu2' class='inactive'><a href='php/look-consulta.php'>Consulta noticias</a></li>
+                        <li class='active'><a href='index.php'>Inicio</a></li>
+                        <li class='inactive'><a href='php/look-consulta.php'>Consulta noticias</a></li>
             <?php            
                         break;
                     case 'publico': 
             ?>           
-                        <li id='menu1' class='inactive'><a href='../index.php'>Inicio</a></li>
-                        <li id='menu2' class='active'><a href='look-consulta.php'>Consulta noticias</a></li>
+                        <li class='inactive'><a href='../index.php'>Inicio</a></li>
+                        <li class='active'><a href='look-consulta.php'>Consulta noticias</a></li>
             <?php
                         break;
                     case 'basic':
-            ?>
-                        <li id='menu1' class='inactive' ><a href='look.php'>Inicio</a></li>
-                        <li id='menu2' class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>
-                        <li id='menu3' class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>
-            <?php
-                        break;
                     case 'admin':
             ?>
                         <li id='menu1' class='inactive' ><a href='look.php'>Inicio</a></li>
                         <li id='menu2' class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>
                         <li id='menu3' class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>
-                        <li id='menu4' class='inactive'><a href='look-edita.php' >Edita artículos</a></li>
+                        <li id='menu4' class='inactive'><a href='look-listado.php' >Listado artículos</a></li>
             <?php
                         break;
                     default:
@@ -48,7 +42,6 @@
     </div>
 </nav>
 <script>
-    <?php echo "hola";?>
     cargar('<?php echo $opcio;?>');
 </script>
 

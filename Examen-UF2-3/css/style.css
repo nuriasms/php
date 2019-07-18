@@ -391,12 +391,15 @@ footer #redes li{
 }
 .publicacion{
     margin: 0 auto;
-    width: 900px;
+    width: 910px;
 }
 .publicacion .articulo{
     width: 600px;  
     float: left;
     border-top:1px solid #d1cfcf;
+}
+.publicacion .articulo .descripcion{
+    text-align: justify;
 }
 .publicacion .articuloFoto{
     width: 300px;
@@ -406,6 +409,7 @@ footer #redes li{
     color:white;
     text-align: center;
     line-height: 300px;
+    margin-left: 10px;
 }
 .publicacion .articuloFoto img{
     vertical-align: middle;
@@ -415,12 +419,12 @@ footer #redes li{
 }
 .subir{
     position: fixed;
-    bottom: 52%;
+    bottom: 40%;
     right: 2%;
 }
 .bajar{
     position: fixed;
-    top: 52%;
+    top: 63%;
     right: 2%;
 }
 
@@ -451,7 +455,7 @@ td {
 }
 #recuadrolistado{
     width: 90%;    
-    margin:auto;
+    margin:0 auto;
     padding: 50px 0;    
     background:url("../img/vintage.jpg");
     background-position-x: center;

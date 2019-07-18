@@ -8,7 +8,7 @@
     mysqli_close($con);
     if ($_GET['cas']==1)
     {
-        header("Location: look-edita.php");
+        header("Location: look-listado.php");
     }
     else
     {

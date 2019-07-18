@@ -37,16 +37,17 @@
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
 			
-			<div class='visita'>
-				<p>VISITAS</p>			
+			<!--div class='visita'>
+				<p>VISITAS</p-->			
 				<?php
-					$visitas=""; 
-					require ('php/countbdd.php');    
-					echo "<span>$visitas</span>"; 
+					//$visitas=""; 
+					//Cuenta visitas recibidas en la web, pero solo cuenta una vez, aunque un usuario se conecte varias veces en una hora
+					require ('php/contador-visitas.php');    
+					//echo "<span>$visitas</span>"; 
 				?>
 				<!--Controla los usuarios que estan conectados en esa pagina-->
 				<!--span class="visita"><script src="php/visitas.php"></script></span--> 
-			</div>
+			<!--/div-->
 		</div>	
 		<!------------------------------------PIE------------------------------------------------------->	
 		<?php

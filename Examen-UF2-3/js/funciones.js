@@ -16,7 +16,7 @@ window.onclick = function(event) {
 function cargar(activar)
 {
 	/* Pone todas las pestañas del menu a inactivo*/
-	for (var i = 1; i < 5; i++) 
+	for (var i = 1; i < 12; i++) 
 	{
 		var tmp="menu"+i;
 		document.getElementById(tmp).className="inactive";

@@ -25,16 +25,8 @@
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
+			$barra="privado";
 			$opcio="menu1";
-			$barra="public";
-			if (!empty($usuario))
-			{
-				$barra = buscaTipoUsuario($usuario);
-			}
-			else
-			{
-				$barra="public";
-			}
 			include ('../php/barra.php');
 		?>
 		<!---------------------------------CONTENIDO------------------------------------------------->

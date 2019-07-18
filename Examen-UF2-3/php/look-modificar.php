@@ -25,7 +25,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu4";
-			$barra="basic";
+			$barra="privado";
 			include ('../php/barra.php');
 		?>
 		<!------------------------------------MODIFICAR NOTICIA------------------------------------>
@@ -84,7 +84,7 @@
 					
 					if (actualizarNoticia($_REQUEST["id"],$_REQUEST["titulo"],$_REQUEST["contenido"],$_REQUEST["fichero"]))
 					{
-						header("Location: look-edita.php");
+						header("Location: look-listado.php");
 					}
 				}
 			}

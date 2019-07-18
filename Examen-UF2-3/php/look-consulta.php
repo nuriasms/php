@@ -28,10 +28,9 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu2";
-			$barra="publico";
 			if (!empty($usuario))
 			{
-				$barra = buscaTipoUsuario($usuario);
+				$barra="privado";
 			}
 			else
 			{
@@ -82,17 +81,15 @@
 			if (isset($_REQUEST["buscar"]))
 			{
 				$sql = "SELECT COUNT(*) as total_noticies FROM noticies WHERE UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%')";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-				$registre = mysqli_fetch_assoc($resultat);
-				$total_filas = $registre['total_noticies'];				
 			}
 			else
 			{
 				$sql = "SELECT COUNT(*) as total_noticies FROM noticies";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-				$registre = mysqli_fetch_assoc($resultat);
-				$total_filas = $registre['total_noticies'];				
 			}
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$registre = mysqli_fetch_assoc($resultat);
+			$total_filas = $registre['total_noticies'];				
+
 			//-------------------------------------
 			if ($total_filas > 0) 
 			{
@@ -193,7 +190,6 @@
             	echo "</h3>";
 				 
 			}
-			//mysql_free_result($resultat);
 			mysqli_close($con);
 		?>
 		<div class="subir">

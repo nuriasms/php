@@ -25,7 +25,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu3";
-			$barra="basic";
+			$barra="privado";
 			include ('../php/barra.php');
 		?>
 		<!-------------------------------------------ALTA NOTICIA------------------------------------>
@@ -77,11 +77,13 @@
 					$data=date('Y-m-d');
 					if (guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data))
 					{
-						header("Location: look-alta-noticia.php");
+						//header("Location: look-alta-noticia.php");
+						$salir=true;
+						$titulo = $contenido = $nombreFichero = "";
 					}
 				}
 			}
-			if (!$salir || !isset($_REQUEST["enviar"]))
+			if ($salir || !isset($_REQUEST["enviar"]))
 			{
 		?>
 				<div class="recuadronoticia">   
