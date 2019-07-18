@@ -31,20 +31,22 @@
 		<?php
 			$opcio="menu1";
 			$barra="inicio";
-			include ('html/barra.html');
-		?>
-		<!-------------------------------INICIO ------------------------------------------------------>
-		<?php
-			//include ('html/login.html');
+			include ('php/barra.php');
 		?>
 		<!----------------------------------CONTENIDO--------------------------------------------------->
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
 			
-    
-			<span>VISITAS</span>
-			<br>
-			<span class="visita"><script src="php/visitas.php"></script></span> 
+			<div class='visita'>
+				<p>VISITAS</p>			
+				<?php
+					$visitas=""; 
+					require ('php/countbdd.php');    
+					echo "<span>$visitas</span>"; 
+				?>
+				<!--Controla los usuarios que estan conectados en esa pagina-->
+				<!--span class="visita"><script src="php/visitas.php"></script></span--> 
+			</div>
 		</div>	
 		<!------------------------------------PIE------------------------------------------------------->	
 		<?php

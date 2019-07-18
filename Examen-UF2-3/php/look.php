@@ -26,7 +26,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu1";
-			$barra="";
+			$barra="public";
 			if (!empty($usuario))
 			{
 				$barra = buscaTipoUsuario($usuario);
@@ -35,7 +35,7 @@
 			{
 				$barra="public";
 			}
-			include ('../html/barra.html');
+			include ('../php/barra.php');
 		?>
 		<!---------------------------------CONTENIDO------------------------------------------------->
 		<div class="container fotoPortada">

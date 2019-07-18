@@ -26,7 +26,7 @@
 		<?php
 			$opcio="menu3";
 			$barra="basic";
-			include ('../html/barra.html');
+			include ('../php/barra.php');
 		?>
 		<!-------------------------------------------ALTA NOTICIA------------------------------------>
 		<?php

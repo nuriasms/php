@@ -68,7 +68,7 @@
 		<?php
             $opcio="menu1";
             $barra="inicio";
-			include ('../html/barra.html');
+			include ('../php/barra.php');
 		?>
         <!----------------------------MODAL LOGIN--------------------------------------------------->
         <div id="id01" class="modalInd">             

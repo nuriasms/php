@@ -85,10 +85,21 @@ header h1{
     font-size: 15px;
 }
 .visita  {
-    color: white;
+    width: 60px;
+    position: relative;
+    top: -5px;
+    left: -5px;
+    text-align: center;
+    
+}
+.visita span{
+    color:#4076bd;
     font-weight: bolder;
-    margin-left: 25px;
     font-size: 20px;
+}
+.visita p{
+    color:#4076bd;
+    
 }
 /*-------------------------------------LOGIN----------------------------------------------------*/
 .loginIndex input[type=text], .loginIndex input[type=password] {

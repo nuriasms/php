@@ -30,7 +30,7 @@
 		<?php
 			$opcio="menu4";
 			$barra="basic";
-			include ('../html/barra.html');
+			include ('../php/barra.php');
 		?>
 		<!----------------------------------CONSULTA NOTICIA------------------------------------>
 		

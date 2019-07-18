@@ -28,16 +28,16 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu2";
-			$barra="";
+			$barra="publico";
 			if (!empty($usuario))
 			{
 				$barra = buscaTipoUsuario($usuario);
 			}
 			else
 			{
-				$barra="public";
+				$barra="publico";
 			}
-			include ('../html/barra.html');
+			include ('../php/barra.php');
 		?>
 		<!---------------------------------BARRA BUSQUEDA------------------------------------------>
 		<nav class="navbar navbar-default">		 
