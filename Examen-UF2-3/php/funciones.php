@@ -366,7 +366,7 @@
     }
 	
 	/*----------------------------------------------------------------------------------------------*/
-    /* function validarAdmin:                                                                       */
+    /* function validarTipoUsuario:                                                                       */
     /* Comprueba que el usuario conectado en la web es administrador     						    */
     /*                                                                                              */
     /* Argumentos: usuario                                                                          */
@@ -609,6 +609,38 @@
 
         }
     }       
+    function cuentaHoras($inicio,$final)
+    {
+        $sql = $consulta = $registre = $con = '';
 
-   
+        $con = conectaBBDD();
+        $sql = "SELECT COUNT(*) as VH FROM contador WHERE horau >= '$inicio' && horau < '$final'";
+		$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+        $registre = mysqli_fetch_assoc($resultat);
+        mysqli_close($con);
+        return $registre['VH'];
+    }
+    function cuentadias($dia)
+    {
+        $sql = $consulta = $registre = $con = '';
+        $con = conectaBBDD();
+        $sql = "SELECT COUNT(*) as tmp FROM contador WHERE dia = '$dia'";
+		$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+        $registre = mysqli_fetch_assoc($resultat);
+        mysqli_close($con);
+        return $registre['tmp'];
+    }
+    function cuentaPublicacionMes($mes)
+    {
+        $respuesta=false;
+		$sql = $consulta = $registre = $con = '';
+
+		$con = conectaBBDD();
+        $sql="SELECT COUNT(*) as tmp FROM noticies WHERE DATE_FORMAT(data,'%m') = $mes";
+		$resultat = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+		$registre = mysqli_fetch_assoc($resultat);		
+		mysqli_close($con);
+		return $registre['tmp'];            
+    }
+
 ?>

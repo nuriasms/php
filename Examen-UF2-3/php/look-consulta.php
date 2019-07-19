@@ -28,13 +28,20 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu2";
-			if (!empty($usuario))
+			if (!validarTipoUsuario($usuario,'admin'))
 			{
-				$barra="privado";
+				if (!empty($usuario))
+				{
+					$barra="privado";
+				}
+				else
+				{
+					$barra="publico";
+				}
 			}
 			else
 			{
-				$barra="publico";
+				$barra="admin";
 			}
 			include ('../php/barra.php');
 		?>

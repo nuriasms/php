@@ -25,7 +25,15 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu3";
-			$barra="privado";
+			if (!validarTipoUsuario($usuario,'admin'))
+			{
+				$barra="privado";
+			}
+			else
+			{
+				$barra="admin";
+			}
+
 			include ('../php/barra.php');
 		?>
 		<!-------------------------------------------ALTA NOTICIA------------------------------------>

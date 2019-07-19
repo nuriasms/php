@@ -26,7 +26,14 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu4";
-			$barra="privado";
+			if (!validarTipoUsuario($usuario,'admin'))
+			{
+				$barra="privado";
+			}
+			else
+			{
+				$barra="admin";
+			}
 			include ('../php/barra.php');
 		?>
 		<!----------------------------------CONSULTA NOTICIA------------------------------------>
@@ -46,11 +53,6 @@
 			}
 			else
 			{
-				$sql = "SELECT COUNT(*) as visitas FROM contador";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-				$registre = mysqli_fetch_assoc($resultat);
-				$visitas = $registre['visitas'];
-
 				$sql = "SELECT COUNT(*) as total_noticies FROM noticies";
 			}
 			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
@@ -94,12 +96,6 @@
 				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 		?>
 				<div id="recuadrolistado">
-			<?php
-					if (validarTipoUsuario($usuario,'admin'))
-					{  
-						echo "<span>Visitas web: $visitas</span>";
-					} 
-			?>
 					<div id="registrolistado" >
 						<h3>Listado de noticias</h3>
 						<hr>

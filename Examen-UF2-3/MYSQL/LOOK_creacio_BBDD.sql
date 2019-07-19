@@ -111,7 +111,8 @@ CREATE TABLE IF NOT EXISTS `contador` (
   `fecha` varchar(20) default NULL,   
   `horau` varchar(10) default NULL,   
   `diau` char(3) default NULL,   
-  `aniou` varchar(4) default NULL,      
+  `aniou` varchar(4) default NULL, 
+  `dia` char(2) default NULL,   
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1;
 

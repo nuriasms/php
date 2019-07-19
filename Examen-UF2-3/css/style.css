@@ -84,23 +84,7 @@ header h1{
     font-weight: bolder;
     font-size: 15px;
 }
-.visita  {
-    width: 60px;
-    position: relative;
-    top: -5px;
-    left: -5px;
-    text-align: center;
-    
-}
-.visita span{
-    color:#4076bd;
-    font-weight: bolder;
-    font-size: 20px;
-}
-.visita p{
-    color:#4076bd;
-    
-}
+
 /*-------------------------------------LOGIN----------------------------------------------------*/
 .loginIndex input[type=text], .loginIndex input[type=password] {
     width: 320px;
@@ -476,15 +460,15 @@ td a .glyphicon:hover{
     font-size: 17px;
 }
 .izquierdatop{
-	/*position: absolute;
-    top: 165px;
-    left: 60px;*/
     float: left;
     margin-left: 60px;
     margin-top: 7px;
 }
 .busquedadreta{
     margin-right: 40px;
+}
+.visita{
+    color:white;
 }
 /*----------------------------------ACCES DENEGAT ADMIN ----------------------------------*/
 .erroradmin{

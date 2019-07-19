@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require ('php/funciones.php');
+	require ('php/contador-visitas.php'); 
 ?>
 <!DOCTYPE html>
 	<html lang="en">
@@ -36,18 +37,6 @@
 		<!----------------------------------CONTENIDO--------------------------------------------------->
 		<div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
-			
-			<!--div class='visita'>
-				<p>VISITAS</p-->			
-				<?php
-					//$visitas=""; 
-					//Cuenta visitas recibidas en la web, pero solo cuenta una vez, aunque un usuario se conecte varias veces en una hora
-					require ('php/contador-visitas.php');    
-					//echo "<span>$visitas</span>"; 
-				?>
-				<!--Controla los usuarios que estan conectados en esa pagina-->
-				<!--span class="visita"><script src="php/visitas.php"></script></span--> 
-			<!--/div-->
 		</div>	
 		<!------------------------------------PIE------------------------------------------------------->	
 		<?php

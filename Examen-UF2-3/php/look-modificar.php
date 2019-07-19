@@ -25,7 +25,14 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu4";
-			$barra="privado";
+			if (!validarTipoUsuario($usuario,'admin'))
+			{
+				$barra="privado";
+			}
+			else
+			{
+				$barra="admin";
+			}
 			include ('../php/barra.php');
 		?>
 		<!------------------------------------MODIFICAR NOTICIA------------------------------------>

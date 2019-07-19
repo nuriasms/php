@@ -25,8 +25,15 @@
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
-			$barra="privado";
 			$opcio="menu1";
+			if (!validarTipoUsuario($usuario,'admin'))
+			{
+				$barra="privado";
+			}
+			else
+			{
+				$barra="admin";
+			}
 			include ('../php/barra.php');
 		?>
 		<!---------------------------------CONTENIDO------------------------------------------------->
