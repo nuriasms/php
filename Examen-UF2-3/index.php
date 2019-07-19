@@ -17,6 +17,7 @@
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 		<script src="lib/js/jquery.min.js"></script>
 		<script src="lib/js/bootstrap.min.js"></script>
+		<script src="js/funciones.js"></script>
 		<title>LOOK</title>
 		<link rel="stylesheet" href="css/style.css">
 	</head>

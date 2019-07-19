@@ -5,10 +5,11 @@
     //$ip = $_SERVER['REMOTE_ADDR'];  
     $ip = getRealIP(); 
     $fecha = date("d-m-Y");   
-    $hora = date("h:i:s");   
-    $horau = date("h");   
+    $hora = date("G:i:s");   
+    $horau = date("H");   
     $diau = date("z");   
-    $aniou = date("Y");   
+    $aniou = date("Y");
+    $dia = date("w");   
     //se asignan la variables   
     $sql = "SELECT aniou, diau, horau, ip FROM contador WHERE aniou LIKE '$aniou' AND diau LIKE '$diau' AND horau LIKE '$horau' AND ip LIKE '$ip' ";   
     $es = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
@@ -19,12 +20,12 @@
     }   
     else   
     {   
-        $sql = "INSERT INTO contador (id, ip, fecha, hora, horau, diau, aniou) VALUES ('','$ip','$fecha','$hora','$horau','$diau','$aniou')";   
+        $sql = "INSERT INTO contador (id, ip, fecha, hora, horau, diau, aniou, dia) VALUES ('','$ip','$fecha','$hora','$horau','$diau','$aniou','$dia')";   
         $es = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
     }   
     //creamos el condicionamiendo para logearlo o no.   
-    $sql = "SELECT * ";   
+   /* $sql = "SELECT * ";   
     $sql.= "FROM contador WHERE id ";   
     $es = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
-    $visitas = mysqli_num_rows($es);     
+    $visitas = mysqli_num_rows($es);    */ 
 ?>   

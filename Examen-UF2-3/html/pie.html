@@ -29,18 +29,14 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <?php 
-                if (!empty ($usuario))
+                if ($origen=="inicio")
                 {
-            ?>
-                    <img src="../img/look-22.png" width="30%">
-            <?php
+                    echo "<img src='img/look-22.png' width='40%'>";
                 }
                 else
                 {
-            ?>
-                    <img src="img/look-22.png" width="30%">
-            <?php
-                }
+                    echo "<img src='../img/look-22.png' width='40%'>";
+                }            
             ?>        
             <br><br>
             <h3 class="modal-title">Información del servicio</h3>

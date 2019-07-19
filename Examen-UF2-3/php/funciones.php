@@ -614,7 +614,7 @@
         $sql = $consulta = $registre = $con = '';
 
         $con = conectaBBDD();
-        $sql = "SELECT COUNT(*) as VH FROM contador WHERE horau >= '$inicio' && horau < '$final'";
+        $sql = "SELECT COUNT(*) as VH FROM contador WHERE horau >= $inicio && horau < $final";
 		$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
         $registre = mysqli_fetch_assoc($resultat);
         mysqli_close($con);
@@ -630,13 +630,13 @@
         mysqli_close($con);
         return $registre['tmp'];
     }
-    function cuentaPublicacionMes($mes)
+    function cuentaDatosMes($tabla,$columna,$mes)
     {
         $respuesta=false;
 		$sql = $consulta = $registre = $con = '';
 
 		$con = conectaBBDD();
-        $sql="SELECT COUNT(*) as tmp FROM noticies WHERE DATE_FORMAT(data,'%m') = $mes";
+        $sql="SELECT COUNT(*) as tmp FROM $tabla WHERE DATE_FORMAT($columna,'%m') = $mes";
 		$resultat = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 		$registre = mysqli_fetch_assoc($resultat);		
 		mysqli_close($con);

@@ -52,4 +52,7 @@ if (isset($_COOKIE[md5($enlace)])) {
 ob_end_flush();
 mysqli_close($con);
 die();
+/* para ejecutar en html
+Visitas: <script src="visitas.php"></script>
+*/
 ?>

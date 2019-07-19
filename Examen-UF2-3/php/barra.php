@@ -1,4 +1,3 @@
-<script src="../js/funciones.js"></script>
 <!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 <nav class="navbar navbar-default">		 
     <div class="navbar-header">

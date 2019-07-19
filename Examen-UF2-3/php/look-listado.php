@@ -37,8 +37,6 @@
 			include ('../php/barra.php');
 		?>
 		<!----------------------------------CONSULTA NOTICIA------------------------------------>
-		
-		
 		<div class="bajar">
 			<a href="#final" class="glyphicon glyphicon-chevron-down"></a>
 		</div>

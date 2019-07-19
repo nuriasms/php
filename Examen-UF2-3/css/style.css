@@ -434,7 +434,7 @@ td {
     height: auto;
     margin: auto;
     font-weight: bold;
-    background-color: #bdbbbbcc;
+    background-color: #bdbbbbcc;/*#bdbbbbcc;*/
     padding: 5px 30px; 
 }
 #recuadrolistado{
@@ -467,9 +467,7 @@ td a .glyphicon:hover{
 .busquedadreta{
     margin-right: 40px;
 }
-.visita{
-    color:white;
-}
+
 /*----------------------------------ACCES DENEGAT ADMIN ----------------------------------*/
 .erroradmin{
     margin: 0 auto;
