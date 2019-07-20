@@ -4,7 +4,7 @@
     //se requiere el archivo para validar los datos de usuario de bdd para conectar   
     //$ip = $_SERVER['REMOTE_ADDR'];  
     $ip = getRealIP(); 
-    $fecha = date("d-m-Y");   
+    $fecha = date("Y-m-d");   
     $hora = date("G:i:s");   
     $horau = date("H");   
     $diau = date("z");   

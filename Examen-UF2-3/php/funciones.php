@@ -640,7 +640,7 @@
 		$resultat = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 		$registre = mysqli_fetch_assoc($resultat);		
 		mysqli_close($con);
-		return $registre['tmp'];            
+        return $registre['tmp']; 
     }
 
 ?>

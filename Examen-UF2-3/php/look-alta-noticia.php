@@ -20,6 +20,7 @@
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<!----------------------------------CABECERA------------------------------------------------>
 		<?php
+			$origen="look";
 			include ('../html/cabecera.html');
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
@@ -85,13 +86,13 @@
 					$data=date('Y-m-d');
 					if (guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data))
 					{
-						//header("Location: look-alta-noticia.php");
-						$salir=true;
-						$titulo = $contenido = $nombreFichero = "";
+						echo "<script> window.location='look-alta-noticia.php'; </script>";
+						//header( "refresh:5;url=look-alta-noticia.php" );// da error igual 
+						//header("Location: look-alta-noticia.php"); //da error: Warning: Cannot modify header information - headers already sent by (output started at
 					}
 				}
 			}
-			if ($salir || !isset($_REQUEST["enviar"]))
+			if (!$salir || !isset($_REQUEST["enviar"]))
 			{
 		?>
 				<div class="recuadronoticia">   
@@ -126,6 +127,7 @@
 		?>
 		<!-----------------------------------PIE------------------------------------------------------>
 		<?php
+			$origen="look";
 			include ('../html/pie.html');
 		?>
 	</body>

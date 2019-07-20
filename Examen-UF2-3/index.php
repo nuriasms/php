@@ -36,9 +36,13 @@
 			include ('php/barra.php');
 		?>
 		<!----------------------------------CONTENIDO--------------------------------------------------->
-		<div class="container fotoPortada">
+		<!--div class="container fotoPortada">
 			<h1>Compartimos secretos ...</h1>
-		</div>	
+		</div-->
+		<?php
+			$origen="inicio";
+			include ('php/carousel.php');
+		?>	
 		<!------------------------------------PIE------------------------------------------------------->	
 		<?php
 			include ('html/pie.html');

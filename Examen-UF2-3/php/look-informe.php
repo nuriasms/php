@@ -26,6 +26,7 @@
 		<!----------------------------------CABECERA------------------------------------------------>
         <span id="inicio"></span>
         <?php
+            $origen="look";
 			include ('../html/cabecera.html');
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
@@ -96,6 +97,7 @@
 			<div id="registrolistado" >						
                 <h1>Informe visitas en la web</h1>
                 <h3>Total visitas: <?php echo "$totalVisitas";?></h3>
+                <br>
                 <h4>Visitas por horas</h4>
                 <canvas id="myChart"></canvas>
                 <br><hr><br>
@@ -159,7 +161,7 @@
                                         ticks: {
                                             fontColor: "white",
                                             fontSize: 14,
-                                            stepSize: 1,
+                                            //stepSize: 1,
                                             beginAtZero: true
                                         },
                                         gridLines: {
@@ -197,7 +199,7 @@
                                 label: 'Visitas',
                                 backgroundColor: '#736BCD',//'#42a5f5',
                                 borderColor: 'white',
-                                data: [<?php echo "$eneroV,$febreroV,$mayoV,$abrilV,$mayoV,$junioV,$julioV,$agostoV,$septiembreV,$octubreV,$noviembreV,$diciembreV";?>]
+                                data: [<?php echo "$eneroV,$febreroV,$marzoV,$abrilV,$mayoV,$junioV,$julioV,$agostoV,$septiembreV,$octubreV,$noviembreV,$diciembreV";?>]
                             },{
                                 label: 'Publicaciones',
                                 backgroundColor: '#B75C87',//'#ffab91',
@@ -218,7 +220,7 @@
                                         ticks: {
                                             fontColor: "white",
                                             fontSize: 14,
-                                            stepSize: 1,
+                                            //stepSize: 1,
                                             beginAtZero: true
                                         },
                                         gridLines: {
@@ -236,7 +238,7 @@
                                         ticks: {
                                             fontColor: "white",
                                             fontSize: 14,
-                                            stepSize: 1,
+                                            //stepSize: 1,
                                             beginAtZero: true
                                         },
                                         gridLines: {
@@ -258,6 +260,7 @@
         <span id="final"></span>
 		<!-----------------------------------PIE------------------------------------------------------>
 		<?php
+            $origen="look";
 			include ('../html/pie.html');
 		?>
 	</body>

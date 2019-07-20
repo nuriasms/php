@@ -20,6 +20,7 @@
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 		<!----------------------------------CABECERA------------------------------------------------>
 		<?php
+			$origen="look";
 			include ('../html/cabecera.html');
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
@@ -128,6 +129,7 @@
 		?>
 		<!-----------------------------------PIE------------------------------------------------------>
 		<?php
+			$origen="look";
 			include ('../html/pie.html');
 		?>
 	</body>

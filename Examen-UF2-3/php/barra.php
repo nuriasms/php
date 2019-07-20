@@ -60,35 +60,35 @@
                                 echo "<li class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>";
                                 echo "<li class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>";
                                 echo "<li class='inactive'><a href='look-listado.php' >Listado artículos</a></li>";
-                                echo "<li class='inactive'><a href='look-informe.php' >Informe interno</a></li>";
+                                echo "<li class='inactive'><a href='look-informe.php' >Informe actividad</a></li>";
                                 break;
                             case 'menu2':
                                 echo "<li class='inactive' ><a href='look.php'>Inicio</a></li>";
                                 echo "<li class='active'><a href='look-consulta.php' >Consulta noticias</a></li>";
                                 echo "<li class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>";
                                 echo "<li class='inactive'><a href='look-listado.php' >Listado artículos</a></li>";
-                                echo "<li class='inactive'><a href='look-informe.php' >Informe interno</a></li>";
+                                echo "<li class='inactive'><a href='look-informe.php' >Informe actividad</a></li>";
                                 break;
                             case 'menu3':
                                 echo "<li class='inactive' ><a href='look.php'>Inicio</a></li>";
                                 echo "<li class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>";
                                 echo "<li class='active'><a href='look-alta-noticia.php'>Alta artículo</a></li>";
                                 echo "<li class='inactive'><a href='look-listado.php' >Listado artículos</a></li>";
-                                echo "<li class='inactive'><a href='look-informe.php' >Informe interno</a></li>";
+                                echo "<li class='inactive'><a href='look-informe.php' >Informe actividad</a></li>";
                                 break;
                             case 'menu4':
                                 echo "<li class='inactive' ><a href='look.php'>Inicio</a></li>";
                                 echo "<li class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>";
                                 echo "<li class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>";
                                 echo "<li class='active'><a href='look-listado.php' >Listado artículos</a></li>";
-                                echo "<li class='inactive'><a href='look-informe.php' >Informe interno</a></li>";
+                                echo "<li class='inactive'><a href='look-informe.php' >Informe actividad</a></li>";
                                 break;
                             case 'menu5':
                                 echo "<li class='inactive' ><a href='look.php'>Inicio</a></li>";
                                 echo "<li class='inactive'><a href='look-consulta.php' >Consulta noticias</a></li>";
                                 echo "<li class='inactive'><a href='look-alta-noticia.php'>Alta artículo</a></li>";
                                 echo "<li class='inactive'><a href='look-listado.php' >Listado artículos</a></li>";
-                                echo "<li class='active'><a href='look-informe.php' >Informe interno</a></li>";
+                                echo "<li class='active'><a href='look-informe.php' >Informe actividad</a></li>";
                                 break;
                             default:
                                 break;
