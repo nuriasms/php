@@ -3,10 +3,7 @@
     require ('../php/funciones.php');
 	$usuario=validarSesionAbierta(); 
 
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-    }  
+    if(isset($_REQUEST["cerrar"])) cerrarSesion();
 ?>
 
 <!DOCTYPE html>
@@ -26,14 +23,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu1";
-			if (!validarTipoUsuario($usuario,'admin'))
-			{
-				$barra="privado";
-			}
-			else
-			{
-				$barra="admin";
-			}
+			$barra = (!validarTipoUsuario($usuario,'admin')) ? 'privado':'admin';
 			include ('../php/barra.php');
 		?>
 		<!---------------------------------CONTENIDO------------------------------------------------->

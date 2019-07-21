@@ -3,10 +3,7 @@
     require ('../php/funciones.php');
 	$usuario=validarSesionAbierta();
 	
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-    }  
+    if(isset($_REQUEST["cerrar"])) cerrarSesion();
 ?>
 
 <!DOCTYPE html>
@@ -27,14 +24,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu4";
-			if (!validarTipoUsuario($usuario,'admin'))
-			{
-				$barra="privado";
-			}
-			else
-			{
-				$barra="admin";
-			}
+			$barra = (!validarTipoUsuario($usuario,'admin')) ? 'privado':'admin';
 			include ('../php/barra.php');
 		?>
 		<!----------------------------------CONSULTA NOTICIA------------------------------------>
@@ -81,8 +71,6 @@
 				//calculo el total de paginas
 				$total_pages = ceil($total_filas / $NUM_ITEMS_BY_PAGE);
 
-
-
 				//-----------------------------------------------------------------------------
 				if (!validarTipoUsuario($usuario,'admin'))
 				{
@@ -101,23 +89,25 @@
 						<table id="listadoNoticias">
 							<tr>
 								<th valign="middle" align="left">Ref.</th>
-								<th colspan="9" valign="middle" align="left">Titular</th>
+								<th colspan="8" valign="middle" align="left">Titular</th>
 								<th colspan="2" valign="middle" align="left">Fecha</th>
 								<th colspan="3" valign="middle" align="left">Autor</th>
+								<th valign='middle' align='left'>Act.</th>
 								<th></th>
 								<th></th>
 							</tr>
-						<?php			
+						<?php		
 							while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
 							{
 						?>
 							<tr>				
 								<td valign="middle" align="left"><?php echo $registre['idnoticia'];?></td>						
-								<td colspan="9" valign="middle" align="left"><?php echo $registre['titular'];?></td>
+								<td colspan="8" valign="middle" align="left"><?php echo $registre['titular'];?></td>
 								<td colspan="2" valign="middle" align="left"><?php echo $registre['data'];?></td>
 								<td colspan="3" valign="middle" align="left"><?php echo ucwords($registre['autor']);?></td>				
-								<td valign="middle" align="center"><a href='look-modificar.php?modificar&id=<?php echo $registre['idnoticia'];?>'><span class='glyphicon glyphicon-pencil'></span></a></td>
-								<td valign="middle" align="center"><a href="borrar.php?nom=<?php echo $registre['autor'];?>&id=<?php echo $registre['idnoticia'];?>&cas=1" onClick="return confirm('¿Estás seguro de que quiere eliminar este elemento?')"><span class='glyphicon glyphicon-trash'></span></a></td>
+								<td valign="middle" align="center"><span <?php echo(!$registre['activo']) ? "class='glyphicon glyphicon-remove rojo' title='Artículo inactivo'" : "class='glyphicon glyphicon-ok verde' title='Articulo activo'"; ?> ></span></td>
+								<td valign="middle" align="center"><a href='look-modificar.php?modificar&id=<?php echo $registre['idnoticia'];?>'><span class='glyphicon glyphicon-pencil' title='Editar artículo'></span></a></td>
+								<td valign="middle" align="center"><a href="borrar.php?nom=<?php echo $registre['autor'];?>&id=<?php echo $registre['idnoticia'];?>&cas=1" onClick="return confirm('¿Estás seguro de que quiere eliminar este elemento?')"><span class='glyphicon glyphicon-trash' title='Borrar artículo'></span></a></td>
 							</tr>
 						<?php
 							$vacio = true;
@@ -157,10 +147,9 @@
             	echo "</h3>";
 				 
 			}
-	
 			mysqli_close($con);
-
 		?>
+
 		<div class="subir">
 			<a href="#inicio" class="glyphicon glyphicon-chevron-up"></a>
 		</div>		

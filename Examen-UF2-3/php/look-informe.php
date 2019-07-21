@@ -2,15 +2,9 @@
     session_start();
     require ('../php/funciones.php');
     $usuario=validarSesionAbierta();
-    if (!validarTipoUsuario($usuario,'admin'))
-	{
-		header("Location: aviso-admin.php");
-	}
+    if (!validarTipoUsuario($usuario,'admin')) header("Location: aviso-admin.php");
 	
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-    }  
+    if(isset($_REQUEST["cerrar"])) cerrarSesion();
 ?>
 
 <!DOCTYPE html>

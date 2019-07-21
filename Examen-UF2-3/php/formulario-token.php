@@ -24,11 +24,7 @@
                 }
             }
         }
-        if (!empty($mostrarError))
-        {
-            header("Location: inicio.php?text=$mostrarError");
-
-        }  
+        if (!empty($mostrarError)) header("Location: inicio.php?text=$mostrarError");
     }
 ?>
 <script>
@@ -165,8 +161,7 @@
 
                 if ($respuesta)
                 {
-                    if (!guardaContrasena($_REQUEST['contrasena'],$_REQUEST['token']))
-                        header("Location: ../index.php");
+                    if (!guardaContrasena($_REQUEST['contrasena'],$_REQUEST['token'])) header("Location: ../index.php");
                 }
             }       
         ?>

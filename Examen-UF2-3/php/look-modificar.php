@@ -3,10 +3,7 @@
     require ('../php/funciones.php');
 	$usuario=validarSesionAbierta(); 
 
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-    }  
+    if(isset($_REQUEST["cerrar"])) cerrarSesion();  
 ?>
 
 <!DOCTYPE html>
@@ -26,14 +23,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu4";
-			if (!validarTipoUsuario($usuario,'admin'))
-			{
-				$barra="privado";
-			}
-			else
-			{
-				$barra="admin";
-			}
+			$barra = (!validarTipoUsuario($usuario,'admin')) ? 'privado':'admin';
 			include ('../php/barra.php');
 		?>
 		<!------------------------------------MODIFICAR NOTICIA------------------------------------>
@@ -70,7 +60,7 @@
 				{
 					$titulo = test_input($_REQUEST["titulo"]);
 					// comprueba que lleva solo letras y espacios
-					if (!preg_match("/^[a-zA-Z\. ,áéíóúAÉÍÓÚÑñ0123456789]*$/",$titulo)) 
+					if (!preg_match("/^[a-zA-Z\. ,áéíóúAÉÍÓÚÑñ0123456789\¿\?\!\¡]*$/",$titulo)) 
 					{
 						$tituloError = "<br><br>Solo admite texto plano"; 
 						$salir=false;
@@ -87,12 +77,23 @@
 					$contenido = test_input($_REQUEST["contenido"]);
 				}
 
+				if (!isset($_REQUEST["activo"]))
+				{
+					$active = 0;
+				}
+				else
+				{
+					$active = 1;
+				}
+
 				if ($salir)
 				{
 					
-					if (actualizarNoticia($_REQUEST["id"],$_REQUEST["titulo"],$_REQUEST["contenido"],$_REQUEST["fichero"]))
+					if (actualizarNoticia($_REQUEST["id"],$_REQUEST["titulo"],$_REQUEST["contenido"],$_REQUEST["fichero"],$active))
 					{
-						header("Location: look-listado.php");
+						//header("Location: look-listado.php");
+						echo "<script> window.location='look-listado.php'; </script>";
+
 					}
 				}
 			}
@@ -119,7 +120,14 @@
 							<br><br>
 							<?php  $hoy = formatearFecha(date('d-m-Y'));?>
 							<label for="ffecha">Fecha: &nbsp;&nbsp;&nbsp;<?php echo $hoy;?></label>
-							<br><br><hr>
+							<br>
+							<?php
+								if (validarTipoUsuario($usuario,'admin'))
+								{
+									echo "<span class='activar'>Activar artículo: <input class='rr' type='checkbox' name='activo' ></span>";
+								}
+							?>
+							<br><hr>
 							<button type="submit" name="enviar" class="btn btn-success" value="Enviar">Guardar noticia</button>
 						</form>
 					</div>

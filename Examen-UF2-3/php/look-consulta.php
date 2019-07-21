@@ -4,10 +4,7 @@
 	//$usuario=validarSesionAbierta();  //pasa a ser publico por lo que se quita el control
 	$usuario=validarColaborador(); 
 
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-	} 	
+    if(isset($_REQUEST["cerrar"])) cerrarSesion();
 ?>
 
 <!DOCTYPE html>
@@ -30,20 +27,37 @@
 			$opcio="menu2";
 			if (!validarTipoUsuario($usuario,'admin'))
 			{
-				if (!empty($usuario))
-				{
-					$barra="privado";
-				}
-				else
-				{
-					$barra="publico";
-				}
+				$barra = (!empty($usuario)) ? 'privado':'publico';
 			}
 			else
 			{
 				$barra="admin";
 			}
 			include ('../php/barra.php');
+		?>
+		<!--------------------------------SELECCION Noticias----------------------------------------->
+		<?php
+
+		if(isset($_REQUEST["seleccionar"])) 
+		{	
+			
+			$lista = $_REQUEST['articulos'];
+        	// dades de configuració
+        	$con = conectaBBDD();
+			foreach($lista as $idart)
+			{
+				$sql="insert into pdf (idnoticia) values ('$idart')";
+                $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			}
+			$sql = "SELECT COUNT(*) as total FROM pdf";
+			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+			$registre = mysqli_fetch_assoc($resultat);
+			$total = $registre['total'];	
+			mysqli_close($con);
+			echo "<script> window.location='pdf.php?valor=$total'; </script>";
+			//echo "<script> window.location='pdf.php?valor='".$total."'; </script>";
+			//header("Location: pdf.php");
+		}
 		?>
 		<!---------------------------------BARRA BUSQUEDA------------------------------------------>
 		<nav class="navbar navbar-default">		 
@@ -55,8 +69,9 @@
 	      				<button type="submit" class="glyphicon glyphicon-search redondo" name="buscar" title="Busca noticias que contengan el texto"></button>
 					</form>
 					<div class="izquierdatop">
-						<a href="pdf.php" ><button type='button' class='glyphicon glyphicon-file redondo' title="Crear PDF con las noticias"></button></a>
-						
+					<form method="get">  
+						<!--a href="pdf.php" ><button type='button' class='glyphicon glyphicon-file redondo' title="Crear PDF con las noticias"></button></a-->
+						<button type="submit" name="seleccionar" class='glyphicon glyphicon-file redondo' title="Crear PDF con las noticias" value="seleccionar"></button>
 						<?php	
 							if (validarTipoUsuario($usuario,'admin') || validarTipoUsuario($usuario,'basic'))
 							{
@@ -87,11 +102,11 @@
 
 			if (isset($_REQUEST["buscar"]))
 			{
-				$sql = "SELECT COUNT(*) as total_noticies FROM noticies WHERE UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%')";
+				$sql = "SELECT COUNT(*) as total_noticies FROM noticies WHERE activo=1 AND UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%')";
 			}
 			else
 			{
-				$sql = "SELECT COUNT(*) as total_noticies FROM noticies";
+				$sql = "SELECT COUNT(*) as total_noticies FROM noticies WHERE activo=1";
 			}
 			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 			$registre = mysqli_fetch_assoc($resultat);
@@ -104,10 +119,7 @@
 				$NUM_ITEMS_BY_PAGE = 4;
 			
 				//examino la pagina a mostrar y el inicio del registro a mostrar
-				if (isset($_REQUEST["page"])) 
-				{
-					$page = $_REQUEST["page"];
-				}
+				if (isset($_REQUEST["page"])) $page = $_REQUEST["page"];
 			 
 				if (!$page)
 				{
@@ -125,11 +137,11 @@
 			
 				if (isset($_REQUEST["buscar"]))
 				{
-					$sql = "SELECT * FROM noticies WHERE UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%') ORDER BY data DESC LIMIT ".$start.", ".$NUM_ITEMS_BY_PAGE;
+					$sql = "SELECT * FROM noticies WHERE activo=1 AND UPPER(titular)  COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(noticia) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(autor) COLLATE utf8_spanish_ci LIKE UPPER('%$_REQUEST[textobusca]%') OR UPPER(data) LIKE UPPER('%$_REQUEST[textobusca]%') ORDER BY data DESC LIMIT ".$start.", ".$NUM_ITEMS_BY_PAGE;
 				}
 				else
 				{				
-					$sql = "SELECT * FROM noticies ORDER BY data DESC LIMIT ".$start.", ".$NUM_ITEMS_BY_PAGE;
+					$sql = "SELECT * FROM noticies WHERE activo=1 ORDER BY data DESC LIMIT ".$start.", ".$NUM_ITEMS_BY_PAGE;
 				}
 
 				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
@@ -138,14 +150,13 @@
 				{			
 		?>		
 					<div class=" publicacion">
-						<div class="articulo">						
+						<div class="articulo">					
 							<span class="titulo"><h3><?php echo $registre['titular'];?></h3></span>
 							<span class="descripcion">
 								<p><?php echo $registre['noticia'];?></p>
 							</span>
 							<br>									
 							<h5><span class="autor"><?php echo ucwords($registre['autor']);?>,&nbsp; <?php echo formatearFecha($registre['data']);?>.</span></h5>
-							
 						<?php	
 							if (validarTipoUsuario($usuario,'admin') || ($usuario==$registre['autor']))
 							{
@@ -155,18 +166,18 @@
 
 						<?php
 							}
-
 						?>
-						</div>	
-						<div class="articuloFoto">
-							<img src="<?php echo $registre['foto'];?>" width="300px" alt="Foto no disponible" align="middle">
-						</div>
-						
+							<span class="pdf">Seleccionar para PDF <input type="checkbox" name="articulos[]" value="<?php echo $registre['idnoticia']; ?>"></span>
+							</div>	
+							<div class="articuloFoto">
+								<img src="<?php echo $registre['foto'];?>" width="300px" alt="Foto no disponible" align="middle">
+							</div>
 					</div>
 					<div class="limpiar"><br></div>
-		<?php
+			<?php
 					$vacio = true;
 				}
+				echo '</form>';
 				echo '<nav>';
 				echo '<ul class="pagination">';
 			

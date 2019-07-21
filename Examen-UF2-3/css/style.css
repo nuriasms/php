@@ -350,6 +350,17 @@ label{
     position: absolute;
     left: 480px;
 }
+#registronoticia .activar {
+    color:#4683f5;
+    position: absolute;
+    top:610px;
+    left: 30px;
+}
+#registronoticia .rr{
+    position: absolute;
+    top:1px;
+    left: 132px;
+}
 /*-------------------------------------Footer---------------------------------------------*/
 footer{
 	width: 100%;
@@ -419,7 +430,13 @@ footer #redes li{
     top: 63%;
     right: 2%;
 }
-
+.pdf{
+    color:gray;
+    font-size:11px;
+    float:right;
+    margin-right:20px;
+    font-style: italic;
+}
 /*-------------------------------------LISTADO NOTICIAS------------------------------------*/
 #listadoNoticias, #listadoNoticias td, #listadoNoticias tr, #listadoNoticias th{
     border-collapse: collapse;
@@ -475,7 +492,14 @@ td a .glyphicon:hover{
 .busquedadreta{
     margin-right: 40px;
 }
-
+.verde, .verde:hover{
+    color:green;
+    font-size: 14px;
+}
+.rojo, .rojo:hover{
+    color:red;
+    font-size: 14px;
+}
 /*----------------------------------ACCES DENEGAT ADMIN ----------------------------------*/
 .erroradmin{
     margin: 0 auto;

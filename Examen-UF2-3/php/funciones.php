@@ -350,14 +350,14 @@
     /* Argumentos: titulo, contenido, foto, autor,fecha                                              */
     /* Devuelve: true/false                                                                          */
     /*----------------------------------------------------------------------------------------------*/
-    function guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data)
+    function guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data,$activo)
     {
         $respuesta=false;
 		$tmp = $con = $sql = $consulta = "";
 		
 		$con = conectaBBDD();
         $tmp=mb_strtolower($nombre, 'UTF-8');
-		$sql="insert into noticies (idnoticia,titular,noticia,data,foto,autor) values ('null','$titulo','$contenido','$data','$nombreFichero','$tmp')";
+		$sql="insert into noticies (idnoticia,titular,noticia,data,foto,autor,activo) values ('null','$titulo','$contenido','$data','$nombreFichero','$tmp','$activo')";
 		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
 		$respuesta=true;	
 		
@@ -420,13 +420,13 @@
     /* Argumentos: id, titulo, contenido, foto                                                      */
     /* Devuelve: true/false                                                                         */
     /*----------------------------------------------------------------------------------------------*/
-	function actualizarNoticia($id,$titulo,$contenido,$nombreFichero)
+	function actualizarNoticia($id,$titulo,$contenido,$nombreFichero,$activar)
     {
         $respuesta=false;
 		$con = $sql = $consulta = "";
 		
 		$con = conectaBBDD();
-        $sql="UPDATE noticies SET titular='".$titulo."', noticia='".$contenido."', foto='".$nombreFichero."' WHERE idnoticia=".$id;
+        $sql="UPDATE noticies SET titular='".$titulo."', noticia='".$contenido."', foto='".$nombreFichero."', activo='".$activar."' WHERE idnoticia=".$id;
         $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
 		$respuesta=true;
 				
@@ -490,16 +490,21 @@
     /* function listado pdf:                                                                        */
     /* Genera el listado de noticias en pdf     						                            */
     /*----------------------------------------------------------------------------------------------*/
-	function listadoPDF()
+	function listadoPDF($total)
 	{
-        
         $html= "<h3>NOTICIAS RECIENTES</h3>";
         $html.= "<hr>";
-        
         // dades de configuració
         $con = conectaBBDD();
-        
-        $sql = "SELECT * FROM noticies";
+                
+        if ($total<1)
+        {
+            $sql = "SELECT * FROM noticies limit 40";
+        }
+        else
+        {
+            $sql = "SELECT * FROM noticies n WHERE n.idnoticia IN (SELECT p.idnoticia FROM pdf p) ORDER BY data DESC";
+        }
         $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
     
         while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
@@ -518,6 +523,14 @@
             $html.= "</div>";
             $html.= "<hr style='clear: both;'>";          
         }
+                
+        if ($total>=1)
+        {
+            $sql="DELETE FROM pdf";
+            $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));	
+        }
+
+        mysqli_close($con);
         //echo $html;
         return $html;
     }
@@ -565,6 +578,18 @@
             header("Location: look-consulta.php");
         }
     }
+    function randomPassword() 
+	{
+		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+		$pass = array(); //remember to declare $pass as an array
+		$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+		for ($i = 0; $i < 4; $i++) 
+		{
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass); //turn the array into a string
+	}
     function buscaTipoUsuario($usuario)
     {
 		$respuesta="";
@@ -611,7 +636,7 @@
     }       
     function cuentaHoras($inicio,$final)
     {
-        $sql = $consulta = $registre = $con = '';
+        $sql = $resultat = $registre = $con = '';
 
         $con = conectaBBDD();
         $sql = "SELECT COUNT(*) as VH FROM contador WHERE horau >= $inicio && horau < $final";
@@ -622,7 +647,7 @@
     }
     function cuentadias($dia)
     {
-        $sql = $consulta = $registre = $con = '';
+        $sql = $resultat = $registre = $con = '';
         $con = conectaBBDD();
         $sql = "SELECT COUNT(*) as tmp FROM contador WHERE dia = '$dia'";
 		$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
@@ -642,5 +667,6 @@
 		mysqli_close($con);
         return $registre['tmp']; 
     }
+    
 
 ?>

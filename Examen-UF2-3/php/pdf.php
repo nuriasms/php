@@ -6,8 +6,8 @@
     
     // reference the Dompdf namespace
     use Dompdf\Dompdf;
-    $html = listadoPDF(); //ob_get_clean(); //muestra por pantalla
-
+    
+    $html = listadoPDF($_REQUEST['valor']); //ob_get_clean(); //muestra por pantalla
 
     // instantiate and use the dompdf class
     $dompdf = new Dompdf();

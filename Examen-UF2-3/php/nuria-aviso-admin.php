@@ -3,10 +3,7 @@
     require ('../php/funciones.php');
 	$usuario=validarSesionAbierta(); 
 
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-    }  
+    if(isset($_REQUEST["cerrar"])) cerrarSesion();
 ?>
 
 <!DOCTYPE html>

@@ -3,10 +3,7 @@
     require ('../php/funciones.php');
 	$usuario=validarSesionAbierta(); 
 
-    if(isset($_REQUEST["cerrar"])) 
-    {	
-        cerrarSesion();
-    }  
+    if(isset($_REQUEST["cerrar"])) cerrarSesion();
 ?>
 
 <!DOCTYPE html>
@@ -26,15 +23,7 @@
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
 			$opcio="menu3";
-			if (!validarTipoUsuario($usuario,'admin'))
-			{
-				$barra="privado";
-			}
-			else
-			{
-				$barra="admin";
-			}
-
+			$barra = (!validarTipoUsuario($usuario,'admin')) ? 'privado':'admin';
 			include ('../php/barra.php');
 		?>
 		<!-------------------------------------------ALTA NOTICIA------------------------------------>
@@ -57,7 +46,7 @@
 				{
 					$titulo = test_input($_REQUEST["titulo"]);
 					// comprueba que lleva solo letras y espacios
-					if (!preg_match("/^[a-zA-Z\. ,áéíóúAÉÍÓÚÑñ0123456789]*$/",$titulo)) 
+					if (!preg_match("/^[a-zA-Z\. ,áéíóúAÉÍÓÚÑñ0123456789\¿\?\!\¡]*$/",$titulo)) 
 					{
 						$tituloError = "<br><br>Solo admite texto plano"; 
 						$salir=false;
@@ -84,7 +73,7 @@
 				if ($salir)
 				{
 					$data=date('Y-m-d');
-					if (guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data))
+					if (guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data,$_REQUEST["activo"]))
 					{
 						echo "<script> window.location='look-alta-noticia.php'; </script>";
 						//header( "refresh:5;url=look-alta-noticia.php" );// da error igual 
@@ -117,6 +106,7 @@
 							<?php  $hoy = formatearFecha(date('d-m-Y'));?>
 							<label for="ffecha">Fecha: &nbsp;&nbsp;&nbsp;<?php echo $hoy;?></label>
 							<br><br><hr>
+							<input type="hidden" name="activo" value="0">
 							<button type="reset" name="reset" class="btn btn-danger" >Limpiar datos</button>
 							<button type="submit" name="enviar" class="btn btn-success" value="Enviar">Guardar noticia</button>
 						</form>

@@ -21,43 +21,43 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
 				<?php
-				$primero = 1;
+					$primero = 1;
 
-				$con = conectaBBDD();
-				$sql = "SELECT * FROM galeria";
-				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-								
-				while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
-				{	
-					if ($primero==1)
+					$con = conectaBBDD();
+					$sql = "SELECT * FROM galeria";
+					$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+									
+					while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)) 
+					{	
+						if ($primero==1)
+						{
+					
+						echo "<div class='item active'>";
+				
+						$primero = 5;    
+						}	
+						else
+						{
+					
+						echo "<div class='item'>";
+				
+					}
+					if ($origen=="look")
 					{
-				?>
-					<div class='item active'>
+        		?>
+						<img src="../<?php echo $registre['imagen'];?>" alt="<?php echo $registre['titulo'];?>" style="width:100%;">
 				<?php
-					$primero = 5;    
-					}	
+					}
 					else
 					{
 				?>
-					<div class='item'>
-				<?php
-          }
-          if ($origen=="look")
-          {
-        ?>
-						<img src="../<?php echo $registre['imagen'];?>" alt="<?php echo $registre['titulo'];?>" style="width:100%;">
-        <?php
-          }
-          else
-          {
-        ?>
 						<img src="<?php echo $registre['imagen'];?>" alt="<?php echo $registre['titulo'];?>" style="width:100%;">
-        <?php
-          }
+				<?php
+					}
 				?>
 						<div class="carousel-caption">
-						<h2 style="color:limegreen;font-weight:bolder"><?php echo $registre['titulo'];?></h2>
-						<h3 style="color:CHARTREUSE;font-weight:bolder"><?php echo $registre['descripcion'];?></h3>
+							<h2 style="color:limegreen;font-weight:bolder"><?php echo $registre['titulo'];?></h2>
+							<h3 style="color:CHARTREUSE;font-weight:bolder"><?php echo $registre['descripcion'];?></h3>
 						</div>
 					</div>
 				<?php    
@@ -76,25 +76,19 @@
 				</a>
 			</div>
 			<div class="textoPortada">
-        <?php
-          if ($origen=="look")
-          {
-        ?>
-            <img src="../img/s.png" hspace="5" style="float: left;">
-        <?php
-          }
-          else
-          {
-        ?>
-            <img src="img/s.png" hspace="5" style="float: left;">
-        <?php
-          }
-        ?>
+			<?php
+				if ($origen=="look")
+				{
+					echo "<img src='../img/s.png' hspace='5' style='float: left;'>";
+				}
+				else
+				{
+					echo "<img src='img/s.png' hspace='5' style='float: left;'>";
+				}
+			?>
 				<br><span>  omos una revista pensada para la mujer dinámica y femenina.
 				Nos centramos en la divulgación de pequeñas publicaciones relacionadas
 				con el estilo de vida de la mujer actual. Se trata de un espacio abierto
 				a todos los miembros de la comunidad LOOK que deseen compartir artículos relacionados.</span>
-				
-
 			</div>
 		</div>
