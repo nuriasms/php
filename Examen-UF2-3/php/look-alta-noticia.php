@@ -69,11 +69,19 @@
 					$ficheroError = "No se ha podido subir el fichero";
 					$salir=false;
 				}
+				if (!isset($_REQUEST["activo"]))
+				{
+					$active = 0;
+				}
+				else
+				{
+					$active = 1;
+				}
 
 				if ($salir)
 				{
 					$data=date('Y-m-d');
-					if (guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data,$_REQUEST["activo"]))
+					if (guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data,$active))
 					{
 						echo "<script> window.location='look-alta-noticia.php'; </script>";
 						//header( "refresh:5;url=look-alta-noticia.php" );// da error igual 
@@ -105,7 +113,18 @@
 							<br><br>
 							<?php  $hoy = formatearFecha(date('d-m-Y'));?>
 							<label for="ffecha">Fecha: &nbsp;&nbsp;&nbsp;<?php echo $hoy;?></label>
-							<br><br><hr>
+							<br>
+							<?php
+								if (validarTipoUsuario($usuario,'admin'))
+								{
+									echo "<span class='activar'>Activar artículo: <input class='rr' type='checkbox' name='activo' ></span>";
+								}
+								else
+								{
+									echo "<input type='hidden' name='activo' value='0'>";
+								}
+							?>
+							<br><hr>
 							<input type="hidden" name="activo" value="0">
 							<button type="reset" name="reset" class="btn btn-danger" >Limpiar datos</button>
 							<button type="submit" name="enviar" class="btn btn-success" value="Enviar">Guardar noticia</button>

@@ -12,6 +12,7 @@
 		<?php
 			require ('../html/head.html');
 		?>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
@@ -26,6 +27,7 @@
 			$barra = (!validarTipoUsuario($usuario,'admin')) ? 'privado':'admin';
 			include ('../php/barra.php');
 		?>
+		
 		<!------------------------------------MODIFICAR NOTICIA------------------------------------>
 		<?php
 
@@ -46,9 +48,9 @@
 					$nombreFichero=$registre['foto'];
 					$nombre=ucwords($registre['autor']);
 					$data=$registre['data'];
+					$active=$registre['activo'];
 				}
 			}
-
 			if(isset($_REQUEST["enviar"])) 
 			{	
 				if (empty($_REQUEST['titulo']))
@@ -76,16 +78,8 @@
 				{
 					$contenido = test_input($_REQUEST["contenido"]);
 				}
-
-				if (!isset($_REQUEST["activo"]))
-				{
-					$active = 0;
-				}
-				else
-				{
-					$active = 1;
-				}
-
+				$active = (!isset($_REQUEST["activo"])) ? 0 : 1;
+				
 				if ($salir)
 				{
 					
@@ -124,17 +118,42 @@
 							<?php
 								if (validarTipoUsuario($usuario,'admin'))
 								{
-									echo "<span class='activar'>Activar artículo: <input class='rr' type='checkbox' name='activo' ></span>";
+									if ($active==1)
+									{
+										echo "<span class='activar'>Activar artículo: <input class='rr' type='checkbox' name='activo' checked></span>";
+									}
+									else
+									{
+										echo "<span class='activar'>Activar artículo: <input class='rr' type='checkbox' name='activo' ></span>";
+									}
 								}
 							?>
 							<br><hr>
 							<button type="submit" name="enviar" class="btn btn-success" value="Enviar">Guardar noticia</button>
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#imatge">Ver fotografía</button>
 						</form>
 					</div>
 				</div>
 			<?php
 			}
 		?>
+		<!---------------------------------FOTO------------------------------------------------------>
+		<div id="imatge" class="modal fade" role="dialog">    
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img src='../img/look-22.png' width='40%'>
+					<br><br>
+					<h5 class="modal-title" style="text-align:center;"><?php echo $titulo;?></h5>
+				</div>
+				<div class="modal-body">
+					<img src='<?php echo $nombreFichero;?>' style="display:block;margin:auto;">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>    
+		</div>   
 		<!-----------------------------------PIE------------------------------------------------------>
 		<?php
 			$origen="look";
@@ -142,3 +161,4 @@
 		?>
 	</body>
 </html>
+

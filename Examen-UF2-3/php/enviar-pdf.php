@@ -23,7 +23,7 @@
         $mail->Port       = 587;                  // TCP port to connect to
         //Recipients
         $mail->setFrom('np.ifcd0210@gmail.com', 'ifcd0210');
-        $mail->addAddress('nuria-sms@live.com', 'Núria');     // Add a recipient
+        $mail->addAddress($_REQUEST['correo'], $_REQUEST['nom']);     // Add a recipient
         // Content
         $mail->isHTML(true); 
         if  ($_REQUEST["nom"]=="res")

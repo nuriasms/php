@@ -12,34 +12,34 @@
 		$respuesta=false;
 		$con = '';
 		// dades de configuració XAMPP
-		$ip = 'localhost';
+		/*$ip = 'localhost';
 		$usuari = 'prova';
 		$password = 'prova';
-        $db_name = 'prova';
+        $db_name = 'prova';*/
         
         // dades de configuració SERVER
-		/*$ip = 'formacio.obsea.es';
+		$ip = 'formacio.obsea.es';
 		$usuari = 'nuria';
 		$password = 'npons';
 		$db_name = 'nuria';
-		$port = '13308';*/
+		$port = '13308';
 
 		// connectem amb la db XAMPP
-        $con = mysqli_connect($ip,$usuari,$password,$db_name);
+        //$con = mysqli_connect($ip,$usuari,$password,$db_name);
         
         // connectem amb la db SERVER
-        //$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+        $con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
         
 		if (!$con)  
 		{
-			$html.= "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-			$html.= "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
 		}
 		else
 		{
 			if (!mysqli_set_charset($con,"utf8"))
 			{
-				$html.= "Ha fallat la lectura dels caracters utf8: " . mysqli_error($con);
+				echo "Ha fallat la lectura dels caracters utf8: " . mysqli_error($con);
 				exit();
 			} 
 		}
@@ -357,7 +357,7 @@
 		
 		$con = conectaBBDD();
         $tmp=mb_strtolower($nombre, 'UTF-8');
-		$sql="insert into noticies (idnoticia,titular,noticia,data,foto,autor,activo) values ('null','$titulo','$contenido','$data','$nombreFichero','$tmp','$activo')";
+		$sql="INSERT INTO noticies (idnoticia,titular,noticia,data,foto,autor,activo) VALUES (NULL,'$titulo','$contenido','$data','$nombreFichero','$tmp','$activo')";
 		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
 		$respuesta=true;	
 		
@@ -499,11 +499,11 @@
                 
         if ($total<1)
         {
-            $sql = "SELECT * FROM noticies limit 40";
+            $sql = "SELECT * FROM noticies WHERE activo=1 ORDER BY data DESC limit 40";
         }
         else
         {
-            $sql = "SELECT * FROM noticies n WHERE n.idnoticia IN (SELECT p.idnoticia FROM pdf p) ORDER BY data DESC";
+            $sql = "SELECT * FROM noticies n WHERE activo=1 AND n.idnoticia IN (SELECT p.idnoticia FROM pdf p) ORDER BY data DESC limit 40";
         }
         $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
     
@@ -667,6 +667,30 @@
 		mysqli_close($con);
         return $registre['tmp']; 
     }
-    
+    	/*----------------------------------------------------------------------------------------------*/
+    /* function buscaCorreo:                                                                       */
+    /* Busca el correo que se le indica en el argumento 						                    */
+    /*                                                                                              */
+    /* Argumentos: nombre usuario                                                                 */
+    /* Devuelve: true/false                                                                         */
+    /*----------------------------------------------------------------------------------------------*/    
+    function buscaCorreo($usuario)
+    {
+		$respuesta=false;
+		$sql = $consulta = $registre = $con = '';
+
+		$con = conectaBBDD();
+        $sql="SELECT correu FROM usuari WHERE nom = '$usuario'";
+		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+		
+		if (!empty($consulta))
+		{
+			$respuesta=true;
+			$registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
+		}	            
+		mysqli_close($con);
+		return $registre;            
+    }
+
 
 ?>

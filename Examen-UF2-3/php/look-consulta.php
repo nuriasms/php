@@ -40,20 +40,24 @@
 
 		if(isset($_REQUEST["seleccionar"])) 
 		{	
-			
-			$lista = $_REQUEST['articulos'];
-        	// dades de configuració
-        	$con = conectaBBDD();
-			foreach($lista as $idart)
-			{
-				$sql="insert into pdf (idnoticia) values ('$idart')";
-                $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+			if(isset($_REQUEST['articulos'])){
+				$lista = $_REQUEST['articulos'];
+				// dades de configuració
+				$con = conectaBBDD();
+				foreach($lista as $idart)
+				{
+					$sql="insert into pdf (idnoticia) values ('$idart')";
+					$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+				}
+				$sql = "SELECT COUNT(*) as total FROM pdf";
+				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+				$registre = mysqli_fetch_assoc($resultat);
+				$total = $registre['total'];	
+				mysqli_close($con);
 			}
-			$sql = "SELECT COUNT(*) as total FROM pdf";
-			$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-			$registre = mysqli_fetch_assoc($resultat);
-			$total = $registre['total'];	
-			mysqli_close($con);
+			else{
+				$total = 0;
+			}
 			echo "<script> window.location='pdf.php?valor=$total'; </script>";
 			//echo "<script> window.location='pdf.php?valor='".$total."'; </script>";
 			//header("Location: pdf.php");
@@ -75,8 +79,9 @@
 						<?php	
 							if (validarTipoUsuario($usuario,'admin') || validarTipoUsuario($usuario,'basic'))
 							{
+								$correo= buscaCorreo($usuario);
 						?>						
-								<a href="correo.php?nom=<?php echo $usuario;?>&url=../doc/Listado_noticias.pdf&fitxer=Listado_noticias.pdf" ><button type='button' class='glyphicon glyphicon-envelope redondo' title="Enviar PDF de noticias por correo"></button></a>																	
+								<a href="enviar-pdf.php?nom=<?php echo $usuario;?>&url=../doc/Listado_noticias.pdf&fitxer=Listado_noticias.pdf&correo=<?php echo $correo['correu'];?>" ><button type='button' class='glyphicon glyphicon-envelope redondo' title="Enviar PDF de noticias por correo"></button></a>																	
 						<?php	
 							}
 						?>

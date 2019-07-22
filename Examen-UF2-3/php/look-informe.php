@@ -94,10 +94,10 @@
                 <br>
                 <h4>Visitas por horas</h4>
                 <canvas id="myChart"></canvas>
-                <br><hr><br>
+                <br><hr>
                 <h4>Visitas por dias</h4>
                 <canvas id="myChart1"></canvas>
-                <br><hr><br>
+                <br><hr>
                 <h4>Comparativa por meses</h4>
                 <canvas id="myChart2"></canvas>
                 <br>

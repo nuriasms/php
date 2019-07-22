@@ -20,7 +20,7 @@
     }   
     else   
     {   
-        $sql = "INSERT INTO contador (id, ip, fecha, hora, horau, diau, aniou, dia) VALUES ('','$ip','$fecha','$hora','$horau','$diau','$aniou','$dia')";   
+        $sql = "INSERT INTO contador (id, ip, fecha, hora, horau, diau, aniou, dia) VALUES (NULL,'$ip','$fecha','$hora','$horau','$diau','$aniou','$dia')";   
         $es = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
     }   
     //creamos el condicionamiendo para logearlo o no.   
