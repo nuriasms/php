@@ -132,7 +132,7 @@
 		<div class="revista">
 		</div>
         <div id="registro">
-			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                 <div id="registroCab"> 
 					<h3>REGISTRO DE ALTA</h3>	
                 </div>  
