@@ -280,13 +280,22 @@ span.psw {
     font-weight: bold;
     color: #cca65d;
 }
-#registroCuerpo{
+#registroCuerpo,#registroCuerpoH {
     clear: both;
     padding:0 35px;
 }
-#registroCuerpo input{
-    position: absolute;
+#registroCuerpoH  input{
+   /*position: absolute;
+    left: 750px;*/
+    
+}
+#registroCuerpo label input{
+    position: relative;
     left: 740px;
+}
+#registroCuerpoH label{
+    /*position: absolute;
+    left: 570px;*/float: left;margin-right: 20px;
 }
 label{
     float: left;
@@ -301,7 +310,7 @@ label{
     position: absolute;
     left: 585px;
 }
-#registroCuerpo input[type=submit] {
+#registroCuerpo input[type=submit] ,#registroCuerpoH input[type=submit]{
     width: 430px;
     background-color: #4CAF50;
     color: white;
@@ -314,10 +323,10 @@ label{
     position: absolute;
     left: 540px;
 }
-#registroCuerpo input[type=submit]:hover {
+#registroCuerpo input[type=submit]:hover ,#registroCuerpoH input[type=submit]:hover{
     background-color: #39703b;
 }
-#registroCuerpo .nota{
+#registroCuerpo .nota,#registroCuerpoH .nota {
     font-style: italic;
     color:gray;
 }

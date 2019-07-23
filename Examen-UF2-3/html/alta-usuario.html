@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 	<html lang="en">
 	<head>
-		<?php
-			require ('head.html');
-		?>
-		<script src="https://code.jquery.com/jquery-3.2.1.js"></script><!--Enlace a jquery en lugar de descargar-->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="description" content="Consulta toda la información para la mujer en el suplemento de LOOK: Moda, tendencias, belleza, pareja, Lifestyle, vídeos  noticias de famosas. ¡Entra!">
+		<meta name="keywords" content="Look, revista online, revista look, belleza, trucos de belleza, consejos de belleza, tratamientos esteticos, maquillaje, peluqueria, perfumes, trucos de belleza de famosas,">
+		<meta http-equip="Expires" content="no-cache">
+		<link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+		<script src="../lib/js/jquery.min.js"></script>
+		<script src="../lib/js/bootstrap.min.js"></script>
+		<script src="../js/funciones.js"></script>
+		<title>LOOK</title>
+		<link rel="stylesheet" href="../css/style.css"> 
+		<!--script src="https://code.jquery.com/jquery-3.2.1.js"></script--><!--Enlace a jquery en lugar de descargar-->
 		<script src="../js/jquery.form.js" type="text/javascript"></script>
 		<script src="../js/jquery.validate.js" type="text/javascript"></script>
 
@@ -20,29 +31,23 @@
                 <div id="registroCab"> 
 					<h3>REGISTRO DE ALTA</h3>	
                 </div>  
-                <div id="registroCuerpo"> 
+                <div id="registroCuerpoH"> 
 					<hr>
 					<input type="hidden" name="nivel" value="basic">
-					<br>					
-					<label for="nombre">Nombre usuario: </label><input type="text" name="usuario" id="nombre" class="form-control" maxlength="30">
+					<label for="nombre">Nombre usuario: </label> <input type="text" name="usuario" id="nombre"  maxlength="30">
 					<br><br>
-  					<br>
-					<label for="nacimiento">Fecha nacimiento: </label><input type="date" name="nacimiento" id="nacimiento" class="form-control">
+					<label for="nacimiento">Fecha nacimiento: </label> <input type="date" name="nacimiento" id="nacimiento" >
 					<br><br>
-  					<br>
-					<label for="correo">Correo: </label><input type="email" name="correo" id="correo" class="form-control" maxlength="30">
+					<label for="correo">Correo: </label><input type="email" name="correo" id="correo" maxlength="30">
 					<br><br>
-					<br>
-                    <br>
-					<label for="contrasena1">Contraseña: </label><input type="password" name="contrasena" id="contrasena1" class="form-control" minlength="4" maxlength="8">	
+					<label for="contrasena1">Contraseña: </label><input type="password" name="contrasena" id="contrasena1" minlength="4" maxlength="8">	
 					<br><br>
-					<br>	
-					<label for="contrasena2">Repite contraseña: </label><input type="password" name="contrasena2" id="contrasena2" class="form-control" minlength="4" maxlength="8">	
+					<label for="contrasena2">Repite contraseña: </label><input type="password" name="contrasena2" id="contrasena2" minlength="4" maxlength="8" >	
 					<br><br>
 					<hr>                    
-					<label>Recordar usuario</label><input type="checkbox" name="recordar">
+					<span>Recordar usuario  </span><input type="checkbox" name="recordar">
 					<br><br>
-					<input type="submit" name="enviar" value="Alta usuario">
+					<input type="submit" class="submit" name="enviar" value="Alta usuario">
 					<br><br><br>
 					<span class="nota">Todos los campos son obligatorios para el alta de un nuevo usuario</span>
                 </div>				
@@ -50,73 +55,74 @@
 	
 		</div>
 		</div>
-		<script>
-				$(document).ready(function(){
-					jQuery.validator.setDefaults({
-						debug: true,
-						success: "valid"
-						});
-					$("#formulario-alta").validate({
-						event: "blur",rules: {	
-							usuario: {
-      									required: true,
-										maxlength: 30
-							},
-							nacimiento: {
-									required:true
-								 	date:true,
-							},
-							correo: {
-								required: true,
-								email: true
-							},
-							contrasena: {
-								required: true,
-								minlength: 4,
-								maxlength: 8
-							},
-							contrasena2: {
-								required: true,
-								minlength: 4,
-								maxlength: 8
-							},
-
-						messages: {'usuario': "Por favor indica tu nombre",
-									'correo': "Por favor, indica una direcci&oacute;n de e-mail v&aacute;lida",
-									'nacimiento': "Por favor, indica tu fecha de nacimiento!",
-									'contrasena':"Por favor, introduce la contraseña que desees",
-									'contrasena2':"Por favor, retipe la contraseña"},
-						debug: true,errorElement: "label",
-						submitHandler: function(form){
-							$("#alert").show();
-							$("#alert").html("<img src='../img/ajax-loader.gif' style='vertical-align:middle;margin:0 10px 0 0' /><strong>Enviando mensaje...</strong>");
-							setTimeout(function() {
-								$('#alert').fadeOut('slow');
-							}, 5000);
-							$.ajax({
-								type: "POST",
-								url:"../envio.php",
-								data: "usuario="+escape($('#usuario').val())+"&nacimiento="+escape($('#nacimiento').val())+"&correo="+escape($('#correo').val())+"&contrasena="+escape($('#contrasena1').val())+"&contrasena2="+escape($('#contrasena2').val()),
-								success: function(msg){
-									$("#alert").html(msg);
-									document.getElementById("usuario").value="";
-									document.getElementById("nacimiento").value="";
-									document.getElementById("correo").value="";
-									document.getElementById("contrasena").value="";
-									document.getElementById("contrasena2").value="";
-	
-									setTimeout(function() {
-										$('#alert').fadeOut('slow');
-									}, 5000);
-				
-								}
-							});
-						}
-					});
-				});
-			</script>
-	
 	
 	<!-------------------------------FIN -----------------------------------> 
 	</body>
 </html>
+
+<script>
+	$(document).ready(function(){
+		jQuery.validator.setDefaults({
+			debug: true,
+			success: "valid"
+			});
+		$("#formulario-alta").validate({
+			event: "blur",rules: {	
+				usuario: {
+							  required: true,
+							maxlength: 30
+				},
+				nacimiento: {
+						required:true,
+						 date:true
+				},
+				correo: {
+					required: true,
+					email: true
+				},
+				contrasena: {
+					required: true,
+					minlength: 4,
+					maxlength: 8
+				},
+				contrasena2: {
+					required: true,
+					minlength: 4,
+					maxlength: 8
+				},
+			},
+			messages: {'usuario': "Por favor indica tu nombre",
+						'correo': "Por favor, indica una direcci&oacute;n de e-mail v&aacute;lida",
+						'nacimiento': "Por favor, indica tu fecha de nacimiento!",
+						'contrasena':"Por favor, introduce la contraseña que desees",
+						'contrasena2':"Por favor, retipe la contraseña"},
+			debug: true,errorElement: "label",
+			submitHandler: function(form){
+				$("#alert").show();
+				$("#alert").html("<img src='../img/ajax-loader.gif' style='vertical-align:middle;margin:0 10px 0 0' /><strong>Enviando mensaje...</strong>");
+				setTimeout(function() {
+					$('#alert').fadeOut('slow');
+				}, 5000);
+				$.ajax({
+					type: "POST",
+					url:"../php/envio.php",
+					data: "nombre="+escape($('#usuario').val())+"&nacimiento="+escape($('#nacimiento').val())+"&correo="+escape($('#correo').val())+"&contrasena="+escape($('#contrasena1').val())+"&contrasena2="+escape($('#contrasena2').val()),
+					success: function(msg){
+						$("#alert").html(msg);
+						document.getElementById("usuario").value="";
+						document.getElementById("nacimiento").value="";
+						document.getElementById("correo").value="";
+						document.getElementById("contrasena").value="";
+						document.getElementById("contrasena2").value="";
+
+						setTimeout(function() {
+							$('#alert').fadeOut('slow');
+						}, 5000);
+	
+					}
+				});
+			}
+		});
+	});
+</script>
+
