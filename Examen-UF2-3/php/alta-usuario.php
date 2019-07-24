@@ -12,8 +12,11 @@
 	<body>
 		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
 	<!---------------------------------INICIO ---------------------------------->
-    <?php
-        //Inicializa variables
+	<?php
+	//https://mimentevuela.wordpress.com/2016/08/29/devolver-json-en-php-y-obtener-datos-con-ajax/
+	https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
+	
+	//Inicializa variables
         $usuario = $contrasena = $contrasena2 = $envio = $correo = $nacimiento = $id = "";
         $usuarioError = $contrasenaError1 = $contrasenaError2 = $contrasena2Error = $correoError = $nacimientoError = "";
 		$salir = $respuesta = true;
