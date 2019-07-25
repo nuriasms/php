@@ -3,16 +3,12 @@
 	require ('funciones.php');
 	//https://mimentevuela.wordpress.com/2016/08/29/devolver-json-en-php-y-obtener-datos-con-ajax/
 	//https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
-    
-    $jsondata = array();
-    $estat = true;
-    $resposta = '';
-
 
 	//Inicializa variables
     $usuario = $contrasena = $contrasena2 = $envio = $correo = $nacimiento = $id = "";
-    $usuarioError = $contrasenaError1 = $contrasenaError2 = $contrasena2Error = $correoError = $nacimientoError = "";
-	$respuesta = true;
+
+    $estat = true;
+    $resposta = ' ';
 
     if( isset($_REQUEST['usuario']) && isset($_REQUEST['nacimiento']) && isset($_REQUEST['correo']) && isset($_REQUEST['contrasena']) && isset($_REQUEST['contrasena2'])) {
 
@@ -98,6 +94,12 @@
 
             $estat = false;
 			$resposta .= "Contraseñas diferentes";
+        }
+        
+        if (($_REQUEST['nivel']) != "basiccccc") { 
+
+            $estat = false;
+			$resposta .= "Datos inconsistentes";
 		}
 			
 	    if ($estat==true) {
@@ -116,16 +118,30 @@
 		    }
         }
 
-        $jsondata['success']= $estat;
+        $jsondata = [
+            'estado' => $estat,
+            'msg' => $resposta, 
+            'nombre' => $nombre, 
+            'contrasena1' => $contrasena,
+            'correo' => $correo, 
+            'nacimiento' => $nacimiento
+        };
+            //Devolvemos el array pasado a JSON como objeto
+            //echo json_encode($datos, JSON_FORCE_OBJECT);
+
+
+        /*$jsondata['success']= $estat;
         $jsondata['msg']= $resposta;
         $jsondata['nombre']=$usuario;
         $jsondata['contrasena1']=$contrasena;
         $jsondata['nacimiento']=$nacimiento;
-        $jsondata['correo']=$correo;
+        $jsondata['correo']=$correo;*/
 
         //Aunque el content-type no sea un problema en la mayoría de casos, es recomendable especificarlo
         header('Content-type: application/json; charset=utf-8');
-        echo json_encode($jsondata);
+        echo json_encode($jsondata,JSON_FORCE_OBJECT);
+        //echo json_encode($jsondata);
+
         exit();
     }
      

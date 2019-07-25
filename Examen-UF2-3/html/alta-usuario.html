@@ -29,11 +29,11 @@
 		<div class="revista">
 		</div>
         <div id="registro">
-			<div class="alert alert-success" id="alert" style="display: none;"> &nbsp;</div>
+			<div class="alert alert-success" id="alert" style="display: none;"> &nbsp;</div> 
 			<form id="formulario-alta" method="post">
                 <div id="registroCab"> 
 					<h3>REGISTRO DE ALTA</h3>	
-                </div>  
+				</div> 
                 <div id="registroCuerpoH"> 
 					<hr>
 					<input type="hidden" name="nivel" value="basic">
@@ -96,25 +96,19 @@
 			
 					// realizamos el calculo
 					var edad = (ahora_ano + 1900) - ano;
-					if ( ahora_mes < mes )
-					{
+					if ( ahora_mes < mes ) {
 						edad--;
 					}
-					if ((mes == ahora_mes) && (ahora_dia < dia))
-					{
+					if ((mes == ahora_mes) && (ahora_dia < dia)) {
 						edad--;
 					}
-					if (edad > 1900)
-					{
+					if (edad > 1900) {
 						edad -= 1900;
 					}
 
-					if (edad >=18)
-					{
+					if (edad >=18) {
 						return true;
-					}
-					else
-					{
+					}else {
 						return false;
 					}
 				},	
@@ -130,8 +124,8 @@
 					},
 					'nacimiento': {
 							required:true,
-							 date:true,
-							 edad: true
+							date:true,
+							edad: true
 					},
 					'correo': {
 						required: true,
@@ -176,25 +170,32 @@
 						$("#alert").html("<img src='../img/ajax-loader.gif' style='vertical-align:middle;margin:0 10px 0 0' /><strong>Enviando mensaje...</strong>");
 						setTimeout(function() {
 							$('#alert').fadeOut('slow');
-						}, 6000);
+						}, 5000);
 					$.ajax({
 						type: "POST",
 						url:"../php/alta-usuario.php",
 						data: "usuario="+escape($('#nombre').val())+"&nacimiento="+escape($('#nacimiento').val())+"&correo="+escape($('#correo').val())+"&contrasena="+escape($('#contrasena1').val())+"&contrasena2="+escape($('#contrasena2').val())+"&nivel="+escape($('#nivel').val()),
-						success: function(msg){
-							$("#alert").html(msg);
-							document.getElementById("nombre").value="";
-							document.getElementById("nacimiento").value="";
-							document.getElementById("correo").value="";
-							document.getElementById("contrasena1").value="";
-							document.getElementById("contrasena2").value="";
-							location.replace("../index.php")
+						success: function(jsondata){
+							$("#alert").html(jsondata.estado);
+							/*if (respuesta.estado == true) {*/
+								
+            					document.getElementById("nombre").value="";
+								document.getElementById("nacimiento").value="";
+								document.getElementById("correo").value="";
+								document.getElementById("contrasena1").value="";
+								document.getElementById("contrasena2").value="";
+								//location.replace("../index.php");
+								//location.href ="../php/look.php";
+							/*}else{
+								document.getElementById("nombre").value=respuesta.usuario;
+								document.getElementById("nacimiento").value=respuesta.nacimiento;
+								document.getElementById("correo").value=respuesta.correo;
+								document.getElementById("contrasena1").value=respuesta.contrasena;
+							}*/
 							setTimeout(function() {
 								$('#alert').fadeOut('slow');
-							}, 6000);
-		
-						}
-					
+							}, 6000);		
+					}					
 					});
 				}
 			});
