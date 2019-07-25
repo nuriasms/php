@@ -69,7 +69,7 @@
 		        <br><br>
 		        <label><input type="checkbox" checked name="recordar"> Recordar usuario</label>
                 <br><br>
-				<a class="altaUsuario" href="alta-usuario.php">Registrar nuevo usuario</a>
+				<a class="altaUsuario" href="alta-usuario.html">Registrar nuevo usuario</a>
 				<br>
             </div>
 			<div class="loginPie">

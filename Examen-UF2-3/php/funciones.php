@@ -12,23 +12,23 @@
 		$respuesta=false;
 		$con = '';
 		// dades de configuració XAMPP
-		/*$ip = 'localhost';
+		$ip = 'localhost';
 		$usuari = 'prova';
 		$password = 'prova';
-        $db_name = 'prova';*/
+        $db_name = 'prova';
         
         // dades de configuració SERVER
-		$ip = 'formacio.obsea.es';
+		/*$ip = 'formacio.obsea.es';
 		$usuari = 'nuria';
 		$password = 'npons';
 		$db_name = 'nuria';
-		$port = '13308';
+		$port = '13308';*/
 
 		// connectem amb la db XAMPP
-        //$con = mysqli_connect($ip,$usuari,$password,$db_name);
+        $con = mysqli_connect($ip,$usuari,$password,$db_name);
         
         // connectem amb la db SERVER
-        $con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
+        //$con = mysqli_connect($ip,$usuari,$password,$db_name,$port);
         
 		if (!$con)  
 		{

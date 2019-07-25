@@ -144,8 +144,6 @@
 					},
 					'contrasena2': {
 						required: true,
-						minlength: 4,
-						maxlength: 8,
 						equalTo: "#contrasena1"
 					},
 				},
@@ -170,21 +168,19 @@
 							},
 							'contrasena2': {
 								required: "Por favor, retipe la contraseña"},
-								minlength: "La longitud mínima es 4",
-								maxlength: "La longitud máxima es 8",
 								equalTo: "Las contraseñas no coinciden"
 							},
 				debug: true,errorElement: "label",				
 				submitHandler: function(form){
-					$("#alert").show();
-					$("#alert").html("<img src='../img/ajax-loader.gif' style='vertical-align:middle;margin:0 10px 0 0' /><strong>Enviando mensaje...</strong>");
-					setTimeout(function() {
-						$('#alert').fadeOut('slow');
-					}, 5000);
+						$("#alert").show();
+						$("#alert").html("<img src='../img/ajax-loader.gif' style='vertical-align:middle;margin:0 10px 0 0' /><strong>Enviando mensaje...</strong>");
+						setTimeout(function() {
+							$('#alert').fadeOut('slow');
+						}, 6000);
 					$.ajax({
 						type: "POST",
 						url:"../php/alta-usuario.php",
-						data: "usuario="+escape($('#nombre').val())+"&nacimiento="+escape($('#nacimiento').val())+"&correo="+escape($('#correo').val())+"&contrasena="+escape($('#contrasena1').val()),
+						data: "usuario="+escape($('#nombre').val())+"&nacimiento="+escape($('#nacimiento').val())+"&correo="+escape($('#correo').val())+"&contrasena="+escape($('#contrasena1').val())+"&contrasena2="+escape($('#contrasena2').val())+"&nivel="+escape($('#nivel').val()),
 						success: function(msg){
 							$("#alert").html(msg);
 							document.getElementById("nombre").value="";
@@ -192,12 +188,13 @@
 							document.getElementById("correo").value="";
 							document.getElementById("contrasena1").value="";
 							document.getElementById("contrasena2").value="";
-	
+							location.replace("../index.php")
 							setTimeout(function() {
 								$('#alert').fadeOut('slow');
-							}, 5000);
+							}, 6000);
 		
 						}
+					
 					});
 				}
 			});
