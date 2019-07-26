@@ -106,14 +106,14 @@
     /*----------------------------------------------------------------------------------------------*/
     function guardarCookie($usuario,$contrasena,$recordar)
     {
-       // if ($recordar == 1)
-		//{
+        if ($recordar == 1)
+		{
 			//$tmp=strtolower($usuario);
 			$tmp = mb_strtolower($usuario, 'UTF-8');
             $psw=md5(sha1($contrasena));
 			setcookie("usuario",$tmp,strtotime( '+30 days' ),"/",false, false);
             setcookie("contrasena",$psw,strtotime( '+30 days' ),"/",false, false);   
-       // }
+        }
     }
     /*----------------------------------------------------------------------------------------------*/
     /* function iniciarSesion:                                                                      */
@@ -147,7 +147,9 @@
             {
                 if (!$tmp=validarUsuario($_SESSION['nombre_usuario'],$_SESSION['contrasena']))
                 {		
-                    header("Location: ../index.php");										
+                    //header("Location: ../index.php");
+                   // header("Location: index.php");										
+										
                 }
                 else
                 {
@@ -162,14 +164,14 @@
                 } 
                 else
                 {
-                    header("Location: ../index.php");
+                    //header("Location: index.php");
                 }    
             }
             return $nombre;
         }
         else
         {
-            header("Location: ../index.php");
+            //header("Location: index.php");
         }
     } 
     /*----------------------------------------------------------------------------------------------*/
@@ -270,13 +272,18 @@
 		
         $con = conectaBBDD();
 		//$tmp=strtolower($nombre);
-		$tmp = mb_strtolower($nombre, 'UTF-8');
-		//$tmp = html_entity_decode($minusc, ENT_QUOTES | ENT_HTML401, "UTF-8");
-        $tmp_psw=md5(sha1($contrasena));
-		$sql="insert into usuari (nom,naixement,correu,contrasenya,nivell) values ('$tmp','$edad','$correo','$tmp_psw','$nivel')";
-		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
-		$respuesta=true;	
-		
+        $tmp = mb_strtolower($nombre, 'UTF-8');
+        
+        $sql="SELECT nom FROM usuari WHERE nom = '$tmp'";
+		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
+		if (mysqli_num_rows($consulta) == 0)
+		{
+            //$tmp = html_entity_decode($minusc, ENT_QUOTES | ENT_HTML401, "UTF-8");
+            $tmp_psw=md5(sha1($contrasena));
+            $sql="INSERT into usuari (nom,naixement,correu,contrasenya,nivell) values ('$tmp','$edad','$correo','$tmp_psw','$nivel')";
+            $consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
+            $respuesta=true;	
+        }
 		mysqli_close($con);
 		return $respuesta;
 	}

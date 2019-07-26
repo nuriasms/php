@@ -255,7 +255,7 @@ span.psw {
 /*------------------------------------Alta usuario----------------------------------------*/
 .recuadro{
     width: 935px;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 20px;
 }
 .revista{
@@ -272,7 +272,7 @@ span.psw {
     float: left;
     border-top: 1.5px solid #c9c8c8;
     border-right: 1.5px solid #c9c8c8;
-    border-bottom: 1.5px solid #c9c8c8;
+    /*border-bottom: 1.5px solid #c9c8c8;*/
 }
 
 #registroCab h3{  
@@ -311,7 +311,7 @@ label{
     left: 585px;
 }
 #registroCuerpo input[type=submit] ,#registroCuerpoH input[type=submit]{
-    width: 430px;
+    width: 380px;
     background-color: #4CAF50;
     color: white;
     font-size: 16px;
@@ -320,8 +320,9 @@ label{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    position: absolute;
-    left: 540px;
+    /*position: absolute;
+    left: 540px;*/
+    
 }
 #registroCuerpo input[type=submit]:hover ,#registroCuerpoH input[type=submit]:hover{
     background-color: #39703b;

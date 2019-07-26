@@ -1,8 +1,6 @@
 <?php
     session_start();
 	require ('funciones.php');
-	//https://mimentevuela.wordpress.com/2016/08/29/devolver-json-en-php-y-obtener-datos-con-ajax/
-	//https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
 
 	//Inicializa variables
     $usuario = $contrasena = $contrasena2 = $envio = $correo = $nacimiento = $id = "";
@@ -15,7 +13,7 @@
 
             $usuario = test_input($_REQUEST["usuario"]);
 			// comprueba que lleva solo letras y espacios
-			if (!preg_match("/^[a-zA-Z áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ·\-]*$/",$usuario)) { 
+			if (!preg_match("/^[0-9a-zA-Z áéíóúÁÉÍÓÚÑñàèòÀÈÒçÇ·\-]*$/",$usuario)) { 
                    
                 $estat = false;
 				$resposta .= "Solo admite letras y espacios en blanco";
@@ -111,7 +109,7 @@
 
 		    } else{
                 $resposta .= "Alta correcta";
-                 guardarCookie($_REQUEST['usuario'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
+                guardarCookie($_REQUEST['usuario'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
                 iniciarSesion($_REQUEST['usuario'],$_REQUEST['contrasena']);
                
             } 
