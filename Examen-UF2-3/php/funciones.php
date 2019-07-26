@@ -278,7 +278,7 @@
 		$respuesta=true;	
 		
 		mysqli_close($con);
-		return $respuesta;	
+		return $respuesta;
 	}
 
     /*----------------------------------------------------------------------------------------------*/

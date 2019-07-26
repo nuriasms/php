@@ -15,10 +15,10 @@
 		<script src="../js/funciones.js"></script>
 		<title>LOOK</title>
 		<link rel="stylesheet" href="../css/style.css"> 
-		<!--script src="https://code.jquery.com/jquery-3.2.1.js"></script--><!--Enlace a jquery en lugar de descargar-->
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script><!--Enlace a jquery en lugar de descargar-->
 		<!--script src="../js/jquery.form.js" type="text/javascript"></script>
 		<script src="../js/jquery.validate.js" type="text/javascript"></script-->
-			<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+			<!--script src="https://code.jquery.com/jquery-1.11.1.min.js"></script-->
 			<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
@@ -29,14 +29,14 @@
 		<div class="revista">
 		</div>
         <div id="registro">
-			<div class="alert alert-success" id="alert" style="display: none;"> &nbsp;</div> 
+			<div class="alert alert-success" id="alert" style="display: none;text-align: center;"> &nbsp;</div> 
 			<form id="formulario-alta" method="post">
                 <div id="registroCab"> 
 					<h3>REGISTRO DE ALTA</h3>	
 				</div> 
                 <div id="registroCuerpoH"> 
 					<hr>
-					<input type="hidden" name="nivel" value="basic">
+					<input type="hidden" name="nivel" id="nivel" value="basic">
 					<label for="nombre">Nombre usuario: </label> <input type="text" name="usuario" id="nombre"  maxlength="30">
 					<br><br>
 					<label for="nacimiento">Fecha nacimiento: </label> <input type="date" name="nacimiento" id="nacimiento" >
@@ -166,36 +166,64 @@
 							},
 				debug: true,errorElement: "label",				
 				submitHandler: function(form){
+						if ( $('#alert').hasClass('alert-danger'))
+						{
+							$('#alert').removeClass('alert-danger');
+							$('#alert').addClass('alert-success');
+						}
 						$("#alert").show();
 						$("#alert").html("<img src='../img/ajax-loader.gif' style='vertical-align:middle;margin:0 10px 0 0' /><strong>Enviando mensaje...</strong>");
 						setTimeout(function() {
 							$('#alert').fadeOut('slow');
-						}, 5000);
+						}, 3000);
 					$.ajax({
 						type: "POST",
 						url:"../php/alta-usuario.php",
+						//dataType: 'JSON', //'html', //Para enviar y recibir con una estruccura simple
 						data: "usuario="+escape($('#nombre').val())+"&nacimiento="+escape($('#nacimiento').val())+"&correo="+escape($('#correo').val())+"&contrasena="+escape($('#contrasena1').val())+"&contrasena2="+escape($('#contrasena2').val())+"&nivel="+escape($('#nivel').val()),
 						success: function(jsondata){
-							$("#alert").html(jsondata.estado);
-							/*if (respuesta.estado == true) {*/
-								
+							console.log("hola");
+							console.log(jsondata);
+							console.log(jsondata.msg);
+							console.log(jsondata.estado);	
+							console.log(jsondata.nombre);						
+							//$("#alert").html(jsondata.msg);
+
+							if (jsondata.estado) {
+								console.log("hola2");
+								$("#alert").html(jsondata.msg);
+								setTimeout(function() {
+									$('#alert').fadeOut('slow');
+								}, 9000);		
             					document.getElementById("nombre").value="";
 								document.getElementById("nacimiento").value="";
 								document.getElementById("correo").value="";
 								document.getElementById("contrasena1").value="";
 								document.getElementById("contrasena2").value="";
-								//location.replace("../index.php");
+								location.replace("../php/look.php");
 								//location.href ="../php/look.php";
-							/*}else{
-								document.getElementById("nombre").value=respuesta.usuario;
-								document.getElementById("nacimiento").value=respuesta.nacimiento;
-								document.getElementById("correo").value=respuesta.correo;
-								document.getElementById("contrasena1").value=respuesta.contrasena;
-							}*/
-							setTimeout(function() {
-								$('#alert').fadeOut('slow');
-							}, 6000);		
-					}					
+							}else{
+								if ( $('#alert').hasClass('alert-success'))
+								{
+									$('#alert').removeClass('alert-success');
+									$('#alert').addClass('alert-danger');
+								}
+								$("#alert").html(jsondata.msg);	
+								setTimeout(function() {
+									$('#alert').fadeOut('slow');
+								}, 9000);		
+							}
+						},
+						// Ya lo hace en el inicio el reloj
+						//beforeSend: function(){
+							//this will be triggered before sending the ajax request
+							//console.log('Enviando datos desde AJAX ...');
+						//},
+						error: function(xhr, status, error){
+         					var errorMessage = xhr.status + ': ' + xhr.statusText;
+							//this will be triggered when the request fails
+							console.log('Codigo estado del envío: ' + errorMessage);//200 es correcto OK
+						}					
 					});
 				}
 			});

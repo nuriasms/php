@@ -1,5 +1,5 @@
 <?php
-	session_start();
+    session_start();
 	require ('funciones.php');
 	//https://mimentevuela.wordpress.com/2016/08/29/devolver-json-en-php-y-obtener-datos-con-ajax/
 	//https://cybmeta.com/ajax-con-json-y-php-ejemplo-paso-a-paso
@@ -11,7 +11,6 @@
     $resposta = ' ';
 
     if( isset($_REQUEST['usuario']) && isset($_REQUEST['nacimiento']) && isset($_REQUEST['correo']) && isset($_REQUEST['contrasena']) && isset($_REQUEST['contrasena2'])) {
-
         if( !empty($_REQUEST["usuario"]) ) {
 
             $usuario = test_input($_REQUEST["usuario"]);
@@ -96,53 +95,47 @@
 			$resposta .= "Contraseñas diferentes";
         }
         
-        if (($_REQUEST['nivel']) != "basiccccc") { 
+        if (($_REQUEST['nivel']) != "basic") { 
 
             $estat = false;
 			$resposta .= "Datos inconsistentes";
 		}
-			
+			  
+            
 	    if ($estat==true) {
 		    $respuesta=altaUsuario($usuario,$nacimiento,$correo,$contrasena,$_REQUEST['nivel']);
 		    if (!$respuesta){
 
                 $estat = false;
-                $resposta .= "No se ha dado de alta";
+                $resposta .= "Este nombre de usuario ya existe";
 
-		    }
-		    else{
-
-                $resposta = "Alta correcta";
-			    guardarCookie($_REQUEST['usuario'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
+		    } else{
+                $resposta .= "Alta correcta";
+                 guardarCookie($_REQUEST['usuario'],$_REQUEST['contrasena'],$_REQUEST['recordar']);
                 iniciarSesion($_REQUEST['usuario'],$_REQUEST['contrasena']);
-		    }
+               
+            } 
         }
-
-        $jsondata = [
+              
+        $jsondata = array(
             'estado' => $estat,
-            'msg' => $resposta, 
-            'nombre' => $nombre, 
+            'msg' => $resposta,
+            'nombre' => $usuario, 
             'contrasena1' => $contrasena,
             'correo' => $correo, 
             'nacimiento' => $nacimiento
-        };
-            //Devolvemos el array pasado a JSON como objeto
-            //echo json_encode($datos, JSON_FORCE_OBJECT);
+        );
+        //Devolvemos el array pasado a JSON como objeto
+        //echo json_encode($datos, JSON_FORCE_OBJECT);
 
-
-        /*$jsondata['success']= $estat;
-        $jsondata['msg']= $resposta;
-        $jsondata['nombre']=$usuario;
-        $jsondata['contrasena1']=$contrasena;
-        $jsondata['nacimiento']=$nacimiento;
-        $jsondata['correo']=$correo;*/
+       // header('Content-Type: application/json');
+       header('Content-type: application/json; charset=utf-8');
 
         //Aunque el content-type no sea un problema en la mayoría de casos, es recomendable especificarlo
-        header('Content-type: application/json; charset=utf-8');
-        echo json_encode($jsondata,JSON_FORCE_OBJECT);
-        //echo json_encode($jsondata);
-
-        exit();
-    }
+        echo json_encode($jsondata);
+     
+        exit;
+    
+  }
      
 ?> 
