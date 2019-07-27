@@ -38,6 +38,8 @@
 		<!--------------------------------SELECCION Noticias----------------------------------------->
 		<?php
 
+		$consulta = $sql = $lista = $registre = $resultat = $total = "";
+
 		if(isset($_REQUEST["seleccionar"])) 
 		{	
 			if(isset($_REQUEST['articulos'])){

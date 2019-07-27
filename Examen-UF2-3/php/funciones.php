@@ -147,8 +147,7 @@
             {
                 if (!$tmp=validarUsuario($_SESSION['nombre_usuario'],$_SESSION['contrasena']))
                 {		
-                    //header("Location: ../index.php");
-                   // header("Location: index.php");										
+                   header("Location: ../index.php");										
 										
                 }
                 else
@@ -164,14 +163,14 @@
                 } 
                 else
                 {
-                    //header("Location: index.php");
+                    header("Location: ../index.php");
                 }    
             }
             return $nombre;
         }
         else
         {
-            //header("Location: index.php");
+            header("Location: ../index.php");
         }
     } 
     /*----------------------------------------------------------------------------------------------*/

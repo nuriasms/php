@@ -22,18 +22,20 @@
             } else {
 
                 guardarCookie(strtolower($_REQUEST['nombre']),$_REQUEST['contrasena'],$_REQUEST['recordar']);
-                if (iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']))
-                {
-                    if (($_REQUEST['origen'])=="consulta")
+                iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']);
+                
+                    if ($_REQUEST['origen']=="consulta")
                     {
                         $fitxer="look.php";
+                        //header("Location:php/look.php");
                     }
                     else
                     {
                         $fitxer="php/look.php";
+                        //header("Location:look.php");
                     }                    
-                   
-                }
+                   // exit;
+                
             }
         }
 

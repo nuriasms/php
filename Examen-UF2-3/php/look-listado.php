@@ -82,8 +82,8 @@
 				}
 				$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
 		?>
-				<div id="recuadrolistado">
-					<div id="registrolistado" >
+				<div class="recuadrolistado">
+					<div class="registrolistado" >
 						<h3>Listado de noticias</h3>
 						<hr>
 						<table id="listadoNoticias">
@@ -142,10 +142,15 @@
 			}
 			if (!$vacio)
 			{
-				echo "<h3 style='color:red;text-align:center;padding:50px 0'>";
-                	echo "No se ha encontrado ninguna noticia.";
-            	echo "</h3>";
-				 
+		?>
+				<div class='recuadrolistado'>
+					<div class='registrolistado' >
+						<h3>Listado de noticias</h3>
+						<h3 style='color:red;text-align:center;padding:40px 0'><?php echo ucwords($usuario); ?>, no has publicado ningún artículo.</h3>
+						<h5 style='text-align:center;padding-bottom:30px'> Esperamos poder leerlo pronto </h5>
+					</div>
+				</div>
+		<?php
 			}
 			mysqli_close($con);
 		?>

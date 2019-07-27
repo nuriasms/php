@@ -464,7 +464,7 @@ td {
     width: 300px;
     word-wrap: break-word;
 }
-#registrolistado{
+.registrolistado{
     width: 850px;
     height: auto;
     margin: auto;
@@ -472,7 +472,7 @@ td {
     background-color: #bdbbbbcc;/*#bdbbbbcc;*/
     padding: 5px 30px; 
 }
-#recuadrolistado{
+.recuadrolistado{
     width: 90%;    
     margin:0 auto;
     padding: 50px 0;    

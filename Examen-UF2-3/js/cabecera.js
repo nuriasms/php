@@ -9,7 +9,7 @@ $(document).ready(function(){
 		rules: {	
 			'nombre': {
 				required: true,
-				maxlength: 20,
+				maxlength: 20
 			},
 			'contrasena': {
 				required: true,
@@ -42,11 +42,11 @@ $(document).ready(function(){
 			}, 3000);
 		    $.ajax({
 				type: "POST",
-				url:"php/cabecera.php",
-				data: "nombre="+escape($('#nombre').val())+"&contrasena="+escape($('#contrasena').val())+"&recordar="+escape($('#recordar').val())+"&origen=inicio",
+				url: (lugar == "inicio") ? "php/cabecera.php" : "cabecera.php",
+				data: "nombre="+escape($('#nombre').val())+"&contrasena="+escape($('#contrasena').val())+"&recordar="+escape($('#recordar').val())+"&origen="+escape($('#origen').val()),
 				success: function(jsondata){
-					console.log(jsondata);
-					console.log(jsondata.msg);
+					//console.log(jsondata.msg);
+					console.log(JSON.stringify(jsondata));
 					//$("#alert").html(jsondata.msg);
 
 					if (jsondata.estado) {

@@ -33,7 +33,7 @@
 			$titulo = $contenido = $nombreFichero = $nombre = $data= "";
 			$tituloError = $ficheroError = $autorError = $contenidoError = "";
 			$salir=true;
-			$nombre=$_COOKIE['usuario'];
+			$nombre=$usuario;
 
 			if(isset($_REQUEST["enviar"])) 
 			{	
@@ -64,22 +64,26 @@
 				}
 
 				$nombreFichero=validarFichero();
-				if (empty($nombreFichero))
-				{
+				if (empty($nombreFichero)) {
+
 					$ficheroError = "No se ha podido subir el fichero";
 					$salir=false;
 				}
-				if (!isset($_REQUEST["activo"]))
-				{
-					$active = 0;
-				}
-				else
-				{
-					$active = 1;
-				}
+				if (validarTipoUsuario($usuario,'admin')){
 
-				if ($salir)
-				{
+					if (!isset($_REQUEST["activo"]))
+										{
+						$active = 0;
+					} else{
+
+						$active = 1;
+					}
+				} else {
+					$active = 0;
+				}			
+
+				if ($salir)	{
+
 					$data=date('Y-m-d');
 					if (guardarNoticia($titulo,$contenido,$nombreFichero,$nombre,$data,$active))
 					{

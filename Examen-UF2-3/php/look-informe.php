@@ -87,8 +87,8 @@
             $diciembreV = cuentaDatosMes('contador','fecha',12);
 			
 		?>
-		<div id="recuadrolistado">
-			<div id="registrolistado" >						
+		<div class="recuadrolistado">
+			<div class="registrolistado" >						
                 <h1>Informe visitas en la web</h1>
                 <h3>Total visitas: <?php echo "$totalVisitas";?></h3>
                 <br>
