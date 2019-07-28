@@ -24,7 +24,7 @@ function cargar(activar)
 	/* Al tratarse de dos pestañas pone el estado directamente*/
 	document.getElementById(activar).className="active";	
 }
-function comprobarNombre(valor)
+function comprobarNombre(valor,origen)
 {
     if(document.forms[0].nombre.value.length<1)
     {
@@ -34,12 +34,21 @@ function comprobarNombre(valor)
     {
         if (valor=='passwd')
         {
-            window.location.href="../php/enviar-passwd.php?nom="+document.forms[0].nombre.value;
-        }
+			if (origen=='consulta') {
+            	window.location.href="../php/enviar-passwd.php?nom="+document.forms[0].nombre.value;
+			}else {
+				window.location.href="php/enviar-passwd.php?nom="+document.forms[0].nombre.value;
+			}
+
+		}
         else
         {
-            window.location.href="../php/enviar-token.php?nom="+document.forms[0].nombre.value;
-        }
+			if (origen=='consulta') {
+            	window.location.href="../php/enviar-token.php?nom="+document.forms[0].nombre.value;
+			}else {
+            	window.location.href="php/enviar-token.php?nom="+document.forms[0].nombre.value;
+			}
+		}
     }
 }
 

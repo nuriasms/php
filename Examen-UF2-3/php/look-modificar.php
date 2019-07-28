@@ -35,7 +35,7 @@
 			$titulo = $contenido = $nombreFichero = $nombre = $data = $registre = $id = "";
 			$tituloError = $ficheroError = $autorError = $contenidoError = "";
 			$salir=true;
-			$nombre=$_COOKIE['usuario'];
+			$nombre=$usuario;
 
 			if(isset($_REQUEST["modificar"])) 
 			{	

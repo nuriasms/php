@@ -34,7 +34,6 @@
 		?>
 		<!---------------------------------BARRA NAVEGACIÓN------------------------------------------>
 		<?php
-			$opcio="menu1";
 			$barra="inicio";
 			include ('php/barra.php');
 		?>

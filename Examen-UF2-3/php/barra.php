@@ -21,6 +21,10 @@
                         echo "<li class='inactive'><a href='../index.php'>Inicio</a></li>";
                         echo "<li class='active'><a href='look-consulta.php'>Consulta noticias</a></li>";
                         break;
+                    case 'token': 
+                        echo "<li class='active'><a href='../index.php'>Inicio</a></li>";
+                        echo "<li class='inactive'><a href='look-consulta.php'>Consulta noticias</a></li>";
+                        break;
                     case 'privado':
                         switch ($opcio)                
                         { 

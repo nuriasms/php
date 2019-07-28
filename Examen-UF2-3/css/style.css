@@ -522,17 +522,6 @@ td a .glyphicon:hover{
     font-weight: bold;
 }
 /*----------------------------------FORMULARI TOKEN ----------------------------------*/
-.token{
-    margin: 0 auto;
-    width: 90%;
-    height: 340px;
-    padding: 30px 30px 30px  23%;/*230px;*/
-    border: 2px solid gray;
-}
-.token h2{
-    font-weight: bolder;
-    color: gray;
-}
 .token input[type=submit]{
     border-radius: 45%;
     box-shadow: -5px -5px 15px #4b4a4a inset;
@@ -540,8 +529,15 @@ td a .glyphicon:hover{
     color:white;
 }
 .token input[type=submit]:hover{
-    color:black
+    color:black;
 }
+.token{
+    background-color: #bdbbbbea;/*#bdbbbbcc;*/
+}
+.token form{
+    margin: 50px 0 20px 100px;
+}
+
 
 
 

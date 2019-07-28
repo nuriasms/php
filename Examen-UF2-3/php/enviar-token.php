@@ -36,7 +36,8 @@
 		}
 
 		//obtindre correu
-		$nom=strtolower($_REQUEST["nom"]);
+		$nom=mb_strtolower($_REQUEST["nom"], 'UTF-8');
+		//$nom=strtolower($_REQUEST["nom"]);
         $sql = "SELECT * FROM usuari WHERE nom='$nom'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 		$registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
@@ -75,13 +76,25 @@
                     <br>Per restablir la contrasenya, visiteu l’enllaç següent: <a href="'.$resetPassLink.'">LINK recuperació</a>
                     <br><br>Salutacions,
                     <br><br>LOOK';
-            $mail->send();
-            echo '<br><br><h2>Correu enviat! Tens dues hores per activar la compta</h2>';
+			$mail->send();
+			echo "<html>";
+            	echo "<h1 style='font-size:55px;font-family:century;text-align:center;padding-top:100px'>LOOK</h1>";
+            	echo "<h2 style='color:blue;text-align:center;padding:50px 0'>Correu enviat! Tens dues hores per activar la compta</h2>";
+            	echo "<a href='../index.php'><p style='text-align:center'>Volver al inicio</p></a>";
+        	echo "</html>";   
+
+            //echo '<br><br><h2>Correu enviat! Tens dues hores per activar la compte</h2>';
         } 
     
         catch (Exception $e) 
         {
-            echo "No s’ha pogut enviar el missatge. Error de Mailer: {$mail->ErrorInfo}";
+			echo "<html>";
+            	echo "<h1 style='font-size:55px;font-family:century;text-align:center;padding-top:100px'>LOOK</h1>";
+            	echo "<h2 style='color:blue;text-align:center;padding:50px 0'>No s’ha pogut enviar el missatge. Error de Mailer: {$mail->ErrorInfo}</h2>";
+            	echo "<a href='../index.php'><p style='text-align:center'>Volver al inicio</p></a>";
+        	echo "</html>";   
+
+            //echo "No s’ha pogut enviar el missatge. Error de Mailer: {$mail->ErrorInfo}";
         }    
 	}
 ?>

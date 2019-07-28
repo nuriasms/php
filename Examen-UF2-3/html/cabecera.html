@@ -52,9 +52,9 @@
             <br>
             <label><br>¿Has olvidado tu contraseña?</label>                        
             <label class="normal">
-        	    <a class="altaUsuario" onClick="comprobarNombre('passwd'); return false;" href="#">Recibe una nueva </a>
+        	    <a class="altaUsuario" onClick="comprobarNombre('passwd','<?php echo $origen; ?>'); return false;" href="#">Recibe una nueva </a>
              o bien
-        	    <a class="altaUsuario" onClick="comprobarNombre('token'); return false;" href="#"> un token</a>
+        	    <a class="altaUsuario" onClick="comprobarNombre('token','<?php echo $origen; ?>'); return false;" href="#"> un token</a>
             <br><br></label>
             <br>
             <label>
