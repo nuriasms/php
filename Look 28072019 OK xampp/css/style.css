@@ -1,0 +1,545 @@
+
+body{
+    margin: 0 auto;
+	font-family: verdana;
+}
+/*----------------------------CABECERA---------------------------------------------------*/
+header h1{
+    font-family: century;
+    font-size: 55px;
+    text-align: center;
+}
+.clear{
+	clear: both;
+}
+.barraUsuari{
+    list-style:none;
+    margin:0;
+    padding:0;
+    position: absolute;
+    top: 40px;
+    right: 45px;
+  }
+.barraUsuari li{
+    float: right; 
+    margin: 0 2px;  
+}
+.glyphicon{
+    color:DARKGRAY;
+    font-size: 25px; 
+}
+.glyphicon:hover{
+    color:black;  
+}
+.nomUsuari{
+    font-size: 15px;
+    margin-top: 6px;
+}
+.nada{
+    border: none;
+    background: transparent;
+}
+/*-----------------------------------------BARRA MENU----------------------------*/
+.navbar {
+    border: none;
+}
+.navbar-nav{
+    position: relative; 
+    left: 50%;
+}
+.navbar-nav li{
+    position: relative; 
+    right: 50%;
+}
+.nav .active a, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .container-fluid .nav li a:hover{
+    background-color:white;
+    font-weight: bolder;
+}
+.navbar-nav>.active>a:hover, .container-fluid .nav li a:hover, .navbar-nav>.active>a{
+    font-weight: bolder;
+}
+.container-fluid {
+	background-color:white; /*Color fons de la barra de navegació*/
+}
+.cerrar li h4{
+    padding-top: 3px;
+}
+/*-------------------------PORTADA---------------------------------------------------------*/
+.fotoPortada{
+    width: 90%;
+    height: 520px;
+    background-image: url("../img/revista33.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.fotoPortada h1{
+    color:white;
+    font-weight: bolder;
+    text-align: center;
+    position: relative;
+    top: 260px;
+}
+.fotoPortada span{
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.textoPortada{
+    padding: 40px;
+    color:gray;
+    border-bottom: 2px solid gray;
+    text-align: justify;
+}
+.gigante{
+    font-size: 70px;
+}
+/*-------------------------------------LOGIN----------------------------------------------------*/
+.loginIndex input[type=text], .loginIndex input[type=password] {
+    width: 320px;
+    padding: 12px 0 12px 10px;
+    margin: 8px 12px;
+   /* display: inline-block;*/
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    float:left;
+    clear: both;
+}
+.loginIndex button[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 0 12px 10px;
+    margin: 8px 12px;
+    border: none;
+    cursor: pointer;
+    width: 320px;
+    float: left;
+    clear: both;
+}
+#id01 button:hover, #avis button:hover{
+    opacity: 0.8;
+}
+.loginPie, .modal-footer{
+    width: 100%;
+    height: 70px;
+}
+.loginPie .cancelbtn {        
+    padding: 10px 18px;
+    background-color: #f44336;
+    color:white;
+    margin: 10px 0 0 30px;
+}
+.imgcontainer {
+    width: 320px;
+    height: 158px;
+    text-align: center;
+    margin: 30px 30px 0 30px;
+    background:url("../img/look-5.jpg");
+    position: relative;
+}
+.look {
+    font-family: century;
+    font-weight: bolder;
+    text-align: center;
+    position: relative;
+    top: 90px;
+}
+.loginIndex label {
+    float: left;
+    margin-left: 12px;
+    clear: both;
+}
+span.psw {
+    float: right;
+    padding: 20px 30px 0 0;
+}
+.modalInd {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+.modal-content-ind, .modal-content{
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 380px; /* Could be more or less, depending on screen size */
+}
+/* Boton de cierre (x) */
+.close {
+   position: relative;
+   right: 6px;
+   top: 6px;
+   color: #000;
+   font-size: 20px;
+   font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+}
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+     animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}     
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+}
+.loginPie
+{
+	width: auto;
+}
+.error{
+    color: red;
+    margin: 12px;
+}
+
+/*--------------------------------Condicions------------------------------------------------*/
+#condiciones .modal-content .modal-body h2{
+    font-size: 20px;
+    color:#353599;
+    font-weight: bolder;
+}
+#condiciones .modal-content{
+    width: 500px;
+}
+#condiciones .modal-content .modal-body p{
+    text-align: justify;
+}
+#condiciones .modal-content .modal-header img{
+    margin-left: 150px;
+}
+#condiciones .modal-content .modal-header .modal-title{
+    margin-left: 15px;
+}
+
+/*------------------------------------Avis------------------------------------------------*/
+.modal-header img{
+    margin-left: 100px;
+}
+.modal-body{
+    margin-left: 10px;
+}
+.modal-body h3{
+    color: #dd1717;
+    font-weight: bolder;
+}
+.modal-footer .cancelbtn{
+   /* height: 80px;*/
+    padding: 5px 9px;
+    background-color: #f44336;
+    color:white;
+}	
+.modal-footer{
+     height: auto;
+}
+
+/*------------------------------------Alta usuario----------------------------------------*/
+.recuadro{
+    width: 935px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.revista{
+    width: 480px;
+    height: 636px;
+    background:url("../img/modelo2.jpg"); 
+    float: left;
+    border: 1.5px solid #c9c8c8;
+}
+
+#registro{
+    width: 450px;
+    height: 636px;
+    float: left;
+    border-top: 1.5px solid #c9c8c8;
+    border-right: 1.5px solid #c9c8c8;
+    /*border-bottom: 1.5px solid #c9c8c8;*/
+}
+
+#registroCab h3{  
+    margin-left:35px;
+    font-weight: bold;
+    color: #cca65d;
+}
+#registroCuerpo,#registroCuerpoH {
+    clear: both;
+    padding:0 35px;
+}
+#registroCuerpoH  input{
+   /*position: absolute;
+    left: 750px;*/
+    
+}
+#registroCuerpo label input{
+    position: relative;
+    left: 740px;
+}
+#registroCuerpoH label{
+    /*position: absolute;
+    left: 570px;*/float: left;margin-right: 20px;
+}
+label{
+    float: left;
+}
+.errorReg{
+    color:red;
+    position: absolute;
+    left: 740px;
+}
+.errorRegPsw{
+    color:red;
+    position: absolute;
+    left: 585px;
+}
+#registroCuerpo input[type=submit] ,#registroCuerpoH input[type=submit]{
+    width: 380px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /*position: absolute;
+    left: 540px;*/
+    
+}
+#registroCuerpo input[type=submit]:hover ,#registroCuerpoH input[type=submit]:hover{
+    background-color: #39703b;
+}
+#registroCuerpo .nota,#registroCuerpoH .nota {
+    font-style: italic;
+    color:gray;
+}
+/*-------------------------------------Alta noticia---------------------------------------*/
+.recuadronoticia{
+    width: 90%;
+    height: 853px;
+    margin: auto;
+    margin-top: 20px;
+    background:url("../img/vintage.jpg");
+    background-position-x: center;
+    background-position-y: top; 
+}
+#registronoticia{
+    width: 850px;
+    height: 750px;
+    margin: auto;
+    position: relative;
+    top:50px;
+    font-weight: bold;
+    background-color: rgba(189, 187, 187, 0.6);
+    padding: 5px 30px; 
+}
+#registronoticia input{
+    position: absolute;
+    left: 100px;
+}
+#registronoticia .errorC{
+    color: red;
+    position: absolute;
+    left: 480px;
+}
+#registronoticia .activar {
+    color:#4683f5;
+    position: absolute;
+    top:610px;
+    left: 30px;
+}
+#registronoticia .rr{
+    position: absolute;
+    top:1px;
+    left: 132px;
+}
+/*-------------------------------------Footer---------------------------------------------*/
+footer{
+	width: 100%;
+    height: 120px;
+    font-weight: bold;
+    padding: 20px;
+}
+footer #redes li{
+	list-style:none;
+	float:left;
+}
+#facebook, #twitter, #correu{
+	width:30px;
+	height:30px;
+	margin-right:7px;
+}
+#copyright, #derecha a{
+	text-align:right;
+	font-size:13px;
+	margin-top:5px;
+	margin-right: 50px;
+}
+.derecha{
+	display: block;
+	float: right;
+}
+/*----------------------------------------CONSULTA NOTICIAS---------------------------------*/
+.linea{
+    border-top: 2px solid gray;
+    margin: 0 50px;
+}
+.publicacion{
+    margin: 0 auto;
+    width: 910px;
+}
+.publicacion .articulo{
+    width: 600px;  
+    float: left;
+    border-top:1px solid #d1cfcf;
+}
+.publicacion .articulo .descripcion{
+    text-align: justify;
+}
+.publicacion .articuloFoto{
+    width: 300px;
+    height: 300px;
+    float: left;
+    background-color: #d1cfcf;
+    color:white;
+    text-align: center;
+    line-height: 300px;
+    margin-left: 10px;
+}
+.publicacion .articuloFoto img{
+    vertical-align: middle;
+}
+.limpiar{
+    clear: both;
+}
+.subir{
+    position: fixed;
+    bottom: 40%;
+    right: 2%;
+}
+.bajar{
+    position: fixed;
+    top: 63%;
+    right: 2%;
+}
+.pdf{
+    color:gray;
+    font-size:11px;
+    float:right;
+    margin-right:20px;
+    font-style: italic;
+}
+/*-------------------------------------LISTADO NOTICIAS------------------------------------*/
+#listadoNoticias, #listadoNoticias td, #listadoNoticias tr, #listadoNoticias th{
+    border-collapse: collapse;
+    border: 2px solid #d6d5d5;
+    padding: 5px;
+    font-size: 12px;
+}
+#listadoNoticias{
+    margin: 20px 0;
+    table-layout: fixed;
+    width: 790px;
+}
+
+td {
+    width: 300px;
+    word-wrap: break-word;
+}
+.registrolistado{
+    width: 850px;
+    height: auto;
+    margin: auto;
+    font-weight: bold;
+    background-color: #bdbbbbcc;/*#bdbbbbcc;*/
+    padding: 5px 30px; 
+}
+.recuadrolistado{
+    width: 90%;    
+    margin:0 auto;
+    padding: 50px 0;    
+    background:url("../img/vintage.jpg");
+    background-position-x: center;
+    background-position-y: top;
+}
+td a .glyphicon{
+    color: black;
+    font-size: 15px; 
+}
+td a .glyphicon:hover{
+    color:#d6d5d5;  
+}
+.redondo{
+    border-radius: 50%;
+    box-shadow: -5px -5px 10px gray inset;
+    padding: 10px;
+    color: white;
+    font-size: 17px;
+}
+.izquierdatop{
+    float: left;
+    margin-left: 60px;
+    margin-top: 7px;
+}
+.busquedadreta{
+    margin-right: 40px;
+}
+.verde, .verde:hover{
+    color:green;
+    font-size: 14px;
+}
+.rojo, .rojo:hover{
+    color:red;
+    font-size: 14px;
+}
+/*----------------------------------ACCES DENEGAT ADMIN ----------------------------------*/
+.erroradmin{
+    margin: 0 auto;
+    width: 90%;
+    padding: 50px;
+    border: 2px solid gray;
+}
+.erroradmin h2{
+    color:red;
+    font-weight: bold;
+}
+/*----------------------------------FORMULARI TOKEN ----------------------------------*/
+.token input[type=submit]{
+    border-radius: 45%;
+    box-shadow: -5px -5px 15px #4b4a4a inset;
+    padding: 10px;
+    color:white;
+}
+.token input[type=submit]:hover{
+    color:black;
+}
+.token{
+    background-color: #bdbbbbea;/*#bdbbbbcc;*/
+}
+.token form{
+    margin: 50px 0 20px 100px;
+}
+
+
+
+
+
+

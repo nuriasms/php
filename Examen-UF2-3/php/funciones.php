@@ -58,8 +58,8 @@
 		$tmp = $tmp_psw = $sql = $consulta = $con = '';
 		
 		$con = conectaBBDD();
-		//$tmp=strtolower($nombre);
-		$tmp = mb_strtolower($nombre, 'UTF-8');
+		$tmp=strtolower($nombre);
+		//$tmp = mb_strtolower($nombre, 'UTF-8');
         $tmp_psw=md5(sha1($contrasena));
         $sql="SELECT nom, contrasenya FROM usuari WHERE nom = '$tmp' AND contrasenya = '$tmp_psw'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
@@ -108,8 +108,8 @@
     {
         if ($recordar == 1)
 		{
-			//$tmp=strtolower($usuario);
-			$tmp = mb_strtolower($usuario, 'UTF-8');
+			$tmp=strtolower($usuario);
+			//$tmp = mb_strtolower($usuario, 'UTF-8');
             $psw=md5(sha1($contrasena));
 			setcookie("usuario",$tmp,strtotime( '+30 days' ),"/",false, false);
             setcookie("contrasena",$psw,strtotime( '+30 days' ),"/",false, false);   
@@ -270,8 +270,8 @@
 		$tmp = $tmp_psw = $minusc = $sql = $consulta = $con = '';
 		
         $con = conectaBBDD();
-		//$tmp=strtolower($nombre);
-        $tmp = mb_strtolower($nombre, 'UTF-8');
+		$tmp=strtolower($nombre);
+        //$tmp = mb_strtolower($nombre, 'UTF-8');
         
         $sql="SELECT nom FROM usuari WHERE nom = '$tmp'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
@@ -345,7 +345,8 @@
 		//UGII_LANG=spanish //en XAMPP
 		setlocale(LC_TIME,'spanish');
 		//return iconv("iso-8859-1","utf-8",(ucfirst(strftime("%A, %d de %B de %Y", $data))));
-		return utf8_encode(ucfirst(strftime("%d de %B de %Y", $data)));
+        //return utf8_encode(ucfirst(strftime("%d de %B de %Y", $data)));
+        return ucfirst(strftime("%d de %B de %Y", $data));
 		//return ucfirst(strftime("%#x", $data));
 		
     }
@@ -361,8 +362,9 @@
         $respuesta=false;
 		$tmp = $con = $sql = $consulta = "";
 		
-		$con = conectaBBDD();
-        $tmp=mb_strtolower($nombre, 'UTF-8');
+        $con = conectaBBDD();
+        $tmp=strtolower($usuario);
+        //$tmp=mb_strtolower($nombre, 'UTF-8');
 		$sql="INSERT INTO noticies (idnoticia,titular,noticia,data,foto,autor,activo) VALUES (NULL,'$titulo','$contenido','$data','$nombreFichero','$tmp','$activo')";
 		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));
 		$respuesta=true;	
@@ -384,7 +386,8 @@
 		$tmp = $consulta = $sql = $con = '';
 		
 		$con = conectaBBDD();
-        $tmp=mb_strtolower($usuario, 'UTF-8');
+        $tmp=strtolower($usuario);
+        //$tmp=mb_strtolower($usuario, 'UTF-8');
         $sql="SELECT * FROM usuari WHERE nom = '$tmp' AND nivell = '$tipo'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 		if (mysqli_num_rows($consulta) > 0)
@@ -603,8 +606,9 @@
 		$respuesta="";
 		$tmp = $consulta = $sql = $con = '';
 		
-		$con = conectaBBDD();
-        $tmp=mb_strtolower($usuario, 'UTF-8');
+        $con = conectaBBDD();
+        $tmp=strtolower($usuario);
+        //$tmp=mb_strtolower($usuario, 'UTF-8');
         $sql="SELECT nivell FROM usuari WHERE nom = '$tmp'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
         $registre = mysqli_fetch_assoc($consulta);

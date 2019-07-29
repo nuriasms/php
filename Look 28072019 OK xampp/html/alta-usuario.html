@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="description" content="Consulta toda la información para la mujer en el suplemento de LOOK: Moda, tendencias, belleza, pareja, Lifestyle, vídeos  noticias de famosas. ¡Entra!">
+		<meta name="keywords" content="Look, revista online, revista look, belleza, trucos de belleza, consejos de belleza, tratamientos esteticos, maquillaje, peluqueria, perfumes, trucos de belleza de famosas,">
+		<meta http-equip="Expires" content="no-cache">
+		<link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+		<script src="../lib/js/jquery.min.js"></script>
+		<script src="../lib/js/bootstrap.min.js"></script>
+		<title>LOOK</title>
+		<link rel="stylesheet" href="../css/style.css"> 
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+		<script src="../js/alta-usuario.js"></script>
+	</head>
+	<body>
+		<noscript>Disculpe, su navegador no soporta JavaScript!</noscript>
+		<div class="recuadro">   
+		<div class="revista">
+		</div>
+        <div id="registro">
+			<div class="alert alert-success" id="alert" style="display: none;text-align: center;"> &nbsp;</div> 
+			<form id="formulario-alta" method="post">
+                <div id="registroCab"> 
+					<h3>REGISTRO DE ALTA</h3>	
+				</div> 
+                <div id="registroCuerpoH"> 
+					<hr>
+					<input type="hidden" name="nivel" id="nivel" value="basic">
+					<label for="nombre">Nombre usuario: </label> <input type="text" name="usuario" id="nombre"  maxlength="30">
+					<br><br>
+					<label for="nacimiento">Fecha nacimiento: </label> <input type="date" name="nacimiento" id="nacimiento" >
+					<br><br>
+					<label for="correo">Correo: </label><input type="email" name="correo" id="correo" maxlength="30">
+					<br><br>
+					<label for="contrasena1">Contraseña: </label><input type="password" name="contrasena" id="contrasena1" minlength="4" maxlength="8">	
+					<br><br>
+					<label for="contrasena2">Repite contraseña: </label><input type="password" name="contrasena2" id="contrasena2" minlength="4" maxlength="8" >	
+					<br><br>
+					<hr>                    
+					<span for="recordar">Recordar usuario  </span><input type="checkbox" name="recordar" id="recordar">
+					<br><br>
+					<input type="submit" class="submit" name="enviar" value="Alta usuario">
+					<br><br><br>
+					<span class="nota">Todos los campos son obligatorios para el alta de un nuevo usuario</span>
+                </div>				
+			</form>
+	
+		</div>
+		</div>
+	</body>
+</html>
+
+
