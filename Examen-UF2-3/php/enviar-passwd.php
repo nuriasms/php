@@ -20,7 +20,7 @@
 		$correu = $registre['correu'];;
 
 		//generar password
-		$newpassword = randomPassword();
+		$newpassword = randomPassword("4");
 		$psw = md5(sha1($newpassword));
 		//guardar nova password
 		$sql = "UPDATE usuari SET contrasenya ='$psw' WHERE nom='$nom' ";

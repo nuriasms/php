@@ -1,39 +1,18 @@
 <?php
+	require ('funciones.php');
+
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 	require '../correo/PHPMailer/src/Exception.php';
 	require '../correo/PHPMailer/src/PHPMailer.php';
 	require '../correo/PHPMailer/src/SMTP.php';
 
-	function randomPassword() 
-	{
-		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-		$pass = array(); //remember to declare $pass as an array
-		$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-		for ($i = 0; $i < 20; $i++) 
-		{
-			$n = rand(0, $alphaLength);
-			$pass[] = $alphabet[$n];
-		}
-		return implode($pass); //turn the array into a string
-	}
 
 	//agafar email de l'usuari
 	if(isset($_REQUEST["nom"])) 
     {
-		// dades de configuració
-		$ip = 'localhost';
-		$usuari = 'prova';
-		$pass = 'prova';
-		$db_name = 'prova';
-
 		// connectem amb la db
-		$con = mysqli_connect($ip,$usuari,$pass,$db_name);
-		if (!$con)  
-		{
-			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-			echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-		}
+		$con = conectaBBDD();
 
 		//obtindre correu
 		$nom=mb_strtolower($_REQUEST["nom"], 'UTF-8');
@@ -44,7 +23,7 @@
 		$correu = $registre['correu'];;
 
 		//generar password
-		$token = randomPassword();
+		$token = randomPassword("20");
         //guardar nova password
         $sql = " INSERT INTO tokens (token,nom) VALUES ('$token','$nom') ";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
