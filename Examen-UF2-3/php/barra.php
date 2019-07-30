@@ -53,7 +53,6 @@
                                 echo "<li class='active'><a href='look-listado.php' >Listado artículos</a></li>";
                                 break;
                             default:
-                                break;
                         }
                         break;
                     case 'admin': 
@@ -95,11 +94,9 @@
                                 echo "<li class='active'><a href='look-informe.php' >Informe actividad</a></li>";
                                 break;
                             default:
-                                break;
                         }
                         break;
                     default:
-                        break;
                 }   
             ?>   
         </ul>

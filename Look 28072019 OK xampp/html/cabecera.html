@@ -1,0 +1,84 @@
+<!----------------------------------CABECERA------------------------------------------------>
+<header class="container">
+    <ul class="barraUsuari"> 
+        <?php 
+            if (!empty ($usuario))
+            {
+        ?>
+                <li><form method="get">
+                    <button type="submit" name="cerrar" class="glyphicon glyphicon-log-out nada"></button>
+                    </form></li>
+                <li>
+                    <span class="nomUsuari glyphicon glyphicon-user"> 
+                    <?php echo ucwords($usuario);?>
+                    </span>                        
+                </li> 
+        <?php
+            }
+           else
+            {
+        ?>
+                <li><a href="#" data-toggle="modal" data-target="#login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-log-in bannerformmodal"></span></a></li>
+                <li><a href="#"></a></li> 
+        <?php  
+           }
+        ?>       
+    </ul>
+    <h1>LOOK</h1>   
+</header>
+<!----------------------------MODAL LOGIN--------------------------------------------------->
+<div id="id01" class="modalInd"> 
+       
+    <form class="modal-content-ind animate" method="post" id="formulario-login">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Cerrar Modal">&times;</span>
+        <div class="imgcontainer">
+            <h1 class="look">LOOK</h1>
+        </div>
+        
+        <div class="container loginIndex espacio">
+            <br>
+			<div class="alert alert-success" id="alert" style="display: none;text-align: center;width: 345px;"> &nbsp;</div> 
+            <br>
+            
+            <input type="hidden" name="origen" id="origen" value="<?php echo $origen; ?>">
+            <script>var lugar = document.getElementById("origen").value;</script>
+            <label for="nombre"><b>Usuario</b></label><br>
+            <input type="text" placeholder="Nombre usuario" name="nombre" id="nombre" maxlength="20" >
+            <br>            
+            <label for="contrasena"><b>Contraseña</b></label><br>
+            <input type="password" placeholder="Password" name="contrasena" id="contrasena" minlength="4" maxlength="8" >
+            <br>             
+            <button type="submit" name="inicio">Iniciar sesión</button>
+            <br>
+            <label><br>¿Has olvidado tu contraseña?</label>                        
+            <label class="normal">
+        	    <a class="altaUsuario" onClick="comprobarNombre('passwd','<?php echo $origen; ?>'); return false;" href="#">Recibe una nueva </a>
+             o bien
+        	    <a class="altaUsuario" onClick="comprobarNombre('token','<?php echo $origen; ?>'); return false;" href="#"> un token</a>
+            <br><br></label>
+            <br>
+            <label>
+                <input type="checkbox" checked="checked"  name="recordar"> Recordar usuario
+            </label>
+            <br><br><br>
+            <label>
+                <?php
+                    if ($origen=="inicio")
+                    {
+                        echo "<a class='altaUsuario' href='html/alta-usuario.html'>Registrar nuevo usuario</a>";
+                    }
+                    else
+                    {
+                        echo "<a class='altaUsuario' href='../html/alta-usuario.html'>Registrar nuevo usuario</a>";
+                    }                    
+                ?>
+            </label>
+            <br><br>
+        </div>
+        
+        <div class="loginPie" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+            <span class="psw">Olvidar <a href="#" onclick="borrarCookie();">usuario?</a></span>
+        </div>
+    </form>
+</div>
