@@ -109,7 +109,9 @@
 							<label for="ffoto">Foto: </label><input type="text" name="fichero" maxlength="200" size="72" value="<?php echo $nombreFichero;?>" id="ffoto">
 							<span class="errorC"><?php echo $ficheroError;?></span>
 							<br><br>
-							<label for="fautor">Autor: &nbsp;&nbsp;&nbsp;<?php echo utf8_encode(ucwords($nombre));?></label>
+							<!--label for="fautor">Autor: &nbsp;&nbsp;&nbsp;<?php //echo utf8_encode(ucwords($nombre));?></label-->
+
+							<label for="fautor">Autor: &nbsp;&nbsp;&nbsp;<?php echo (ucwords($nombre));?></label>
 							<span class="errorC"><?php echo $autorError;?></span>
 							<br><br>
 							<?php  $hoy = formatearFecha(date('d-m-Y'));?>

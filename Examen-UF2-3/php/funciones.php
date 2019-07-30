@@ -125,7 +125,9 @@
     function iniciarSesion($usuario,$contrasena)
     {
         $respuesta=false;
-		$_SESSION["nombre_usuario"] = mb_strtolower($usuario, 'UTF-8');
+       // $_SESSION["nombre_usuario"] = mb_strtolower($usuario, 'UTF-8');
+
+		$_SESSION["nombre_usuario"] = strtolower($usuario);
         $_SESSION["contrasena"] = $contrasena;
 		if(isset($_SESSION["nombre_usuario"]) && isset($_SESSION["contrasena"]) )
 		{
@@ -363,7 +365,7 @@
 		$tmp = $con = $sql = $consulta = "";
 		
         $con = conectaBBDD();
-        $tmp=strtolower($usuario);
+        $tmp=strtolower($nombre);
         //$tmp=mb_strtolower($nombre, 'UTF-8');
 		$sql="INSERT INTO noticies (idnoticia,titular,noticia,data,foto,autor,activo) VALUES (NULL,'$titulo','$contenido','$data','$nombreFichero','$tmp','$activo')";
 		$consulta = mysqli_query($con, $sql) or die('Consulta fallida: ' . mysqli_error($con));

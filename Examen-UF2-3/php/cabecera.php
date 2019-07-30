@@ -14,14 +14,15 @@
             $resposta .= "Nombre y contraseña obligatorios."; 
             $estat = false;
         }else {
+            //if (!$tmp=validarUsuario(strtolower($_REQUEST['nombre']),$_REQUEST['contrasena'])) {
 
-            if (!$tmp=validarUsuario(strtolower($_REQUEST['nombre']),$_REQUEST['contrasena'])) {
+            if (!$tmp=validarUsuario(($_REQUEST['nombre']),$_REQUEST['contrasena'])) {
 
                 $resposta .= "ERROR al validar usuario";
                 $estat = false;									
             } else {
-
-                guardarCookie(strtolower($_REQUEST['nombre']),$_REQUEST['contrasena'],$_REQUEST['recordar']);
+                //guardarCookie(strtolower($_REQUEST['nombre']),$_REQUEST['contrasena'],$_REQUEST['recordar']);
+                guardarCookie(($_REQUEST['nombre']),$_REQUEST['contrasena'],$_REQUEST['recordar']);
                 iniciarSesion($_REQUEST['nombre'],$_REQUEST['contrasena']);
                 
                     if ($_REQUEST['origen']=="consulta")
