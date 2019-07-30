@@ -162,8 +162,8 @@
 							<span class="descripcion">
 								<p><?php echo $registre['noticia'];?></p>
 							</span>
-							<br>									
-							<h5><span class="autor"><?php echo ucwords($registre['autor']);?>,&nbsp; <?php echo formatearFecha($registre['data']);?>.</span></h5>
+							<br>
+							<h5><span class="autor"><?php echo ucwords($registre['autor']);?>,&nbsp; <?php echo obtenerFechaEnLetra($registre['data']);?>.</span></h5>
 						<?php	
 							if (validarTipoUsuario($usuario,'admin') || ($usuario==$registre['autor']))
 							{

@@ -33,7 +33,7 @@
 		$mail = new PHPMailer(true);
 		try 
 		{
-            $resetPassLink = 'http://localhost/php/Examen-UF2-3/php/formulario-token.php?codigo='.$token;
+            $resetPassLink = 'http://formacio.obsea.es:8081/CFO2018/nuriapons/look/php/formulario-token.php?codigo='.$token;
 			//Server settings
 			$mail->CharSet = 'UTF-8';
 			$mail->SMTPDebug = 0;                     // Enable verbose debug output

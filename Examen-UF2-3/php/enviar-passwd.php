@@ -18,7 +18,7 @@
 		$sql = "SELECT * FROM usuari WHERE nom='$nom'";
 		$consulta = mysqli_query($con, $sql)  or die('Consulta fallida: ' . mysqli_error($con));
 		$registre = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-		$correu = $registre['correu'];;
+		$correu = $registre['correu'];
 
 		//generar password
 		$newpassword = randomPassword("4");
@@ -59,7 +59,12 @@
 			Atentament,
 			LOOK';
 			$mail->send();
-			echo '<br><br><h2>Correu enviat!</h2>';
+			echo "<html>";
+				echo "<h1 style='font-size:55px;font-family:century;text-align:center;padding-top:100px'>LOOK</h1>";
+				echo "<h2 style='color:blue;text-align:center;padding:50px 0'>Correu enviat!</h2>";
+			echo "<a href='look-consulta.php'><p style='text-align:center'>Volver a la consulta</p></a>";
+		echo "</html>";   
+
     	} 
 
 		catch (Exception $e) 
