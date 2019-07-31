@@ -20,7 +20,6 @@
 		<script src="js/funciones.js"></script>
 		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 		<script src="js/cabecera.js"></script>
 		<title>LOOK</title>
 		<link rel="stylesheet" href="css/style.css">
