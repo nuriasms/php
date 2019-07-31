@@ -20,6 +20,7 @@
 		<script src="js/funciones.js"></script>
 		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 		<script src="js/cabecera.js"></script>
 		<title>LOOK</title>
 		<link rel="stylesheet" href="css/style.css">
@@ -45,6 +46,11 @@
 			$origen="inicio";
 			include ('php/carousel.php');
 		?>	
+		<div id="cajacookies">
+			<p><button onclick="aceptarCookies()" class="pull-right"><i class="fa fa-times"></i> Aceptar y cerrar éste mensaje</button>
+			Éste sitio web usa cookies, si permanece aquí acepta su uso.
+			Puede leer más sobre el uso de cookies en nuestra <a href="http://www.interior.gob.es/politica-de-cookies" target="_blank">política de privacidad</a>.</p>
+		</div>
 		<!------------------------------------PIE------------------------------------------------------->	
 		<?php
 			include ('html/pie.html');
